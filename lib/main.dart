@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'listdata.dart';
+import 'package:flutter_learn/res/listdata.dart';
 
 void main() => runApp(new MyApp());
 
