@@ -11,15 +11,79 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('flutter demo'),
         ),
-        body: ListHome(),
+        body: IconContainer(Icons.settings),
       ),
       theme: ThemeData(primarySwatch: Colors.green),
     );
   }
 }
 
+/***************************************自定义组件***********************************/
+
+class IconContainer extends StatelessWidget {
+  Color color = Colors.blue;
+  IconData icon;
+  double size = 32.0;
+
+  IconContainer(this.icon, {this.color, this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      width: 100.0,
+      height: 100.0,
+      color: this.color,
+      child: Center(
+        child: Icon(
+          this.icon,
+          size: this.size,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+}
+
+/***********************************Padding*********************************/
+class PaddingContent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return GridView.count(
+      crossAxisCount: 2,
+//      crossAxisSpacing: 4.0,
+//      mainAxisSpacing: 4.0,
+      children: _getGridViewItem(),
+    );
+  }
+}
+
+/**
+ * 创造gridview数据
+ */
+List<Widget> _getGridViewItem() {
+  List<Widget> list = new List();
+  for (var i = 0; i < 11; i++) {
+    list.add(Padding(
+      //使用padding组件作为父容器来完成和子元素直接距离的调整
+      padding: EdgeInsets.all(5.0), //设置padding值
+      child: Container(
+        //初始化子容器
+        decoration: BoxDecoration(
+          //设置子容器的背景颜色
+          color: Colors.blue,
+        ),
+      ),
+    ));
+  }
+  return list;
+}
+
+/********************************************************************/
 class ListHome extends StatelessWidget {
   List list = new List();
+
   ListHome() {
     this.list = listData;
   }
@@ -42,9 +106,9 @@ GridView _getGridViewByBuilder(BuildContext context) {
       crossAxisCount: 2,
       crossAxisSpacing: 5.0,
       mainAxisSpacing: 5.0,
-    ),//这是GridView的属性，这一点与GridView.count()方式是有区别的
-    itemBuilder: _getData,//构建包含数据的widget，自身遍历集合切返回含数据的widget
-    itemCount: listData.length,//数据的长度
+    ), //这是GridView的属性，这一点与GridView.count()方式是有区别的
+    itemBuilder: _getData, //构建包含数据的widget，自身遍历集合切返回含数据的widget
+    itemCount: listData.length, //数据的长度
   );
 }
 
