@@ -12,8 +12,160 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: Text('flutter demo'),
           ),
-          body: CardViewWidget()),
+          body: HomePageControlList()),
 //      theme: ThemeData(primarySwatch: Colors.green),
+    );
+  }
+}
+
+/*****************************StatefulWidget有状态组件******************************/
+
+class HomePageControlList extends StatefulWidget {
+  @override
+  _HomePageControlListState createState() => _HomePageControlListState();
+}
+
+class _HomePageControlListState extends State<HomePageControlList> {
+  List list = new List();
+  int count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      child: Stack(
+        children: <Widget>[
+          ListView(
+            children: this.list.map((value) {
+              return Center(
+                child: ListTile(
+                  title: Text(value),
+                ),
+              );
+            }).toList(),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: RaisedButton(
+              onPressed: () {
+                setState(() {
+                  count++;
+                  list.add("${this.count}");
+                });
+              },
+              child: Text("增加数据"),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: RaisedButton(
+              onPressed: () {
+                setState(() {
+                  --count;
+                  if (count == 0) {
+                    list.clear();
+                  } else if (count > 0) {
+                    list.remove("${this.count}");
+                  } else {
+                    count = 0;
+                    list.clear();
+                  }
+                });
+              },
+              child: Text("减少数据"),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+/**
+ * 实现点击按钮进行页面数据的修改
+ */
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          Chip(label: Text("${this.count}")),
+          SizedBox(height: 10.0),
+          RaisedButton(
+            onPressed: () {
+              setState(() {
+                count++;
+              });
+            },
+            child: Text("点击增加"),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          RaisedButton(
+            onPressed: () {
+              setState(
+                () {
+                  count--;
+                },
+              );
+            },
+            child: Text("点击减少"),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          RaisedButton(
+            onPressed: () {
+              setState(
+                () {
+                  if (count != 0) {
+                    count = 0;
+                  }
+                },
+              );
+            },
+            child: Text("清除"),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+/*****************************Wrap组件 实现瀑布流的布局*******************************/
+
+class WrapWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+//      width: 300.0,
+      padding: EdgeInsets.all(10.0),
+      child: Wrap(
+        //实现瀑布流布局
+        children: listData.map((value) {
+          return RaisedButton(
+            onPressed: null,
+            child: Text(
+              value["author"],
+              style: TextStyle(color: Colors.white),
+            ),
+          );
+        }).toList(),
+        spacing: 10.0, //横向间距
+        runSpacing: 5.0, //纵向间距
+        alignment: WrapAlignment.start, //spaceAround,center,start
+//        crossAxisAlignment: WrapCrossAlignment.center,
+      ),
     );
   }
 }
@@ -24,45 +176,48 @@ class CardViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ListView(
-      children: listData.map((value) {
-        return Card(
-          margin: EdgeInsets.all(5.0),
-          child: Column(
-            children: <Widget>[
-              AspectRatio(
-                  aspectRatio: 16.0 / 9.0, //AspectRatio控件控制子元素的宽高比
-                  child: Image.network(value["imageurl"],fit: BoxFit.cover,)),
-              ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(value["imageurl"]),
-                ),
-                title: Text(value["title"]),
-                subtitle: Text(value["author"]),
-              )
-            ],
-          ),
+    return ListView(children: _getItemLikeNetData()
+//      listData.map((value) {
+//        return Card(
+//          margin: EdgeInsets.all(5.0),
+//          child: Column(
+//            children: <Widget>[
+//              AspectRatio(
+//                  aspectRatio: 16.0 / 9.0, //AspectRatio控件控制子元素的宽高比
+//                  child: Image.network(
+//                    value["imageurl"],
+//                    fit: BoxFit.cover,
+//                  )),
+//              ListTile(
+//                leading: CircleAvatar(
+//                  backgroundImage: NetworkImage(value["imageurl"]),
+//                ),
+//                title: Text(value["title"]),
+//                subtitle: Text(value["author"]),
+//              )
+//            ],
+//          ),
+//        );
+//      }).toList(),
         );
-      }).toList(),
-    );
   }
 }
 
 List<Widget> _getItemLikeNetData() {
-  listData.map((value) {
+  return listData.map((value) {
     return Card(
       child: Column(
         children: <Widget>[
           AspectRatio(
-              aspectRatio: 16.0 / 9.0, //AspectRatio控件控制子元素的宽高比
-              child: Image.network(value["url"])),
+              aspectRatio: 14.0 / 9.0, //AspectRatio控件控制子元素的宽高比
+              child: Image.network(value["imageurl"])),
           ListTile(
 //            leading: ClipOval(
 //              //ClipOval圆形头像的控件
 //              child: Image.asset("images/a.jpg",fit: BoxFit.cover,width: 40.0, height: 40.0,),
 //            ),
             leading: CircleAvatar(
-              backgroundImage: NetworkImage(value["url"]),
+              backgroundImage: NetworkImage(value["imageurl"]),
             ),
             title: Text(value["title"]),
             subtitle: Text(value["author"]),
