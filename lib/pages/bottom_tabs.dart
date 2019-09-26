@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/pages/tabs/homepage.dart';
-import 'package:flutter_learn/pages/tabs/settingspage.dart';
-import 'package:flutter_learn/pages/tabs/categroypage.dart';
-import 'package:flutter_learn/pages/tabs/minepage.dart';
+import 'package:flutter_learn/pages/tabs/home_page.dart';
+import 'package:flutter_learn/pages/tabs/setting_spage.dart';
+import 'package:flutter_learn/pages/tabs/categroy_page.dart';
+import 'package:flutter_learn/pages/tabs/mine_page.dart';
 
 /*****************************BottomNavigattionBar底部导航栏******************************/
 class BottomBar extends StatefulWidget {
