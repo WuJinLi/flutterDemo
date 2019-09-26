@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/res/listdata.dart';
+import 'package:flutter_learn/pages/bottomtabs.dart';
+import 'package:flutter_learn/pages/detail_page.dart';
+import 'package:flutter/src/widgets/navigator.dart';
 
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
+
+  final routes={
+    "/details":(context,{arguments}) => DetailsPage(arguments:arguments),
+  };
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "flutter",
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('flutter demo'),
-          ),
-          body: HomePageControlList()),
+      home: BottomBar()
 //      theme: ThemeData(primarySwatch: Colors.green),
     );
   }
