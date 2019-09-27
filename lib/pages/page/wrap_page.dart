@@ -1,6 +1,6 @@
 /*****************************Wrap组件 实现瀑布流的布局*******************************/
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/res/list_data.dart';
+import 'package:flutter_learn/res/data_resc.dart';
 class WrapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

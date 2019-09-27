@@ -1,8 +1,10 @@
 import '../pages/page/detail_page.dart';
 import 'package:flutter/material.dart';
+import '../pages/bottom_tabs.dart';
 
 final routes = {
   "/details": (context, {arguments}) => DetailsPage(arguments: arguments),
+  "/": (context, {arguments}) => BottomBar(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
@@ -20,3 +22,19 @@ var onGenerateRoute = (RouteSettings settings) {
     }
   }
 };
+
+/***
+ *命名路由传值策略：
+ *
+ * 通过MaterialApp中属性->onGenerateRoute 通过RouteSettings来进行设置
+ *
+ * class RouteSettings {
+    const RouteSettings({
+    this.name,
+    this.isInitialRoute = false,
+    this.arguments,
+    });
+    1.路由集合统一管理
+    2.通过RouteSettings来进行设置，具体设置方式见上代码
+    重点：RouteSettings，arguments
+ */

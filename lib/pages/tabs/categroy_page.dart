@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/res/list_data.dart';
+import 'package:flutter_learn/res/data_resc.dart';
 class CategroyPage extends StatefulWidget {
   @override
   _CategroyState createState() => _CategroyState();

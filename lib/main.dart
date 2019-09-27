@@ -11,8 +11,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "flutter",
-      home: BottomBar(),
+//      home: BottomBar(),
       onGenerateRoute: onGenerateRoute,
+      initialRoute: "/",
     );
   }
 }

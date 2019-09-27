@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/res/list_data.dart';
+import 'package:flutter_learn/res/data_resc.dart';
 /********************************************************************/
 class ListHome extends StatelessWidget {
   List list = new List();

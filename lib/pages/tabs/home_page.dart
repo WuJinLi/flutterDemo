@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/pages/page/route_page.dart';
 import '../page/detail_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,20 +11,26 @@ class _HomeState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          RaisedButton(
-            onPressed: () {
-              //普通路由跳转和传值
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => DetailsPage(title: "这是上级页面传递的数据",)));
-            },
-            child: Text("普通路由传值"),
-          ),
-        ],
-      )
-    );
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: RaisedButton(
+                onPressed: () {
+                  //普通路由跳转和传值
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => RouteDetailPage()));
+                },
+                child: Text("路由跳转"),
+              ),
+            )
+          ],
+        )
+      ],
+    ));
   }
 }

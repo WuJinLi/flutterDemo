@@ -1,6 +1,6 @@
 /*****************************stack组件相当于android中framelayout********************************/
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/res/list_data.dart';
+import 'package:flutter_learn/res/data_resc.dart';
 /**
  * Stack组件通过自身属性alignment来进行子元素的定位
  */
