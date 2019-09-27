@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/pages/page/route_page.dart';
-import '../page/detail_page.dart';
+import 'package:flutter_learn/pages/page/listview_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -22,10 +21,24 @@ class _HomeState extends State<HomePage> {
               child: RaisedButton(
                 onPressed: () {
                   //普通路由跳转和传值
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => RouteDetailPage()));
+                  Navigator.pushNamed(context, "/route_page");
                 },
                 child: Text("路由跳转"),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: RaisedButton(
+                onPressed: () {
+                  //普通路由跳转和传值
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ListViewPage()));
+                },
+                child: Text("ListView"),
               ),
             )
           ],

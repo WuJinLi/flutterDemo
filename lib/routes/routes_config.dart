@@ -1,10 +1,16 @@
 import '../pages/page/detail_page.dart';
 import 'package:flutter/material.dart';
 import '../pages/bottom_tabs.dart';
+import '../pages/page/route_page.dart';
+import 'package:flutter_learn/pages/page/route_page.dart';
 
+/**
+ * 配置路由
+ */
 final routes = {
   "/details": (context, {arguments}) => DetailsPage(arguments: arguments),
-  "/": (context, {arguments}) => BottomBar(),
+  "/": (context) => BottomBar(),
+  "/route_page": (conntext) => RouteDetailPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
