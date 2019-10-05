@@ -8,14 +8,19 @@ class CategroyPage extends StatefulWidget {
 class _CategroyState extends State<CategroyPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView(
-        children: listData.map((value){
-          return ListTile(
-            title: Text(value["title"]),
-            subtitle: Text(value["author"]),
-          );
-        }).toList(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("分类"),
+      ),
+      body: Container(
+        child: ListView(
+          children: listData.map((value){
+            return ListTile(
+              title: Text(value["title"]),
+              subtitle: Text(value["author"]),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

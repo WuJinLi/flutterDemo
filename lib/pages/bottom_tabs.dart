@@ -6,20 +6,25 @@ import 'package:flutter_learn/pages/tabs/mine_page.dart';
 
 /*****************************BottomNavigattionBar底部导航栏******************************/
 class BottomBar extends StatefulWidget {
+  var index;
+  BottomBar({this.index});
   @override
-  _BottomBarState createState() => _BottomBarState();
+  _BottomBarState createState() => _BottomBarState(index);
 }
 
 class _BottomBarState extends State<BottomBar> {
   int currentIndex = 0;
   List list=[HomePage(),CategroyPage(),SettingsPage(),MinePage()];
 
+  _BottomBarState(index){
+    this.currentIndex=index;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Flutter Demo"),
-      ),
+//      appBar: AppBar(
+////        title: Text("Flutter Demo"),
+//      ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("首页"),),

@@ -1,8 +1,12 @@
 import '../pages/page/detail_page.dart';
 import 'package:flutter/material.dart';
 import '../pages/bottom_tabs.dart';
-import '../pages/page/route_page.dart';
 import 'package:flutter_learn/pages/page/route_page.dart';
+import 'package:flutter_learn/pages/page/name_route_page.dart';
+import 'package:flutter_learn/pages/page/login/login_page.dart';
+import 'package:flutter_learn/pages/page/registe/register_frist_page.dart';
+import 'package:flutter_learn/pages/page/registe/register_secound_page.dart';
+import 'package:flutter_learn/pages/page/registe/register_third_page.dart';
 
 /**
  * 配置路由
@@ -11,6 +15,11 @@ final routes = {
   "/details": (context, {arguments}) => DetailsPage(arguments: arguments),
   "/": (context) => BottomBar(),
   "/route_page": (conntext) => RouteDetailPage(),
+  "/name_route_page": (context) => NameRoutePage(),
+  "/register_frist_page": (context) => RegisterFristPage(),
+  "/register_secound_page": (context) => RegisterSecoundPage(),
+  "/register_third_page": (context) => RegisterThirdPage(),
+  "/login": (context) => LoginPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
