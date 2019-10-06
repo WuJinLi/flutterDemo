@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/res/data_resc.dart';
+import 'package:toast/toast.dart';
+
 class CategroyPage extends StatefulWidget {
   @override
   _CategroyState createState() => _CategroyState();
@@ -14,10 +16,13 @@ class _CategroyState extends State<CategroyPage> {
 //      ),
       body: Container(
         child: ListView(
-          children: listData.map((value){
+          children: listData.map((value) {
             return ListTile(
               title: Text(value["title"]),
               subtitle: Text(value["author"]),
+              onTap: () {
+                Toast.show(value["title"], context, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);//显示toast
+              },
             );
           }).toList(),
         ),
