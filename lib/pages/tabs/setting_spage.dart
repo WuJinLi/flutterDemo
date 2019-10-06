@@ -9,9 +9,9 @@ class _SettingsState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("tabbar的实现方式"),
-      ),
+//      appBar: AppBar(
+//        title: Text("tabbar的实现方式"),
+//      ),
       body: Column(
         children: <Widget>[
           Row(

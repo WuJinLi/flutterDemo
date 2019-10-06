@@ -10,9 +10,9 @@ class _HomeState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("主页"),
-      ),
+//      appBar: AppBar(
+//        title: Text("主页"),
+//      ),
       body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

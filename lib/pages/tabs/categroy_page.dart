@@ -9,9 +9,9 @@ class _CategroyState extends State<CategroyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("分类"),
-      ),
+//      appBar: AppBar(
+//        title: Text("分类"),
+//      ),
       body: Container(
         child: ListView(
           children: listData.map((value){

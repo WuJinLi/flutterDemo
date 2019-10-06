@@ -12,9 +12,9 @@ class _MineState extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("我的"),
-      ),
+//      appBar: AppBar(
+//        title: Text("我的"),
+//      ),
       body: Center(
         child: Container(
           child: Column(
