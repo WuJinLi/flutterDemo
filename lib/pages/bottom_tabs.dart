@@ -61,7 +61,7 @@ class _BottomBarState extends State<BottomBar> {
                       ],
                       onDetailsPressed: () {
                         Navigator.pop(context); //关闭抽屉
-                        Navigator.of(context).pushNamed("drawer_detail_page",
+                        Navigator.of(context).pushNamed("/drawer_detail_page",
                             arguments: {"content": "抽屉头部"}); //详情页面跳转
                       },
                     ),
@@ -75,7 +75,7 @@ class _BottomBarState extends State<BottomBar> {
                 ),
                 onTap: () {
                   Navigator.pop(context); //关闭抽屉
-                  Navigator.of(context).pushNamed("drawer_detail_page",
+                  Navigator.of(context).pushNamed("/drawer_detail_page",
                       arguments: {"content": "我的"}); //详情页面跳转
                 },
               ),
@@ -87,7 +87,7 @@ class _BottomBarState extends State<BottomBar> {
                 ),
                 onTap: () {
                   Navigator.pop(context); //关闭抽屉
-                  Navigator.of(context).pushNamed("drawer_detail_page",
+                  Navigator.of(context).pushNamed("/drawer_detail_page",
                       arguments: {"content": "设置"});
                 },
               ),
@@ -99,7 +99,7 @@ class _BottomBarState extends State<BottomBar> {
                 ),
                 onTap: () {
                   Navigator.pop(context); //关闭抽屉
-                  Navigator.of(context).pushNamed("drawer_detail_page",
+                  Navigator.of(context).pushNamed("/drawer_detail_page",
                       arguments: {"content": "主页"});
                 },
               ),
@@ -111,7 +111,7 @@ class _BottomBarState extends State<BottomBar> {
                 ),
                 onTap: () {
                   Navigator.pop(context); //关闭抽屉
-                  Navigator.of(context).pushNamed("drawer_detail_page",
+                  Navigator.of(context).pushNamed("/drawer_detail_page",
                       arguments: {"content": "热门"});
                 },
               ),
@@ -127,7 +127,7 @@ class _BottomBarState extends State<BottomBar> {
           leading: Icon(Icons.account_balance),
           onTap: () {
             Navigator.pop(context); //关闭抽屉
-            Navigator.of(context).pushNamed("drawer_detail_page",
+            Navigator.of(context).pushNamed("/drawer_detail_page",
                 arguments: {"content": "右侧边栏"});
           },
         )),

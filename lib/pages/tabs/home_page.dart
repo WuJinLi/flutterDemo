@@ -15,53 +15,66 @@ class _HomeState extends State<HomePage> {
 //      ),
       body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: RaisedButton(
-                      onPressed: () {
-                        //普通路由跳转和传值
-                        Navigator.pushNamed(context, "/route_page");
-                      },
-                      child: Text("路由跳转"),
-                    ),
-                  ),
-                ],
+              Expanded(
+                flex: 1,
+                child: RaisedButton(
+                  onPressed: () {
+                    //普通路由跳转和传值
+                    Navigator.pushNamed(context, "/route_page");
+                  },
+                  child: Text("路由跳转"),
+                ),
               ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: RaisedButton(
-                      onPressed: () {
-                        //普通路由跳转和传值
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => ListViewPage()));
-                      },
-                      child: Text("ListView"),
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: RaisedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, "/name_route_page");
-                      },
-                      child: Text("命名路由，有状态页面"),
-                    ),
-                  )
-                ],
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: RaisedButton(
+                  onPressed: () {
+                    //普通路由跳转和传值
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ListViewPage()));
+                  },
+                  child: Text("ListView"),
+                ),
               )
             ],
-          )),
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/name_route_page");
+                  },
+                  child: Text("命名路由，有状态页面"),
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/buttom_page");
+                  },
+                  child: Text("按钮种类详情页面"),
+                ),
+              )
+            ],
+          )
+        ],
+      )),
     );
   }
 }

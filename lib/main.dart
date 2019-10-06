@@ -3,7 +3,6 @@ import 'package:flutter_learn/pages/bottom_tabs.dart';
 import 'package:flutter_learn/routes/routes_config.dart';
 import 'routes/routes_config.dart';
 
-
 /**
  *
  * 针对主页面设计：
@@ -21,8 +20,8 @@ class MyApp extends StatelessWidget {
       title: "flutter",
 //      home: BottomBar(),
       debugShowCheckedModeBanner: false, //右上角debug图标
-      onGenerateRoute: onGenerateRoute,
-      initialRoute: "/",
+      onGenerateRoute: onGenerateRoute, //路由配置
+      initialRoute: "/", //初始化默认启动路由
     );
   }
 }
