@@ -47,6 +47,7 @@ class _TabBarControllerState extends State<TabBarControllerPage>
   //命周期函数
   @override
   void dispose() {
+    super.dispose();
     this._tabController.dispose();
   }
 
