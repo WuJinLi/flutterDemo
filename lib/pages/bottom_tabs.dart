@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter_learn/pages/tabs/home_page.dart';
 import 'package:flutter_learn/pages/tabs/setting_spage.dart';
 import 'package:flutter_learn/pages/tabs/categroy_page.dart';
@@ -121,8 +120,21 @@ class _BottomBarState extends State<BottomBar> {
           ),
         ),
       ),
+      endDrawer: Drawer(
+        child: Center(
+            child: ListTile(
+          title: Text("右侧边栏"),
+          leading: Icon(Icons.account_balance),
+          onTap: () {
+            Navigator.pop(context); //关闭抽屉
+            Navigator.of(context).pushNamed("drawer_detail_page",
+                arguments: {"content": "右侧边栏"});
+          },
+        )),
+      ),
+      //右侧边栏
       appBar: AppBar(
-//        title: Text("Flutter Demo"),
+        title: Text("Flutter Demo"),
           ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
