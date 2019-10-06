@@ -7,6 +7,8 @@ import 'package:flutter_learn/pages/page/login/login_page.dart';
 import 'package:flutter_learn/pages/page/registe/register_frist_page.dart';
 import 'package:flutter_learn/pages/page/registe/register_secound_page.dart';
 import 'package:flutter_learn/pages/page/registe/register_third_page.dart';
+import 'package:flutter_learn/pages/page/tab/default_tab_controller.dart';
+import 'package:flutter_learn/pages/page/tab/tab_controller.dart';
 
 /**
  * 配置路由
@@ -20,6 +22,8 @@ final routes = {
   "/register_secound_page": (context) => RegisterSecoundPage(),
   "/register_third_page": (context) => RegisterThirdPage(),
   "/login": (context) => LoginPage(),
+  "/default_tab_controller": (context) => DefaultTabControllerPage(),
+  "/tab_bar_controller": (context) => TabBarControllerPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
