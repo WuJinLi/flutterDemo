@@ -12,6 +12,7 @@ import 'package:flutter_learn/pages/page/tab/tab_controller.dart';
 import 'package:flutter_learn/pages/page/drawer_detail_page.dart';
 import 'package:flutter_learn/pages/page/button_page.dart';
 import 'package:flutter_learn/pages/page/floatbutton/float_button.dart';
+import 'package:flutter_learn/pages/page/form/text_field.dart';
 
 /**
  * 配置路由
@@ -30,6 +31,7 @@ final routes = {
   "/drawer_detail_page":(context,{arguments}) =>DrawerDetailPage(arguments: arguments),
   "/buttom_page":(context) => ButtomPage(),
   "/float_button":(context) => FloatButtonPage(),
+  "/text_field":(context) => TextFiledPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

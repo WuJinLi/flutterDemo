@@ -72,6 +72,18 @@ class _HomeState extends State<HomePage> {
                 ),
               )
             ],
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/text_field");
+                  },
+                  child: Text("文本输入框"),
+                ),
+              )
+            ],
           )
         ],
       )),
