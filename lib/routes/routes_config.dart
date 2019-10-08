@@ -10,7 +10,8 @@ import 'package:flutter_learn/pages/page/registe/register_third_page.dart';
 import 'package:flutter_learn/pages/page/tab/default_tab_controller.dart';
 import 'package:flutter_learn/pages/page/tab/tab_controller.dart';
 import 'package:flutter_learn/pages/page/drawer_detail_page.dart';
-import 'package:flutter_learn/pages/page/buttom_page.dart';
+import 'package:flutter_learn/pages/page/button_page.dart';
+import 'package:flutter_learn/pages/page/floatbutton/float_button.dart';
 
 /**
  * 配置路由
@@ -28,6 +29,7 @@ final routes = {
   "/tab_bar_controller": (context) => TabBarControllerPage(),
   "/drawer_detail_page":(context,{arguments}) =>DrawerDetailPage(arguments: arguments),
   "/buttom_page":(context) => ButtomPage(),
+  "/float_button":(context) => FloatButtonPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

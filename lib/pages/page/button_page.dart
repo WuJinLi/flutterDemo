@@ -142,6 +142,13 @@ class _ButtomState extends State<ButtomPage> {
                   child: Text("注册"),
                 )
               ],
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(child: RaisedButton(onPressed: (){
+                  Navigator.pushNamed(context, "/float_button");
+                },child: Text("floatButton"),))
+              ],
             )
           ],
         ),
