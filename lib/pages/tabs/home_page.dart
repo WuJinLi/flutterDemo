@@ -84,6 +84,18 @@ class _HomeState extends State<HomePage> {
                 ),
               )
             ],
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/check_box");
+                  },
+                  child: Text("勾选框"),
+                ),
+              )
+            ],
           )
         ],
       )),
