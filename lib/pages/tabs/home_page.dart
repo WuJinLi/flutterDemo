@@ -94,9 +94,21 @@ class _HomeState extends State<HomePage> {
                   },
                   child: Text("勾选框"),
                 ),
-              )
+              ),
             ],
-          )
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/net_work_page");
+                  },
+                  child: Text("网络请求"),
+                ),
+              ),
+            ],
+          ),
         ],
       )),
     );
