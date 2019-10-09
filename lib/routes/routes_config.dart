@@ -15,6 +15,7 @@ import 'package:flutter_learn/pages/page/floatbutton/float_button.dart';
 import 'package:flutter_learn/pages/page/form/text_field.dart';
 import 'package:flutter_learn/pages/page/form/check_box.dart';
 import 'package:flutter_learn/pages/page/network/net_work_page.dart';
+import 'package:flutter_learn/pages/page/form/radio_page.dart';
 
 /**
  * 配置路由
@@ -36,6 +37,7 @@ final routes = {
   "/text_field":(context) => TextFiledPage(),
   "/check_box":(context) => CheckboxPage(),
   "/net_work_page":(context) => NetWorkPage(),
+  "/radio_page":(context) => RadioPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

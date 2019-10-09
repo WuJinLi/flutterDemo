@@ -109,6 +109,18 @@ class _HomeState extends State<HomePage> {
               ),
             ],
           ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/radio_page");
+                  },
+                  child: Text("radio"),
+                ),
+              ),
+            ],
+          ),
         ],
       )),
     );
