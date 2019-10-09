@@ -21,7 +21,10 @@ import 'package:flutter/material.dart';
  * secondary：图标
  * selected:设置选中的内容是否高亮
  *
- *
+ * <P>Switch组件
+ * 属性：
+ * value：选中状态值true/false
+ * onChanged：勾选方法回调
  *
  * 注意：
  * 1.value和groupValue分别代表的含义
@@ -37,12 +40,13 @@ class _RadioState extends State<RadioPage> {
   var line = SizedBox(
     height: 10.0,
   );
+  var flag = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Radio单选框页面"),
+        title: Text("Radio/RadioListTile/Switch"),
       ),
       body: Stack(
         children: <Widget>[
@@ -52,7 +56,7 @@ class _RadioState extends State<RadioPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "radio单选框",
+                  "radio组件",
                   style: TextStyle(fontSize: 15.0),
                 ),
                 line,
@@ -91,7 +95,7 @@ class _RadioState extends State<RadioPage> {
                   ],
                 ),
                 Text(
-                  "RadioListTile",
+                  "RadioListTile组件",
                   style: TextStyle(fontSize: 15.0),
                 ),
                 Column(
@@ -120,6 +124,33 @@ class _RadioState extends State<RadioPage> {
                       title: Text("女"),
                       subtitle: Text("female"),
                       secondary: Icon(Icons.people),
+                    )
+                  ],
+                ),
+                Text(
+                  "Switch组件",
+                  style: TextStyle(fontSize: 15.0),
+                ),
+                Row(
+                  children: <Widget>[
+                    Switch(
+                        value: this.flag,
+                        onChanged: (value) {
+                          setState(() {
+                            this.flag = value;
+                          });
+                          },
+                      activeColor: Colors.green,
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: Text("选中状态：${this.flag ? '开' : '关'}",style: TextStyle(
+                          color: this.flag ? Colors.green : Colors.grey
+                        ),),
+                      ),
                     )
                   ],
                 )
