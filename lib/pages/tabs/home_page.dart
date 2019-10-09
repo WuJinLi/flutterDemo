@@ -121,6 +121,18 @@ class _HomeState extends State<HomePage> {
               ),
             ],
           ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/student_info_page");
+                  },
+                  child: Text("学生信息录取页面"),
+                ),
+              ),
+            ],
+          ),
         ],
       )),
     );

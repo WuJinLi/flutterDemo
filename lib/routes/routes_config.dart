@@ -16,6 +16,7 @@ import 'package:flutter_learn/pages/page/form/text_field.dart';
 import 'package:flutter_learn/pages/page/form/check_box.dart';
 import 'package:flutter_learn/pages/page/network/net_work_page.dart';
 import 'package:flutter_learn/pages/page/form/radio_page.dart';
+import 'package:flutter_learn/pages/page/form/student_info_page.dart';
 
 /**
  * 配置路由
@@ -31,13 +32,15 @@ final routes = {
   "/login": (context) => LoginPage(),
   "/default_tab_controller": (context) => DefaultTabControllerPage(),
   "/tab_bar_controller": (context) => TabBarControllerPage(),
-  "/drawer_detail_page":(context,{arguments}) =>DrawerDetailPage(arguments: arguments),
-  "/buttom_page":(context) => ButtomPage(),
-  "/float_button":(context) => FloatButtonPage(),
-  "/text_field":(context) => TextFiledPage(),
-  "/check_box":(context) => CheckboxPage(),
-  "/net_work_page":(context) => NetWorkPage(),
-  "/radio_page":(context) => RadioPage(),
+  "/drawer_detail_page": (context, {arguments}) =>
+      DrawerDetailPage(arguments: arguments),
+  "/buttom_page": (context) => ButtomPage(),
+  "/float_button": (context) => FloatButtonPage(),
+  "/text_field": (context) => TextFiledPage(),
+  "/check_box": (context) => CheckboxPage(),
+  "/net_work_page": (context) => NetWorkPage(),
+  "/radio_page": (context) => RadioPage(),
+  "/student_info_page": (context) => StudentInfoPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
