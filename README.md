@@ -57,9 +57,11 @@ A new Flutter application.
                   child: Image.network(value["imageurl"],fit: BoxFit.cover,))
     ```
 + 2019/10/10
+
     ###获取flutter开发中用到的三方依赖库地址：https://pub.dev/
 
     ### Flutter时间控件显示中文
+
     1.配置flutter_localizations依赖
     
     找到pubspec.yaml配置flutter_localizations
