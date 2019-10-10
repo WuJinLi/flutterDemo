@@ -117,9 +117,9 @@ class _DatePickerState extends State<DatePickerPage> {
    */
   void _getNowTimeStamp() {
     setState(() {
-      this.now_time = DateTime.now();
+      this.now_time = DateTime.now();//获取当前时间
       print(now_time);
-      this.now_time_stamp = (this.now_time as DateTime).millisecondsSinceEpoch;
+      this.now_time_stamp = (this.now_time as DateTime).millisecondsSinceEpoch;//转化为时间戳
 
       print(now_time_stamp);
     });

@@ -119,6 +119,96 @@ A new Flutter application.
             });
           }
     ```
+    ### 获取系统时间，且将时间进行格式化（格式转换，时间戳）
+       + 获取当前时间类DateTime
+       + 获取当前时间：DateTime.now()
+       + 转化为时间戳：DateTime.now().millisecondsSinceEpoch
+       + 将时间戳转化为时间：DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch) millisecondsSinceEpoch->时间戳（int）
+       
+         使用三方日期格式化依赖库：
+          1.dependencies: date_format: ^1.0.6
+          2.import 'package:date_format/date_format.dart';
+          3.formatDate(DateTime date, formats)
+          
+          
+         ```  
+             void _getNowTimeStamp() {
+                    setState(() {
+                      this.now_time = DateTime.now();//获取当前时间
+                      print(now_time);
+                      this.now_time_stamp = (this.now_time as DateTime).millisecondsSinceEpoch;//转化为时间戳
+                
+                      print(now_time_stamp);
+                    });
+                  }
+                  
+                  
+             formatDate(this.now_time, [yyyy,-',mm,'-',dd])//将系统时间进行格式化
+         ```
+    
+    ### 实现系统时间选择器功能
+    
+    选择日期的组件
+    
+     ```
+         /**
+            * 获取日期的方法
+            */
+           _showDatePickerNormal() {
+             showDatePicker(
+               context: context,
+               initialDate: this._nowDate,
+               firstDate: DateTime(1980),
+               lastDate: DateTime(2200),
+               locale: Locale('zh'),
+             ).then((result) {
+               setState(() {
+                 if (result != null) this._nowDate = result;
+               });
+             });
+           }
+         
+           _showDatePickerAsync() async {
+             var result = await showDatePicker(
+               context: context,
+               initialDate: this._nowDate,
+               firstDate: DateTime(1980),
+               lastDate: DateTime(2200),
+               locale: Locale('zh'),
+             );
+         
+             setState(() {
+               if (result != null) this._nowDate = result;
+             });
+           }
+     ```
+     选择时间的组件
+     
+     ```
+          _showTimePickerNormal() {
+             showTimePicker(context: context, initialTime: this._nowTime).then((result) {
+               setState(() {
+                 if (result != null) this._nowTime = result;
+               });
+             });
+           }
+         
+           _showTimePickerAsync() async {
+             var result = await showTimePicker(
+               context: context,
+               initialTime: this._nowTime,
+             );
+         
+             setState(() {
+               if (result != null) this._nowTime = result;
+             });
+           }
+     ```
+     
+     注意：由于showDatePicker返回参数值为Future，所以在使用时涉及到异步调用，可使用两种方法来实现：
+        1.then（（value）{}）关键子来完成
+        2.使用async await实现
+     
 #遗留问题？？？？？
 + listview/gridview单个条目的点击事件处理问题
 + gridTile的使用
