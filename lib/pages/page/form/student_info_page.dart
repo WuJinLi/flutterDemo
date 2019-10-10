@@ -113,7 +113,7 @@ class _StudentInfoState extends State<StudentInfoPage> {
               child: RaisedButton(
                 onPressed: () {
                   print("username:${this.username}");
-                  print("sex:${this.sex}");
+                  print("sex:${this.sex == 1 ? '男' : '女'}");
                   print("hobby:${this.hobby}");
                   print("email:${this.email}");
                   print("age:${this.age}");

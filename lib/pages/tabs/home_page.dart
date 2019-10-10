@@ -133,6 +133,18 @@ class _HomeState extends State<HomePage> {
               ),
             ],
           ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/date_pick_page");
+                  },
+                  child: Text("日期选择组件"),
+                ),
+              ),
+            ],
+          ),
         ],
       )),
     );

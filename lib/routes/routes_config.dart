@@ -17,13 +17,15 @@ import 'package:flutter_learn/pages/page/form/check_box.dart';
 import 'package:flutter_learn/pages/page/network/net_work_page.dart';
 import 'package:flutter_learn/pages/page/form/radio_page.dart';
 import 'package:flutter_learn/pages/page/form/student_info_page.dart';
+import 'package:flutter_learn/pages/page/date/date_pick_page.dart';
+import 'package:flutter_learn/pages/page/date/date_picker_detail_page.dart';
 
 /**
  * 配置路由
  */
 final routes = {
-  "/details": (context, {arguments}) => DetailsPage(arguments: arguments),
   "/": (context) => BottomBar(),
+  "/details": (context, {arguments}) => DetailsPage(arguments: arguments),
   "/route_page": (conntext) => RouteDetailPage(),
   "/name_route_page": (context) => NameRoutePage(),
   "/register_frist_page": (context) => RegisterFristPage(),
@@ -41,6 +43,10 @@ final routes = {
   "/net_work_page": (context) => NetWorkPage(),
   "/radio_page": (context) => RadioPage(),
   "/student_info_page": (context) => StudentInfoPage(),
+  "/date_pick_page": (context) => DatePickerPage(),
+  "/date_picker_detail_page": (context, {arguments}) => DatePickerDetailPage(
+        arguments: arguments,
+      ),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
