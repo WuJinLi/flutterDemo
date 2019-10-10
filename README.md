@@ -60,16 +60,23 @@ A new Flutter application.
     ###获取flutter开发中用到的三方依赖库地址：https://pub.dev/
 
     ### Flutter时间控件显示中文
-    1、配置flutter_localizations依赖
+    1.配置flutter_localizations依赖
+    
     找到pubspec.yaml配置flutter_localizations
+    ```
     dependencies:
       flutter:
         sdk: flutter
       flutter_localizations:
         sdk: flutter
-    2、导入国际化的包 flutter_localizations
+     ```
+        
+    2.导入国际化的包 flutter_localizations
+    ```
     import 'package:flutter_localizations/flutter_localizations.dart';
-    3、设置国际化
+    ```
+    
+    3.设置国际化
     ```
         void main() {
           runApp(
@@ -94,7 +101,7 @@ A new Flutter application.
         }
     ```
 
-    4、要显示中文的控件设置：
+    4.要显示中文的控件设置：
     ```
         _showDatePickerAsync() async {
             var result = await showDatePicker(
