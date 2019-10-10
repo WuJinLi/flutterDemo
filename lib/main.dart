@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/pages/bottom_tabs.dart';
 import 'package:flutter_learn/routes/routes_config.dart';
 import 'routes/routes_config.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 /**
  *
@@ -19,9 +20,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "flutter",
 //      home: BottomBar(),
-      debugShowCheckedModeBanner: false, //右上角debug图标
-      onGenerateRoute: onGenerateRoute, //路由配置
-      initialRoute: "/", //初始化默认启动路由
+      debugShowCheckedModeBanner: false,
+      //右上角debug图标
+      onGenerateRoute: onGenerateRoute,
+      //路由配置
+      initialRoute: "/",
+      //初始化默认启动路由
+      localizationsDelegates: [
+        //此处
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        //此处
+        const Locale('zh', 'CH'),
+        const Locale('en', 'US'),
+      ],
     );
   }
 }

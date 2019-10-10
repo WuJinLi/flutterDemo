@@ -58,6 +58,58 @@ A new Flutter application.
     ```
 + 2019/10/10
     ###获取flutter开发中用到的三方依赖库地址：https://pub.dev/
+
+    ### Flutter时间控件显示中文
+    1、配置flutter_localizations依赖
+    找到pubspec.yaml配置flutter_localizations
+    dependencies:
+      flutter:
+        sdk: flutter
+      flutter_localizations:
+        sdk: flutter
+    2、导入国际化的包 flutter_localizations
+    import 'package:flutter_localizations/flutter_localizations.dart';
+    3、设置国际化
+    ```
+        void main() {
+          runApp(
+            new MaterialApp(
+              title: 'app',
+              theme: new ThemeData(
+                primaryColor: Colors.white,
+              ),
+              home: new MyLoginWidget(),
+              localizationsDelegates: [
+                //此处
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              supportedLocales: [
+                //此处
+                const Locale('zh', 'CH'),
+                const Locale('en', 'US'),
+              ],
+            ),
+          );
+        }
+    ```
+
+    4、要显示中文的控件设置：
+    ```
+        _showDatePickerAsync() async {
+            var result = await showDatePicker(
+              context: context,
+              initialDate: this._nowDate,
+              firstDate: DateTime(1980),
+              lastDate: DateTime(2200),
+              locale: Locale('zh'),
+            );
+
+            setState(() {
+              if (result != null) this._nowDate = result;
+            });
+          }
+    ```
 #遗留问题？？？？？
 + listview/gridview单个条目的点击事件处理问题
 + gridTile的使用
