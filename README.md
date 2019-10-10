@@ -56,7 +56,8 @@ A new Flutter application.
                   aspectRatio: 16.0 / 9.0, //AspectRatio控件控制子元素的宽高比
                   child: Image.network(value["imageurl"],fit: BoxFit.cover,))
     ```
-
++ 2019/10/10
+    ###获取flutter开发中用到的三方依赖库地址：https://pub.dev/
 #遗留问题？？？？？
 + listview/gridview单个条目的点击事件处理问题
 + gridTile的使用
