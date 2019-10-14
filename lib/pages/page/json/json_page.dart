@@ -37,7 +37,7 @@ class _JsonState extends State<JsonPage> {
   void _dealData() {
     setState(() {
       var book = Book.fromJson(bookData);
-      print(book.name);
+      print("name:${book.name},publishDate:${book.publishDate}");
     });
   }
 }
