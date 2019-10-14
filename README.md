@@ -209,6 +209,10 @@ A new Flutter application.
      
         1.then（（value）{}）关键子来完成
         2.使用async await实现
+        
+        
+        
+        ####一键生成集成 json_serializable库样板代码代码网址https://caijinglong.github.io/json2dart/index_ch.html
      
 #遗留问题？？？？？
 + listview/gridview单个条目的点击事件处理问题

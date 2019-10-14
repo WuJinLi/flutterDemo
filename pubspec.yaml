@@ -30,10 +30,15 @@ dependencies:
   #三方日期选择器
   flutter_datetime_picker: ^1.2.6
 
+  json_annotation: ^3.0.0
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  build_runner: ^1.7.1
+  #json_serializable版本号
+  json_serializable: ^3.2.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

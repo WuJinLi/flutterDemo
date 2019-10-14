@@ -19,6 +19,7 @@ import 'package:flutter_learn/pages/page/form/radio_page.dart';
 import 'package:flutter_learn/pages/page/form/student_info_page.dart';
 import 'package:flutter_learn/pages/page/date/date_pick_page.dart';
 import 'package:flutter_learn/pages/page/date/date_picker_detail_page.dart';
+import 'package:flutter_learn/pages/page/json/json_page.dart';
 
 /**
  * 配置路由
@@ -47,6 +48,7 @@ final routes = {
   "/date_picker_detail_page": (context, {arguments}) => DatePickerDetailPage(
         arguments: arguments,
       ),
+  "/json_page": (context) => JsonPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

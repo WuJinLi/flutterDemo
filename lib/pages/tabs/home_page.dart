@@ -145,6 +145,18 @@ class _HomeState extends State<HomePage> {
               ),
             ],
           ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/json_page");
+                  },
+                  child: Text("Json数据解析"),
+                ),
+              ),
+            ],
+          ),
         ],
       )),
     );

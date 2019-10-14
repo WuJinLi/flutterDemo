@@ -18,6 +18,7 @@ class _CategroyState extends State<CategroyPage> {
         child: ListView(
           children: listData.map((value) {
             return ListTile(
+//              leading: Image.network(value["imageurl"],fit: BoxFit.cover,),
               title: Text(value["title"]),
               subtitle: Text(value["author"]),
               onTap: () {
