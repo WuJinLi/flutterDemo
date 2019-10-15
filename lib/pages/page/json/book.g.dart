@@ -19,7 +19,17 @@ Book _$BookFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$BookToJson(Book instance) => <String, dynamic>{
       'name': instance.name,
-      'author': instance.author,
+      'author': instance.author.toJson(),
       'publishDate': instance.publishDate,
       'publisher': instance.publisher,
+    };
+
+Author _$AuthorFromJson(Map<String, dynamic> json) {
+  return Author(
+    json['name'] as String,
+  );
+}
+
+Map<String, dynamic> _$AuthorToJson(Author instance) => <String, dynamic>{
+      'name': instance.name,
     };

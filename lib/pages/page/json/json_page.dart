@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/pages/page/json/author.dart';
 import 'package:flutter_learn/pages/page/json/book.dart';
 
 class JsonPage extends StatefulWidget {
@@ -9,7 +8,7 @@ class JsonPage extends StatefulWidget {
 
 class _JsonState extends State<JsonPage> {
   var bookname = ""; //书名成
-  var author = ""; //作者
+  var name = ""; //作者
   var publishDate = ""; //出版日期
   var publisher = ""; //出版社
   var content;
@@ -38,7 +37,7 @@ class _JsonState extends State<JsonPage> {
               onChanged: (value) {
                 setState(
                   () {
-                    this.author = value;
+                    this.name = value;
                   },
                 );
               },
@@ -87,9 +86,9 @@ class _JsonState extends State<JsonPage> {
 
   void _dealData() {
     setState(() {
-      content = Book(this.bookname, Author(this.author), this.publishDate,
-              this.publisher)
-          .toJson();
+      var author=Author(this.name);
+      content = Book(this.bookname, author , this.publishDate,
+              this.publisher).toJson();
     });
   }
 }
