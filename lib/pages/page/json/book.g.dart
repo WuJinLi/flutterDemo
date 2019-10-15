@@ -19,7 +19,7 @@ Book _$BookFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$BookToJson(Book instance) => <String, dynamic>{
       'name': instance.name,
-      'author': instance.author.toJson(),
+      'author': instance.author.toJson(),//如果对象的属性是另一个对象，编写时这里有坑
       'publishDate': instance.publishDate,
       'publisher': instance.publisher,
     };

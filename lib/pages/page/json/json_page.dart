@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/pages/page/json/book.dart';
+import 'package:flutter_learn/res/data_resc.dart';
 
 class JsonPage extends StatefulWidget {
   @override
@@ -11,7 +12,8 @@ class _JsonState extends State<JsonPage> {
   var name = ""; //作者
   var publishDate = ""; //出版日期
   var publisher = ""; //出版社
-  var content;
+  var content;//放置内容的变量
+  var flag=false;//false标记对象->json  true：json->对象
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +70,28 @@ class _JsonState extends State<JsonPage> {
                 Expanded(
                     child: RaisedButton(
                   onPressed: () {
+                    setState(() {
+                      this.flag=false;
+                    });
                     this._dealData();
                   },
-                  child: Text("json解析数据"),
+                  child: Text("对象生成JSON"),
                 ))
+              ],
+            ),
+
+            Row(
+              children: <Widget>[
+                Expanded(
+                    child: RaisedButton(
+                      onPressed: () {
+                        setState(() {
+                          this.flag=true;
+                        });
+                        this._dealData();
+                      },
+                      child: Text("解析json字符串"),
+                    ))
               ],
             ),
             Container(
@@ -83,12 +103,15 @@ class _JsonState extends State<JsonPage> {
       ),
     );
   }
-
+  //处理将对象转换成json的方法
   void _dealData() {
     setState(() {
-      var author=Author(this.name);
-      content = Book(this.bookname, author , this.publishDate,
-              this.publisher).toJson();
+      if(flag){
+        Book book=Book.fromJson(bookData);
+        content="解析后的数据：\n bookname:${book.name} \n auhhor:${book.author.name} \n publishDate:${book.publishDate} \n publisher:${book.publisher}";
+      }else{
+        content=Book(this.bookname, Author(this.name), this.publishDate, this.publisher).toJson();
+      }
     });
   }
 }
