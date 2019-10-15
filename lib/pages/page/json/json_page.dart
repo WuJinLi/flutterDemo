@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:flutter_learn/res/data_resc.dart';
 import 'package:flutter_learn/pages/page/json/author.dart';
 import 'package:flutter_learn/pages/page/json/book.dart';
 
@@ -10,6 +8,11 @@ class JsonPage extends StatefulWidget {
 }
 
 class _JsonState extends State<JsonPage> {
+  var bookname = ""; //书名成
+  var author = ""; //作者
+  var publishDate = ""; //出版日期
+  var publisher = ""; //出版社
+  var content;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +24,60 @@ class _JsonState extends State<JsonPage> {
         padding: EdgeInsets.all(10.0),
         child: Column(
           children: <Widget>[
-//            Text("${user.}"),
-            RaisedButton(
-              onPressed: () {
-                this._dealData();
+            TextField(
+              onChanged: (value) {
+                setState(
+                  () {
+                    this.bookname = value;
+                  },
+                );
               },
-              child: Text("json解析数据"),
+              decoration: InputDecoration(labelText: "书名"),
+            ),
+            TextField(
+              onChanged: (value) {
+                setState(
+                  () {
+                    this.author = value;
+                  },
+                );
+              },
+              decoration: InputDecoration(labelText: "作者"),
+            ),
+            TextField(
+              onChanged: (value) {
+                setState(
+                  () {
+                    this.publisher = value;
+                  },
+                );
+              },
+              decoration: InputDecoration(labelText: "出版社"),
+            ),
+            TextField(
+              onChanged: (value) {
+                setState(
+                  () {
+                    this.publishDate = value;
+                  },
+                );
+              },
+              decoration: InputDecoration(labelText: "出版日期"),
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                    child: RaisedButton(
+                  onPressed: () {
+                    this._dealData();
+                  },
+                  child: Text("json解析数据"),
+                ))
+              ],
+            ),
+            Container(
+              width: double.infinity,
+              child: Text("${this.content}"),
             )
           ],
         ),
@@ -36,11 +87,9 @@ class _JsonState extends State<JsonPage> {
 
   void _dealData() {
     setState(() {
-//      var book = Book.fromJson(bookData);
-//      print("name:${book.name},publishDate:${book.publishDate}");
-      
-      var book1=new Book( "Rose", Author("王五"), "2001-1-2", "浙江出版社");
-      print(book1.toJson());
+      content = Book(this.bookname, Author(this.author), this.publishDate,
+              this.publisher)
+          .toJson();
     });
   }
 }
