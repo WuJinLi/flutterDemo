@@ -212,7 +212,60 @@ A new Flutter application.
         
         
         
-        ####一键生成集成 json_serializable库样板代码代码网址https://caijinglong.github.io/json2dart/index_ch.html
+ ### 一键生成集成 json_serializable库样板代码代码网址https://caijinglong.github.io/json2dart/index_ch.html
+ 
+   针对服务器返回数据解析的方式：
+     + 数据类型简单的：
+     ```
+     //解析成map
+     final map = jsonDecode(string)
+     转换为json序列化
+     final string = jsonEncode(map)
+     ```
+     + 针对复杂的数据类型则系统提供的数据解析类型就不能完全的适用到实际业务中，则我们使用三方框架来实现数据的解析和序列化：
+   1.添加依赖：
+     
+     ```
+     dev_dependencies:
+       #json_serializable版本号
+       json_serializable: ^3.2.3
+     dependencies:
+       json_annotation: ^3.0.0
+       
+     ```
+   2.针对对应的json数据类型来创建对应数据实体类，例如创建book，json数据样式如下：
+   
+   ```
+   {
+     "name":"book1",
+     "author":{"name":"Jack"},
+     "publishDate":"2018-10-10",
+     "publisher":"xxx company"
+   }
+   ```
+  在创建实体类的方式上我们可以使用工具json_serializable库样板代码代码网址https://caijinglong.github.io/json2dart/index_ch.html一键生成相关的代码；
+  在生成代码粘贴到项目中或出现报错的情况 不要着急我们可以在项目根目录执行命令：
+    ```
+    flutter packages pub run build_runner build
+    ```
+    这里会有一个自动生成.g.dart的文件，其中就有所有的解析相关的代码,需要持久化的自动生成就敲击下面的代码，这样会自动监视你lib目录下，然后当你的文件发生改变时会自动重新build一次，生成对应的文件
+    ```
+    flutter packages pub run build_runner watch
+    ```
+    这样就完成数据实体类的创建和序列化等操作
+    
+   3.进行数据的解析和数据转换的操作：
+    + json=>对象：
+        ```
+            var book = Book.fromJson(bookData);
+            print("name:${book.name},publishDate:${book.publishDate}");
+        ```
+    + 对象=>json
+        ```
+            var book1=new Book( "Rose", Author("王五"), "2001-1-2", "浙江出版社");
+            print(book1.toJson());
+        ```
+    数据解析完成！！！
      
 #遗留问题？？？？？
 + listview/gridview单个条目的点击事件处理问题

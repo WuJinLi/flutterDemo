@@ -9,4 +9,6 @@ class Author extends Object{
   Author(this.name);
 
   factory Author.fromJson(Map<String, dynamic> json) => _$AuthorFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AuthorToJson(this);
 }
