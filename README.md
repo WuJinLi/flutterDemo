@@ -243,7 +243,8 @@ A new Flutter application.
      "publisher":"xxx company"
    }
    ```
-  在创建实体类的方式上我们可以使用工具json_serializable库样板代码代码网址https://caijinglong.github.io/json2dart/index_ch.html一键生成相关的代码；
+  在创建实体类的方式上我们可以使用工具json_serializable库样板代码代码网址https://caijinglong.github.io/json2dart/index_ch.html 一键生成相关的代 码；
+
   在生成代码粘贴到项目中或出现报错的情况 不要着急我们可以在项目根目录执行命令：
     ```
     flutter packages pub run build_runner build
@@ -255,12 +256,15 @@ A new Flutter application.
     这样就完成数据实体类的创建和序列化等操作
     
    3.进行数据的解析和数据转换的操作：
+   
     + json=>对象：
+    
         ```
             var book = Book.fromJson(bookData);
             print("name:${book.name},publishDate:${book.publishDate}");
         ```
     + 对象=>json
+    
         ```
             var book1=new Book( "Rose", Author("王五"), "2001-1-2", "浙江出版社");
             print(book1.toJson());
