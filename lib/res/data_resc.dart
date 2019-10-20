@@ -1,12 +1,5 @@
 List listData = [
   {
-    "title": "GridView.builder()",
-    "author": "GridView",
-    "imageurl":
-        "http://img4.cache.netease.com/photo/0001/2010-04-17/64EFS71V05RQ0001.jpg"
-  },
-//  {"title": "GridView.count()", "author": "GridView"},
-  {
     "title": "西游记",
     "author": "吴承恩",
     "imageurl":
@@ -84,8 +77,8 @@ List listData = [
 ];
 
 var bookData = {
-  "name":"book1",
-  "author":{"name":"Jack"},
-  "publishDate":"2018-10-10",
-  "publisher":"xxx company"
+  "name": "book1",
+  "author": {"name": "Jack"},
+  "publishDate": "2018-10-10",
+  "publisher": "xxx company"
 };

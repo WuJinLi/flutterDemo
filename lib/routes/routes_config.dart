@@ -20,6 +20,10 @@ import 'package:flutter_learn/pages/page/form/student_info_page.dart';
 import 'package:flutter_learn/pages/page/date/date_pick_page.dart';
 import 'package:flutter_learn/pages/page/date/date_picker_detail_page.dart';
 import 'package:flutter_learn/pages/page/json/json_page.dart';
+import 'package:flutter_learn/pages/page/scrollview/scrollview_page.dart';
+import 'package:flutter_learn/pages/page/scrollview/list_page.dart';
+import 'package:flutter_learn/pages/page/scrollview/scrollview_page.dart';
+import 'package:flutter_learn/pages/page/scrollview/customscrollview_page.dart';
 
 /**
  * 配置路由
@@ -49,6 +53,9 @@ final routes = {
         arguments: arguments,
       ),
   "/json_page": (context) => JsonPage(),
+  "/scrollview":(context) => ScrollViewPage(),
+  "/list_page":(context,{arguments}) => ListPage(arguments:arguments),
+  "/customscrollview_page":(context) => CustomScrollViewPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

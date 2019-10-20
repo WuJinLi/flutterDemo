@@ -14,9 +14,7 @@ class _HomeState extends State<HomePage> {
 //        title: Text("主页"),
 //      ),
       body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
         children: <Widget>[
           Row(
             children: <Widget>[
@@ -153,6 +151,18 @@ class _HomeState extends State<HomePage> {
                     Navigator.pushNamed(context, "/json_page");
                   },
                   child: Text("Json数据解析"),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/scrollview");
+                  },
+                  child: Text("可滚动组件"),
                 ),
               ),
             ],
