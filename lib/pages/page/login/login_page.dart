@@ -34,7 +34,7 @@ class _LoginState extends State<LoginPage> {
                 Expanded(
                     child: RaisedButton(
                   onPressed: () {
-                    Navigator.of(context).pop();//返回上一级页面
+                    Navigator.of(context).pop('登陆成功');//返回上一级页面
                   },
                   child: Text("登陆"),
                 ))
