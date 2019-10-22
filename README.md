@@ -396,6 +396,7 @@ dependencies:
 所以，在 Flutter 中大部分时候我们写的是 Widget ，但是 Widget 的角色反而更像是“配置文件” ，真正触发工作的其实是 RenderObject。 
 
 ####Widget 的分类
+
 ![](https://user-gold-cdn.xitu.io/2019/10/20/16de8e3eec578436?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 
