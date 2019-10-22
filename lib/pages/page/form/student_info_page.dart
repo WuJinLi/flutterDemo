@@ -56,8 +56,8 @@ class _StudentInfoState extends State<StudentInfoPage> {
       ),
       body: Padding(
         padding: EdgeInsets.all(10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+//          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             TextField(
               decoration: InputDecoration(hintText: "请输入姓名", labelText: "姓名"),
