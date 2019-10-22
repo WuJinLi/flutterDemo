@@ -58,7 +58,7 @@ A new Flutter application.
     ```
 + 2019/10/10
 
-    ###获取flutter开发中用到的三方依赖库地址：https://pub.dev/
+    ### 获取flutter开发中用到的三方依赖库地址：https://pub.dev/
 
     ### Flutter时间控件显示中文
 
