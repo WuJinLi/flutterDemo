@@ -272,9 +272,9 @@ A new Flutter application.
         ```
     数据解析完成！！！
     
-##2019/10/21
+## 2019/10/21
 
-###包管理机制：
+### 包管理机制：
 针对项目配置则在ymal文件中进行配置：
 
 ```
@@ -336,7 +336,7 @@ flutter:
 + dev_dependencies：开发环境依赖的工具包（而不是flutter应用本身依赖的包）。
 + flutter：flutter相关的配置选项。
 
-####包依赖：
+#### 包依赖：
 1. Pub仓库:Pub（https://pub.dartlang.org/ ）是Google官方的Dart Packages仓库，类似于node中的npm仓库，android中的jcenter。我们可以在Pub上面查找我们需要的包和插件，也可以向Pub发布我们的包和插件。我们将在后面的章节中介绍如何向Pub发布我们的包和插件。
 
 ```
