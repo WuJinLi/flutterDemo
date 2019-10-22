@@ -383,8 +383,10 @@ dependencies:
       path: packages/package1
 ```
 
-###2019/10/21
-####Widget Element RenderObject三者关系
+### 2019/10/21
+
+#### Widget Element RenderObject三者关系
+
 当一个 Widget 被“加载“的时候，它并不是马上被绘制出来，而是会对应先创建出它的 Element ，然后通过 Element 将 Widget 的配置信息转化为 RenderObject 实现绘制。
 
 ![](https://user-gold-cdn.xitu.io/2019/10/20/16de8e318987682f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
@@ -395,7 +397,7 @@ dependencies:
 
 所以，在 Flutter 中大部分时候我们写的是 Widget ，但是 Widget 的角色反而更像是“配置文件” ，真正触发工作的其实是 RenderObject。 
 
-####Widget 的分类
+#### Widget 的分类
 
 ![](https://user-gold-cdn.xitu.io/2019/10/20/16de8e3eec578436?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
