@@ -167,6 +167,19 @@ class _HomeState extends State<HomePage> {
               ),
             ],
           ),
+
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/flowlayout");
+                  },
+                  child: Text("流式布局"),
+                ),
+              ),
+            ],
+          ),
         ],
       )),
     );
