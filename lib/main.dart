@@ -19,6 +19,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "flutter",
+      theme: ThemeData(
+        //通过ThemeData进行自定义主题的设置
+        brightness: Brightness.light,
+        primaryColor: Colors.lightGreen[100],//app主要部分的背景色
+        accentColor: Colors.pink[100],//前景色（文本，按钮）
+        buttonColor: Colors.blueGrey[100]//material中RaisedButtons使用的默认填充色
+      ),
 //      home: BottomBar(),
       debugShowCheckedModeBanner: false,
       //右上角debug图标

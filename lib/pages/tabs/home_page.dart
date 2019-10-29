@@ -180,6 +180,18 @@ class _HomeState extends State<HomePage> {
               ),
             ],
           ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/custom_theme");
+                  },
+                  child: Text("自定义主题"),
+                ),
+              ),
+            ],
+          ),
         ],
       )),
     );

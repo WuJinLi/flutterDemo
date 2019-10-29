@@ -142,7 +142,7 @@ class _DatePickerDetailState extends State<DatePickerDetailPage> {
       initialDate: this._nowDate,
       firstDate: DateTime(1980),
       lastDate: DateTime(2200),
-      locale: Locale('zh'),
+//      locale: Locale('zh'),
     ).then((result) {
       setState(() {
         if (result != null) this._nowDate = result;
@@ -156,7 +156,7 @@ class _DatePickerDetailState extends State<DatePickerDetailPage> {
       initialDate: this._nowDate,
       firstDate: DateTime(1980),
       lastDate: DateTime(2200),
-      locale: Locale('zh'),
+//      locale: Locale('zh'),
     );
 
     setState(() {
