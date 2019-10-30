@@ -25,6 +25,7 @@ import 'package:flutter_learn/pages/page/scrollview/list_page.dart';
 import 'package:flutter_learn/pages/page/scrollview/customscrollview_page.dart';
 import 'package:flutter_learn/pages/page/flowlayout/flowlayout.dart';
 import 'package:flutter_learn/pages/page/theme/custom_theme.dart';
+import 'package:flutter_learn/pages/page/popup/popup_menu.dart';
 
 /**
  * 配置路由
@@ -59,6 +60,7 @@ final routes = {
   "/customscrollview_page": (context) => CustomScrollViewPage(),
   "/flowlayout": (context) => FlowLayoutPage(),
   "/custom_theme":(context) => CustomThemePage(),
+  "/popup_menu":(context) => PopupMenuPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

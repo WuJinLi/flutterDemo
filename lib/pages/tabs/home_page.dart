@@ -192,6 +192,18 @@ class _HomeState extends State<HomePage> {
               ),
             ],
           ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/popup_menu");
+                  },
+                  child: Text("弹出菜单组件"),
+                ),
+              ),
+            ],
+          ),
         ],
       )),
     );
