@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:http/http.dart' as http;
+
 /**
  * async关键字声明该函数内部有代码需要延迟执行
  * wait延迟执行的结果
@@ -20,38 +22,80 @@ class NetWorkPage extends StatefulWidget {
 }
 
 class _NetWorkState extends State<NetWorkPage> {
-  var _ipAddress = 'Unknown';
+  var content = "", type = "";
+  int stateCode = 0;
 
-  _getIPAddress() async {
-    var url = 'https://httpbin.org/ip'; //初始化url
-    var httpClient = new HttpClient(); //创建httpClient
-    String result;
+  static const String key = '52dc04b1b08a43dc9f51325a5b5cb87b';
 
-    try {
-      var request =
-          await httpClient.getUrl(Uri.parse(url)); //发起请求，配置请求参数，地址uri的配置
-      var response = await request.close(); //关闭请求等待响应
-      //解码响应内容
-      if (response.statusCode == HttpStatus.ok) {
-        var json = await response.transform(utf8.decoder).join(); //获取结果json串
-//        print(json);
-        var data = jsonDecode(json); //解码json串，即将json格式的数据转换成对象格式或map
-//        print(data);
-        result = data['origin']; //获取解析结果
-      } else {
-        result =
-            'Error getting IP address:\nHttp status ${response.statusCode}';
-      }
-    } catch (exception) {
-      print(exception);
-      result = 'Failed getting IP address';
+  var url =
+      'https://free-api.heweather.net/s6/weather/now?location=beijing&key=${key}';
+
+  /**
+   * http请求方式进行网络数据的请求
+   */
+  void httpWay() {
+    print('http request start');
+    //http对象直接进行get方式请求数据，具体请求参数可以在get（）方法中详细的设置
+    //由于get请求返回的future对象，针对futuer对象处理何以使用then（）或者 async+await方式进行数据的获取
+    http.get(url).then((resopnse) {
+      clearData();
+      setState(() {
+        type = 'HTTP方式';
+        stateCode = resopnse.statusCode;
+        content = resopnse.body;
+      });
+      print(resopnse.statusCode);
+      print(resopnse.body);
+    });
+  }
+
+  /**
+   * httpClient方式进行网络数据的获取
+   */
+  void httpClientWay() async {
+    //实例话httpClient对象
+    HttpClient client = new HttpClient();
+    //发起请求，如果请求路径中涉及到请求参数的设置，则可以在uri中进行参数的设置
+    Uri uri = Uri(
+        scheme: 'https',
+        host: 'free-api.heweather.net',
+        path: 's6/weather/now',
+        queryParameters: {
+          'location': 'shanghai',
+          'key': key,
+        });
+
+//    HttpClientRequest request = await client.getUrl(Uri.parse(this.url));
+    HttpClientRequest request = await client.getUrl(uri);
+
+    //等待服务器返回数据
+    HttpClientResponse response = await request.close();
+    //根据返回数据状态没进行数据的解析获取
+    if (response.statusCode == HttpStatus.ok) {
+      var result = await response.transform(utf8.decoder).join();
+      print(result);
+      clearData();
+      setState(() {
+        type = 'httpclient方式';
+        stateCode = response.statusCode;
+        content = result;
+      });
+    }
+  }
+
+  //清除数数据
+  void clearData() {
+    if (stateCode != 0) {
+      stateCode = 0;
     }
 
-    if (!mounted) return;
+    if (type.isNotEmpty) {
+      type = "";
+    }
 
-    setState(() {
-      _ipAddress = result;
-    });
+    if (content.isNotEmpty) {
+      content = "";
+    }
   }
 
   @override
@@ -60,23 +104,65 @@ class _NetWorkState extends State<NetWorkPage> {
       height: 32.0,
     );
     return Scaffold(
-      appBar: AppBar(
-        title: Text("网络请求"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('Your current IP address is:'),
-            Text('$_ipAddress.'),
-            spacer,
-            RaisedButton(
-              onPressed: _getIPAddress,
-              child: new Text('Get IP address'),
-            ),
-          ],
+        appBar: AppBar(
+          title: Text("网络请求"),
         ),
-      ),
-    );
+        body: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RaisedButton(
+                      onPressed: () {
+                        httpWay();
+                      },
+                      child: new Text('Http方式请求网络'),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RaisedButton(
+                      onPressed: () {
+                        httpClientWay();
+                      },
+                      child: new Text('HttpClient方式请求网络'),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RaisedButton(
+                      onPressed: () {
+                        clearData();
+                        setState(() {});
+                      },
+                      child: new Text('清除数据'),
+                    ),
+                  ),
+                ],
+              ),
+              spacer,
+              Container(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text('请求模式:${type}'),
+                    Text('请求状态:${stateCode}'),
+                    Text('请求内容结果:${content}'),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }
