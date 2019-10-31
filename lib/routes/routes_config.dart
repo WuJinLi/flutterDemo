@@ -26,6 +26,7 @@ import 'package:flutter_learn/pages/page/scrollview/customscrollview_page.dart';
 import 'package:flutter_learn/pages/page/flowlayout/flowlayout.dart';
 import 'package:flutter_learn/pages/page/theme/custom_theme.dart';
 import 'package:flutter_learn/pages/page/popup/popup_menu.dart';
+import 'package:flutter_learn/pages/page/dialog/dialog_page.dart';
 
 /**
  * 配置路由
@@ -59,8 +60,9 @@ final routes = {
   "/list_page": (context, {arguments}) => ListPage(arguments: arguments),
   "/customscrollview_page": (context) => CustomScrollViewPage(),
   "/flowlayout": (context) => FlowLayoutPage(),
-  "/custom_theme":(context) => CustomThemePage(),
-  "/popup_menu":(context) => PopupMenuPage(),
+  "/custom_theme": (context) => CustomThemePage(),
+  "/popup_menu": (context) => PopupMenuPage(),
+  '/dialog_page': (context) => DialogPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

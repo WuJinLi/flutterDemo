@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/pages/page/listview_page.dart';
 
@@ -13,13 +16,16 @@ class _HomeState extends State<HomePage> {
 //      appBar: AppBar(
 //        title: Text("主页"),
 //      ),
-      body: Center(
-          child: ListView(
-        children: <Widget>[
-          Row(
+      body: Container(
+          padding: EdgeInsets.all(5.0),
+          child: GridView.count(
+            crossAxisCount: 3,
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10,
             children: <Widget>[
-              Expanded(
-                flex: 1,
+              Container(
+                width: 90,
+                height: 90,
                 child: RaisedButton(
                   onPressed: () {
                     //普通路由跳转和传值
@@ -28,12 +34,9 @@ class _HomeState extends State<HomePage> {
                   child: Text("路由跳转"),
                 ),
               ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
+              Container(
+                width: 90,
+                height: 90,
                 child: RaisedButton(
                   onPressed: () {
                     //普通路由跳转和传值
@@ -42,50 +45,36 @@ class _HomeState extends State<HomePage> {
                   },
                   child: Text("ListView"),
                 ),
-              )
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
+              ),
+              Container(
+                width: 90,
+                height: 90,
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/name_route_page");
                   },
                   child: Text("命名路由，有状态页面"),
                 ),
-              )
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
+              ),
+              Container(
+                width: 90,
+                height: 90,
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/buttom_page");
                   },
                   child: Text("按钮种类详情页面"),
                 ),
-              )
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
+              ),
+              Container(
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/text_field");
                   },
                   child: Text("文本输入框"),
                 ),
-              )
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
+              ),
+              Container(
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/check_box");
@@ -93,11 +82,7 @@ class _HomeState extends State<HomePage> {
                   child: Text("勾选框"),
                 ),
               ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
+              Container(
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/net_work_page");
@@ -105,11 +90,7 @@ class _HomeState extends State<HomePage> {
                   child: Text("网络请求"),
                 ),
               ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
+              Container(
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/radio_page");
@@ -117,11 +98,7 @@ class _HomeState extends State<HomePage> {
                   child: Text("radio"),
                 ),
               ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
+              Container(
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/student_info_page");
@@ -129,11 +106,7 @@ class _HomeState extends State<HomePage> {
                   child: Text("学生信息录取页面"),
                 ),
               ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
+              Container(
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/date_pick_page");
@@ -141,11 +114,7 @@ class _HomeState extends State<HomePage> {
                   child: Text("日期选择组件"),
                 ),
               ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
+              Container(
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/json_page");
@@ -153,11 +122,7 @@ class _HomeState extends State<HomePage> {
                   child: Text("Json数据解析"),
                 ),
               ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
+              Container(
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/scrollview");
@@ -165,12 +130,7 @@ class _HomeState extends State<HomePage> {
                   child: Text("可滚动组件"),
                 ),
               ),
-            ],
-          ),
-
-          Row(
-            children: <Widget>[
-              Expanded(
+              Container(
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/flowlayout");
@@ -178,11 +138,7 @@ class _HomeState extends State<HomePage> {
                   child: Text("流式布局"),
                 ),
               ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
+              Container(
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/custom_theme");
@@ -190,11 +146,7 @@ class _HomeState extends State<HomePage> {
                   child: Text("自定义主题"),
                 ),
               ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
+              Container(
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/popup_menu");
@@ -202,10 +154,17 @@ class _HomeState extends State<HomePage> {
                   child: Text("弹出菜单组件"),
                 ),
               ),
+
+              Container(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/dialog_page");
+                  },
+                  child: Text("对话框组件"),
+                ),
+              ),
             ],
-          ),
-        ],
-      )),
+          )),
     );
   }
 }

@@ -16,7 +16,7 @@ class PopupMenuPage extends StatefulWidget {
 }
 
 class _PopupMenuState extends State<PopupMenuPage> {
-  var _selectResult;
+  var _selectResult = "";
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +24,48 @@ class _PopupMenuState extends State<PopupMenuPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("弹出菜单组件"),
+        actions: <Widget>[
+          PopupMenuButton<ConferenceItem>(
+            itemBuilder: (context) => <PopupMenuEntry<ConferenceItem>>[
+              PopupMenuItem(
+                child: Text('添加成员'),
+                value: ConferenceItem.AddMembe,
+              ),
+              PopupMenuItem(
+                child: Text('锁定会议'),
+                value: ConferenceItem.LockConference,
+              ),
+              PopupMenuItem(
+                child: Text('修改布局'),
+                value: ConferenceItem.MidifyLayout,
+              ),
+              PopupMenuItem(
+                child: Text('挂断所有'),
+                value: ConferenceItem.TurnoffAll,
+              ),
+            ],
+            onSelected: (result) {
+//                        print(result);
+              setState(() {
+                switch (result) {
+                  case ConferenceItem.AddMembe:
+                    _selectResult = '添加成员';
+                    break;
+
+                  case ConferenceItem.LockConference:
+                    _selectResult = '锁定会议';
+                    break;
+                  case ConferenceItem.MidifyLayout:
+                    _selectResult = '修改布局';
+                    break;
+                  case ConferenceItem.TurnoffAll:
+                    _selectResult = '挂断所有';
+                    break;
+                }
+              });
+            },
+          )
+        ],
       ),
       body: Container(
         padding: EdgeInsets.all(10.0),
@@ -32,57 +74,14 @@ class _PopupMenuState extends State<PopupMenuPage> {
           children: <Widget>[
             Row(
               children: <Widget>[
-                FlatButton(
-                    onPressed: () {},
-                    child: PopupMenuButton<ConferenceItem>(
-                      itemBuilder: (context) =>
-                          <PopupMenuEntry<ConferenceItem>>[
-                        PopupMenuItem(
-                          child: Text('添加成员'),
-                          value: ConferenceItem.AddMembe,
-                        ),
-                        PopupMenuItem(
-                          child: Text('锁定会议'),
-                          value: ConferenceItem.LockConference,
-                        ),
-                        PopupMenuItem(
-                          child: Text('修改布局'),
-                          value: ConferenceItem.MidifyLayout,
-                        ),
-                        PopupMenuItem(
-                          child: Text('挂断所有'),
-                          value: ConferenceItem.TurnoffAll,
-                        ),
-                      ],
-                      onSelected: (result) {
-//                        print(result);
-                        setState(() {
-                          switch (result) {
-                            case ConferenceItem.AddMembe:
-                              _selectResult = '添加成员';
-                              break;
-
-                            case ConferenceItem.LockConference:
-                              _selectResult = '锁定会议';
-                              break;
-                            case ConferenceItem.MidifyLayout:
-                              _selectResult = '修改布局';
-                              break;
-                            case ConferenceItem.TurnoffAll:
-                              _selectResult = '挂断所有';
-                              break;
-                          }
-                        });
-                      },
-                    )),
                 Expanded(
                     child: Text(
                   "${_selectResult}",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      color: Colors.black,
-                      ),
+                    decoration: TextDecoration.underline,
+                    color: Colors.black,
+                  ),
                 ))
               ],
             )
