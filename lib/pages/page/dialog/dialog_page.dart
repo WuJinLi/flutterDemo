@@ -220,6 +220,6 @@ class MyScaffoldBody extends StatelessWidget {
           );
         });
     Scaffold.of(context)
-        .showSnackBar(SnackBar(content: Text('选择结果为：${result}')));
+        .showSnackBar(SnackBar(content: Text('选择结果为：${result}'),backgroundColor: Colors.grey[300],));
   }
 }
