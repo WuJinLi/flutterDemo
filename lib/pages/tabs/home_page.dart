@@ -154,13 +154,20 @@ class _HomeState extends State<HomePage> {
                   child: Text("弹出菜单组件"),
                 ),
               ),
-
               Container(
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, "/dialog_page");
                   },
                   child: Text("对话框组件"),
+                ),
+              ),
+              Container(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/cupertion_page");
+                  },
+                  child: Text("Cupertion风格组件"),
                 ),
               ),
             ],
