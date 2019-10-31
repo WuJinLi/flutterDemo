@@ -78,6 +78,7 @@ class MyScaffoldBody extends StatelessWidget {
               child: Text('提示对话框'),
             ),
           ),
+          Divider(),
         ],
       ),
     );
