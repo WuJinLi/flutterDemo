@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 /**
  * 该页面展示的是ios风格组件
  */
-class CupertionPage extends StatefulWidget {
+class CupertinoPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _CupertionPageState();
+  State<StatefulWidget> createState() => _CupertinoPageState();
 }
 
-class _CupertionPageState extends State<CupertionPage> {
+class _CupertinoPageState extends State<CupertinoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,31 +23,37 @@ class _CupertionPageState extends State<CupertionPage> {
               Row(
                 children: <Widget>[
                   Expanded(
-                      child: RaisedButton(
+                      child: CupertinoButton(
                     onPressed: () {
                       _showLoading(context);
                     },
+                    color: Colors.blue[200],
                     child: Text('loading指示器'),
                   ))
                 ],
               ),
+              SizedBox(height: 10,),
               Row(
                 children: <Widget>[
                   Expanded(
-                      child: RaisedButton(
+                      child: CupertinoButton(
                     onPressed: () {
                       _AlertDialog(context);
                     },
+                    color: Colors.blue[200],
                     child: Text('对话框'),
                   ))
                 ],
               ),
+              SizedBox(height: 10,),
               Row(
                 children: <Widget>[
                   Expanded(
                     child: CupertinoButton(
                       child: Text('ios风格的按钮'),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/cupertino_detail');
+                      },
                       color: Colors.blue[200],
                     ),
                   )

@@ -165,7 +165,7 @@ class _HomeState extends State<HomePage> {
               Container(
                 child: RaisedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, "/cupertion_page");
+                    Navigator.pushNamed(context, "/cupertino_page");
                   },
                   child: Text("Cupertion风格组件"),
                 ),
