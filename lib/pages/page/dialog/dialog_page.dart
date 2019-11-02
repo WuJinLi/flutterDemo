@@ -196,31 +196,24 @@ class MyScaffoldBody extends StatelessWidget {
               ),
             ),
             actions: <Widget>[
-              Container(
-                  width: 300,
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: FlatButton(
-                          onPressed: () {
-                            Navigator.pop(context, '确定');
-                          },
-                          child: Text('确定'),
-                        ),
-                      ),
-                      Expanded(
-                          child: FlatButton(
-                              onPressed: () {
-                                Navigator.pop(context, '取消');
-                              },
-                              child: Text('取消')))
-                    ],
-                  )),
+              FlatButton(
+                onPressed: () {
+                  Navigator.pop(context, '确定');
+                },
+                child: Text('确定'),
+              ),
+              FlatButton(
+                onPressed: () {
+                  Navigator.pop(context, '取消');
+                },
+                child: Text('取消'),
+              ),
             ],
           );
         });
-    Scaffold.of(context)
-        .showSnackBar(SnackBar(content: Text('选择结果为：${result}'),backgroundColor: Colors.grey[300],));
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text('选择结果为：${result}'),
+      backgroundColor: Colors.grey[300],
+    ));
   }
 }
