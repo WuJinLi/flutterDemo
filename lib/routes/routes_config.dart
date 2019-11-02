@@ -29,6 +29,7 @@ import 'package:flutter_learn/pages/page/popup/popup_menu.dart';
 import 'package:flutter_learn/pages/page/dialog/dialog_page.dart';
 import 'package:flutter_learn/pages/page/cupertion/cupertino_page.dart';
 import 'package:flutter_learn/pages/page/cupertion/cupertino_detail.dart';
+import 'package:flutter_learn/pages/page/layout/align_layout.dart';
 
 /**
  * 配置路由
@@ -67,6 +68,7 @@ final routes = {
   '/dialog_page': (context) => DialogPage(),
   '/cupertino_page': (context) => CupertinoPage(),
   '/cupertino_detail': (context) => CupertinoDetailPage(),
+  '/align_layout':(context) => AlignLayout(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

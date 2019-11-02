@@ -66,7 +66,7 @@ class HomePage extends StatelessWidget {
           leading: CupertinoButton(
               child: Icon(CupertinoIcons.back),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.of(context).popAndPushNamed('/cupertino_page');
               }),
         ),
         child: Center(

@@ -170,6 +170,14 @@ class _HomeState extends State<HomePage> {
                   child: Text("Cupertion风格组件"),
                 ),
               ),
+              Container(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/align_layout");
+                  },
+                  child: Text("Align布局"),
+                ),
+              ),
             ],
           )),
     );
