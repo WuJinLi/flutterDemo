@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+/**
+ * stack集合组件Align 实现定位布局
+ */
 class AlignLayout extends StatefulWidget {
   @override
   _AlignLayoutState createState() => _AlignLayoutState();

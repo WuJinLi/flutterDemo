@@ -1,3 +1,4 @@
+import 'package:flutter_learn/pages/page/layout/location_page.dart' as prefix0;
 import '../pages/page/detail_page.dart';
 import 'package:flutter/material.dart';
 import '../pages/bottom_tabs.dart';
@@ -29,7 +30,9 @@ import 'package:flutter_learn/pages/page/popup/popup_menu.dart';
 import 'package:flutter_learn/pages/page/dialog/dialog_page.dart';
 import 'package:flutter_learn/pages/page/cupertion/cupertino_page.dart';
 import 'package:flutter_learn/pages/page/cupertion/cupertino_detail.dart';
-import 'package:flutter_learn/pages/page/layout/align_layout.dart';
+import 'package:flutter_learn/pages/page/layout/stack_align_layout.dart';
+import 'package:flutter_learn/pages/page/layout/stack_aligment_layout.dart';
+import 'package:flutter_learn/pages/page/layout/stack_positioned_layout.dart';
 
 /**
  * 配置路由
@@ -68,7 +71,10 @@ final routes = {
   '/dialog_page': (context) => DialogPage(),
   '/cupertino_page': (context) => CupertinoPage(),
   '/cupertino_detail': (context) => CupertinoDetailPage(),
-  '/align_layout':(context) => AlignLayout(),
+  '/stack_align_layout': (context) => AlignLayout(),
+  "/location_page": (context) => prefix0.LocationPage(),
+  "/stack_aligment_layout": (context) => StackAligmentLayout(),
+  '/stack_positioned_layout':(context) => StackPositionedLayout(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

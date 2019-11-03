@@ -173,9 +173,9 @@ class _HomeState extends State<HomePage> {
               Container(
                 child: RaisedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, "/align_layout");
+                    Navigator.pushNamed(context, "/location_page");
                   },
-                  child: Text("Align布局"),
+                  child: Text("定位布局"),
                 ),
               ),
             ],
