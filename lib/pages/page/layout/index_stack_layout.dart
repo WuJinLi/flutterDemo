@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 /**
  * indexStack实现指定child展示的布局的演
  * indexStack继承Stack，它的作用是显示第index个child，其他的子child都是不可见的
+ * indexStack实现指定组件显示其他组件是隐藏状态的，
  */
 class IndexStackLayout extends StatefulWidget {
   @override
@@ -48,8 +49,13 @@ class _IndexStackLayoutState extends State<IndexStackLayout> {
             IndexedStack(
               index: this.index,
               children: <Widget>[
-                Image.network(
-                    'http://img4.cache.netease.com/photo/0001/2010-04-17/64EFS71V05RQ0001.jpg'),
+//                Image.network(
+//                    'http://img4.cache.netease.com/photo/0001/2010-04-17/64EFS71V05RQ0001.jpg'),
+                Image.asset(
+                  'images/ic_recycle.png',
+                  width: 100,
+                  height: 100,
+                ),
                 Container(
                   width: double.infinity,
                   height: 200,
