@@ -33,6 +33,7 @@ import 'package:flutter_learn/pages/page/cupertion/cupertino_detail.dart';
 import 'package:flutter_learn/pages/page/layout/stack_align_layout.dart';
 import 'package:flutter_learn/pages/page/layout/stack_aligment_layout.dart';
 import 'package:flutter_learn/pages/page/layout/stack_positioned_layout.dart';
+import 'package:flutter_learn/pages/page/layout/index_stack_layout.dart';
 
 /**
  * 配置路由
@@ -75,6 +76,7 @@ final routes = {
   "/location_page": (context) => prefix0.LocationPage(),
   "/stack_aligment_layout": (context) => StackAligmentLayout(),
   '/stack_positioned_layout':(context) => StackPositionedLayout(),
+  '/index_stack_layout':(context) => IndexStackLayout(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

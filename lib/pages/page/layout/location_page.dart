@@ -43,9 +43,22 @@ class _LocationState extends State<LocationPage> {
               children: <Widget>[
                 Expanded(
                   child: RaisedButton(
-                      child: Text('Stack/Positioned'), onPressed: () {
-                        Navigator.pushNamed(context, '/stack_positioned_layout');
-                  }),
+                      child: Text('Stack/Positioned'),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, '/stack_positioned_layout');
+                      }),
+                )
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                      child: Text('IndexStack'),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/index_stack_layout');
+                      }),
                 )
               ],
             ),
