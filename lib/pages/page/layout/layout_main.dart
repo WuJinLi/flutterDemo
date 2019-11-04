@@ -129,6 +129,17 @@ class _LayoutMainPageState extends State<LayoutMainPage> {
                 ),
               ],
             ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                      child: Text('综合demo'),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/synthesize_demo');
+                      }),
+                ),
+              ],
+            ),
           ],
         ),
       ),

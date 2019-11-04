@@ -40,6 +40,7 @@ import 'package:flutter_learn/pages/page/layout/limitedbox_layout.dart';
 import 'package:flutter_learn/pages/page/layout/aspectratio_layout.dart';
 import 'package:flutter_learn/pages/page/layout/fractionallysizebox_layout.dart';
 import 'package:flutter_learn/pages/page/layout/table_layout.dart';
+import 'package:flutter_learn/pages/page/layout/synthesize_demo.dart';
 
 /**
  * 配置路由
@@ -89,6 +90,7 @@ final routes = {
   '/aspectratio_layout': (context) => AspectRatioLayout(),
   '/fractionallysizebox_layout': (context) => FractionallySizedBoxLayout(),
   '/table_layout':(context) => TableLayout(),
+  '/synthesize_demo':(context) => SynthesizePage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
