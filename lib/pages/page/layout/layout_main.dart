@@ -92,7 +92,30 @@ class _LayoutMainPageState extends State<LayoutMainPage> {
                       onPressed: () {
                         Navigator.pushNamed(context, '/limitedbox_layout');
                       }),
-                )
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                      child: Text('AspectRatio调整宽高比'),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/aspectratio_layout');
+                      }),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                      child: Text('FractionallySizedBox百分比'),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, '/fractionallysizebox_layout');
+                      }),
+                ),
               ],
             ),
           ],

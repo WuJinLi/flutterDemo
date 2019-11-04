@@ -37,6 +37,8 @@ import 'package:flutter_learn/pages/page/layout/index_stack_layout.dart';
 import 'package:flutter_learn/pages/page/layout/overflowbox_layout.dart';
 import 'package:flutter_learn/pages/page/layout/constrainedbox_layout.dart';
 import 'package:flutter_learn/pages/page/layout/limitedbox_layout.dart';
+import 'package:flutter_learn/pages/page/layout/aspectratio_layout.dart';
+import 'package:flutter_learn/pages/page/layout/fractionallysizebox_layout.dart';
 
 /**
  * 配置路由
@@ -83,6 +85,8 @@ final routes = {
   '/overflowbox_layout': (context) => OverflowBoxPage(),
   '/constrainedbox_layout': (context) => ConstrainedBoxLayout(),
   '/limitedbox_layout': (context) => LimitedBoxLayout(),
+  '/aspectratio_layout': (context) => AspectRatioLayout(),
+  '/fractionallysizebox_layout': (context) => FractionallySizedBoxLayout(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
