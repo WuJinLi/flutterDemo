@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class LocationPage extends StatefulWidget {
+class LayoutMainPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _LocationState();
+  State<StatefulWidget> createState() => _LayoutMainPageState();
 }
 
-class _LocationState extends State<LocationPage> {
+class _LayoutMainPageState extends State<LayoutMainPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('定位方式展示页面'),
+        title: Text('布局方式展示页面'),
       ),
       body: Padding(
         padding: EdgeInsets.all(10.0),
@@ -58,6 +58,39 @@ class _LocationState extends State<LocationPage> {
                       child: Text('IndexStack'),
                       onPressed: () {
                         Navigator.pushNamed(context, '/index_stack_layout');
+                      }),
+                )
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                      child: Text('OverflowBox'),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/overflowbox_layout');
+                      }),
+                )
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                      child: Text('ConstrainedBox'),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/constrainedbox_layout');
+                      }),
+                )
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                      child: Text('LimitedBox'),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/limitedbox_layout');
                       }),
                 )
               ],
