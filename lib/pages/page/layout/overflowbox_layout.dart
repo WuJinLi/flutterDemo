@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
+/**
+ * 允许溢出父类布局的组件，
+ * 允许子组件元素超出父容器范围显示，当overflowBox的最大尺寸大于child时，
+ * child可以完整显示，当其小于child时，则已overflowbox最大尺寸为基准
+ *
+ */
 class OverflowBoxPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _OverflowBox();
 }
 
 class _OverflowBox extends State<OverflowBoxPage> {
-  double width, height = 0;
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -17,70 +21,21 @@ class _OverflowBox extends State<OverflowBoxPage> {
       ),
       body: Padding(
         padding: EdgeInsets.all(10.0),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-                child: Container(
-              width: double.infinity,
-              child: Column(
-                children: <Widget>[
-                  TextField(
-                    decoration:
-                        InputDecoration(labelText: 'width', hintText: '输入宽度'),
-                    onChanged: (value) {
-                      setState(() {
-                        this.width = double.parse(value);
-                      });
-                    },
-                    onSubmitted: (value) {
-                      setState(() {
-                        this.width = double.parse(value);
-                      });
-                    },
-                  ),
-                  TextField(
-                    decoration:
-                        InputDecoration(labelText: 'height', hintText: '输入高度'),
-                    onChanged: (value) {
-                      setState(() {
-                        this.height = double.parse(value);
-                      });
-                    },
-                    onSubmitted: (value) {
-                      setState(() {
-                        this.height = double.parse(value);
-                      });
-                    },
-                  )
-                ],
-              ),
-            )),
-            SizedBox(
-              height: 10,
+        child: Container(
+          padding: EdgeInsets.all(10),
+          color: Colors.lightGreen,
+          width: 200,
+          height: 200,
+          child: OverflowBox(
+            alignment: Alignment.topLeft,
+            maxWidth: 300,
+            maxHeight: 500,
+            child: Container(
+              width: 400,
+              height: 400,
+              color: Colors.grey,
             ),
-            Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-              child: Container(
-                padding: EdgeInsets.all(10),
-                color: Colors.green,
-                width: 200,
-                height: 200,
-                child: OverflowBox(
-                  minHeight:50 ,
-                  minWidth: 50,
-                  maxWidth: 200,
-                  maxHeight: 200,
-                  alignment: Alignment.center,
-                  child: Container(
-                    width: this.width,
-                    height: this.height,
-                    color: Colors.blueGrey,
-                  ),
-                ),
-              ),
-            ))
-          ],
+          ),
         ),
       ),
     );
