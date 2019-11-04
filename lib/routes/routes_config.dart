@@ -39,6 +39,7 @@ import 'package:flutter_learn/pages/page/layout/constrainedbox_layout.dart';
 import 'package:flutter_learn/pages/page/layout/limitedbox_layout.dart';
 import 'package:flutter_learn/pages/page/layout/aspectratio_layout.dart';
 import 'package:flutter_learn/pages/page/layout/fractionallysizebox_layout.dart';
+import 'package:flutter_learn/pages/page/layout/table_layout.dart';
 
 /**
  * 配置路由
@@ -87,6 +88,7 @@ final routes = {
   '/limitedbox_layout': (context) => LimitedBoxLayout(),
   '/aspectratio_layout': (context) => AspectRatioLayout(),
   '/fractionallysizebox_layout': (context) => FractionallySizedBoxLayout(),
+  '/table_layout':(context) => TableLayout(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

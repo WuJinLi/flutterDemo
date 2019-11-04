@@ -118,6 +118,17 @@ class _LayoutMainPageState extends State<LayoutMainPage> {
                 ),
               ],
             ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                      child: Text('表格布局'),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/table_layout');
+                      }),
+                ),
+              ],
+            ),
           ],
         ),
       ),
