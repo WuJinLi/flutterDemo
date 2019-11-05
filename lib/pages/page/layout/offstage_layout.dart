@@ -33,7 +33,7 @@ class _OffstageState extends State<OffstageLayout> {
                         this.offstage = !offstage;
                       });
                     },
-                    child: Text(this.offstage ? '隐藏组件' : '显示组件'),
+                    child: Text(!this.offstage ? '隐藏组件' : '显示组件'),
                   ),
                 )
               ],

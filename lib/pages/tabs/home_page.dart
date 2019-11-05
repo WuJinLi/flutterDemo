@@ -17,7 +17,7 @@ class _HomeState extends State<HomePage> {
 //        title: Text("主页"),
 //      ),
       body: Container(
-          padding: EdgeInsets.all(5.0),
+          padding: EdgeInsets.all(10.0),
           child: GridView.count(
             crossAxisCount: 3,
             crossAxisSpacing: 10.0,
