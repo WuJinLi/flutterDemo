@@ -178,6 +178,14 @@ class _HomeState extends State<HomePage> {
                   child: Text("布局"),
                 ),
               ),
+              Container(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/gesturedetector_main");
+                  },
+                  child: Text("手势"),
+                ),
+              ),
             ],
           )),
     );

@@ -43,6 +43,8 @@ import 'package:flutter_learn/pages/page/layout/table_layout.dart';
 import 'package:flutter_learn/pages/page/layout/synthesize_demo.dart';
 import 'package:flutter_learn/pages/page/layout/transform_layout.dart';
 import 'package:flutter_learn/pages/page/layout/offstage_layout.dart';
+import 'package:flutter_learn/pages/page/gesturedetector/gesturedetector_detail_page.dart';
+import 'package:flutter_learn/pages/page/gesturedetector/gesturedetector_main.dart';
 
 /**
  * 配置路由
@@ -91,10 +93,12 @@ final routes = {
   '/limitedbox_layout': (context) => LimitedBoxLayout(),
   '/aspectratio_layout': (context) => AspectRatioLayout(),
   '/fractionallysizebox_layout': (context) => FractionallySizedBoxLayout(),
-  '/table_layout':(context) => TableLayout(),
-  '/synthesize_demo':(context) => SynthesizePage(),
-  '/transform_layout':(context) => TransformLayout(),
-  '/offstage_layout':(context) => OffstageLayout(),
+  '/table_layout': (context) => TableLayout(),
+  '/synthesize_demo': (context) => SynthesizePage(),
+  '/transform_layout': (context) => TransformLayout(),
+  '/offstage_layout': (context) => OffstageLayout(),
+  '/gesturedetector_main': (context) => GestureDetectorMainPage(),
+  '/gesturedetector_detail_page': (context) => GestureDetectorDetailPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
