@@ -41,6 +41,8 @@ import 'package:flutter_learn/pages/page/layout/aspectratio_layout.dart';
 import 'package:flutter_learn/pages/page/layout/fractionallysizebox_layout.dart';
 import 'package:flutter_learn/pages/page/layout/table_layout.dart';
 import 'package:flutter_learn/pages/page/layout/synthesize_demo.dart';
+import 'package:flutter_learn/pages/page/layout/transform_layout.dart';
+import 'package:flutter_learn/pages/page/layout/offstage_layout.dart';
 
 /**
  * 配置路由
@@ -91,6 +93,8 @@ final routes = {
   '/fractionallysizebox_layout': (context) => FractionallySizedBoxLayout(),
   '/table_layout':(context) => TableLayout(),
   '/synthesize_demo':(context) => SynthesizePage(),
+  '/transform_layout':(context) => TransformLayout(),
+  '/offstage_layout':(context) => OffstageLayout(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

@@ -140,6 +140,28 @@ class _LayoutMainPageState extends State<LayoutMainPage> {
                 ),
               ],
             ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                      child: Text('transform矩阵转换'),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/transform_layout');
+                      }),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                      child: Text('offstage组件的显示隐藏'),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/offstage_layout');
+                      }),
+                ),
+              ],
+            ),
           ],
         ),
       ),
