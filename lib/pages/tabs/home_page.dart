@@ -186,6 +186,14 @@ class _HomeState extends State<HomePage> {
                   child: Text("手势"),
                 ),
               ),
+              Container(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/decorate_main");
+                  },
+                  child: Text("装饰，视觉效果"),
+                ),
+              ),
             ],
           )),
     );
