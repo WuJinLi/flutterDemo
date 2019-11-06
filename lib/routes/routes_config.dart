@@ -47,6 +47,7 @@ import 'package:flutter_learn/pages/page/gesturedetector/gesturedetector_detail_
 import 'package:flutter_learn/pages/page/gesturedetector/gesturedetector_main.dart';
 import 'package:flutter_learn/pages/page/decorate/decorate_main.dart';
 import 'package:flutter_learn/pages/page/gesturedetector/dismissible_detail.dart';
+import 'package:flutter_learn/pages/page/decorate/opacity_detail.dart';
 
 /**
  * 配置路由
@@ -103,6 +104,7 @@ final routes = {
   '/gesturedetector_detail_page': (context) => GestureDetectorDetailPage(),
   '/decorate_main': (context) => DecorateMainPage(),
   '/dismissible_detail': (context) => DismissibleDetail(),
+  '/opacity_detail':(context) => OpacityDetailPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

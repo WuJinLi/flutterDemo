@@ -16,7 +16,9 @@ class DecorateMainPage extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                     child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/opacity_detail');
+                  },
                   child: Text('Opacity透明度处理'),
                 ))
               ],
