@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
 /**
  * Dismissible 实现侧滑删除
@@ -32,6 +33,8 @@ class DismissibleDetail extends StatelessWidget {
                 onDismissed: (direction) {
                   //删除操作
                   items.removeAt(index);
+                  Toast.show('删除第${index+1}数据成功!', context,
+                      duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
                 },
               );
             }),
