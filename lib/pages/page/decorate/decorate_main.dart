@@ -27,26 +27,10 @@ class DecorateMainPage extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                     child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/decorate_detail');
+                  },
                   child: Text('decortaedBox装饰'),
-                ))
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                    child: RaisedButton(
-                  onPressed: () {},
-                  child: Text('Chip裁剪'),
-                ))
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                    child: RaisedButton(
-                  onPressed: () {},
-                  child: Text('RoatedBox旋转盒子'),
                 ))
               ],
             ),
