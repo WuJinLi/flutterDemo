@@ -13,15 +13,28 @@ class GestureDetectorMainPage extends StatelessWidget {
         child: Center(
           child: Column(
             children: <Widget>[
-              RaisedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/gesturedetector_detail_page');
-                },
-                child: Text('一类手势GesturnDetector'),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                      child: RaisedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(
+                          context, '/gesturedetector_detail_page');
+                    },
+                    child: Text('一类手势GesturnDetector'),
+                  ))
+                ],
               ),
-              RaisedButton(
-                onPressed: () {},
-                child: Text('二类手势'),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                      child: RaisedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/dismissible_detail');
+                    },
+                    child: Text('二类手势'),
+                  ))
+                ],
               )
             ],
           ),

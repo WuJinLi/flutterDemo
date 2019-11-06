@@ -46,6 +46,7 @@ import 'package:flutter_learn/pages/page/layout/offstage_layout.dart';
 import 'package:flutter_learn/pages/page/gesturedetector/gesturedetector_detail_page.dart';
 import 'package:flutter_learn/pages/page/gesturedetector/gesturedetector_main.dart';
 import 'package:flutter_learn/pages/page/decorate/decorate_main.dart';
+import 'package:flutter_learn/pages/page/gesturedetector/dismissible_detail.dart';
 
 /**
  * 配置路由
@@ -100,7 +101,8 @@ final routes = {
   '/offstage_layout': (context) => OffstageLayout(),
   '/gesturedetector_main': (context) => GestureDetectorMainPage(),
   '/gesturedetector_detail_page': (context) => GestureDetectorDetailPage(),
-  '/decorate_main':(context) => DecorateMainPage(),
+  '/decorate_main': (context) => DecorateMainPage(),
+  '/dismissible_detail': (context) => DismissibleDetail(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
