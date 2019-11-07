@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+/**
+ * hero动画组件
+ */
 class HeroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -10,6 +13,7 @@ class HeroPage extends StatelessWidget {
       body: GestureDetector(
         child: Center(
           child: Hero(
+            //hero组件包含子组件，hero提供页面跳转的动画
             tag: 'hero动画第一页',
             child: Image.network(
                 'http://pic34.nipic.com/20131030/2455348_194508648000_2.jpg'),
