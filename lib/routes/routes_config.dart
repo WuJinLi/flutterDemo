@@ -49,6 +49,10 @@ import 'package:flutter_learn/pages/page/decorate/decorate_main.dart';
 import 'package:flutter_learn/pages/page/gesturedetector/dismissible_detail.dart';
 import 'package:flutter_learn/pages/page/decorate/opacity_detail.dart';
 import 'package:flutter_learn/pages/page/decorate/decorate_detail.dart';
+import 'package:flutter_learn/pages/page/canvasandpaint/canvas_and_paint.dart';
+import 'package:flutter_learn/pages/page/animate/animate_main.dart';
+import 'package:flutter_learn/pages/page/animate/animated_opacity_page.dart';
+import 'package:flutter_learn/pages/page/animate/hero_page.dart';
 
 /**
  * 配置路由
@@ -105,8 +109,12 @@ final routes = {
   '/gesturedetector_detail_page': (context) => GestureDetectorDetailPage(),
   '/decorate_main': (context) => DecorateMainPage(),
   '/dismissible_detail': (context) => DismissibleDetail(),
-  '/opacity_detail':(context) => OpacityDetailPage(),
-  '/decorate_detail':(context) => DecoratedBoxDetailPage(),
+  '/opacity_detail': (context) => OpacityDetailPage(),
+  '/decorate_detail': (context) => DecoratedBoxDetailPage(),
+  '/canvas_and_paint': (context) => CanvasAndPaintPage(),
+  '/animate_main': (context) => AnimateMainPage(),
+  '/animated_opacity_page': (context) => AnimatedOpacityPage(),
+  '/hero_page': (context) => HeroPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
