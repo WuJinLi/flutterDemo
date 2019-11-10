@@ -46,12 +46,38 @@ class _MineState extends State<MinePage> {
                   Expanded(
                       child: RaisedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, "/register_frist_page",);
+                      Navigator.pushNamed(
+                        context,
+                        "/register_frist_page",
+                      );
                     },
                     child: Text("注册"),
                   ))
                 ],
-              )
+              ),
+              Container(
+                //外边距设置
+                margin: EdgeInsets.only(top: 60.0, left: 80.0),
+                //约束设置：
+                constraints: BoxConstraints.tightFor(width: 300, height: 150),
+                //装饰：边框，颜色，阴影色
+                decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xffaaaaaa), width: 3),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black54,
+                        offset: Offset(2.0, 2.0),
+                        blurRadius: 4.0)
+                  ],
+                ),
+                //平移：X,Y,Z方向的偏移量
+                transform: Matrix4.rotationZ(.3),
+                alignment: Alignment.center,
+                child: Text(
+                  '佩琦',
+                  style: TextStyle(color: Colors.white, fontSize: 30.0),
+                ),
+              ),
             ],
           ),
         ),
