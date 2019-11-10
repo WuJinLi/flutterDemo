@@ -7,7 +7,44 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsState extends State<SettingsPage> {
   @override
+  void initState() {
+    super.initState();
+    print("SettingsPage initState");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print("SettingsPage didChangeDependencies");
+  }
+
+  @override
+  void didUpdateWidget(SettingsPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('SettingsPage didUpdateWidget');
+  }
+
+  @override
+  void deactivate() {
+    super.deactivate();
+    print('SettingsPage deactivate');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('SettingsPage dispose');
+  }
+  @override
+  void reassemble() {
+    // TODO: implement reassemble
+    super.reassemble();
+    print('SettingsPage reassemble');
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('SettingsPage build');
     return Scaffold(
 //      appBar: AppBar(
 //        title: Text("tabbar的实现方式"),
