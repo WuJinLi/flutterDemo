@@ -36,8 +36,10 @@ dependencies:
 
   json_annotation: ^3.0.0
 
-#  网络请求三方库
+  #网络请求三方库
   dio: 3.0.3 #latest version
+  #实现轮播图
+  flutter_swiper : 1.1.6
 
 #开发环境依赖的工具包（而不是flutter应用本身依赖的包）。
 dev_dependencies:

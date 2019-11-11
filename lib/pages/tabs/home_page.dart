@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/pages/page/listview_page.dart';
+import 'package:flutter_learn/pages/page/pageview/page_view_main.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -200,6 +201,19 @@ class _HomeState extends State<HomePage> {
                     Navigator.pushNamed(context, "/animate_main");
                   },
                   child: Text("动画"),
+                ),
+              ),
+              Container(
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return PageViewMainPage();
+                      }),
+                    );
+                  },
+                  child: Text("轮播图"),
                 ),
               ),
             ],
