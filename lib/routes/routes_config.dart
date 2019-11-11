@@ -43,10 +43,9 @@ import 'package:flutter_learn/pages/page/layout/table_layout.dart';
 import 'package:flutter_learn/pages/page/layout/synthesize_demo.dart';
 import 'package:flutter_learn/pages/page/layout/transform_layout.dart';
 import 'package:flutter_learn/pages/page/layout/offstage_layout.dart';
-import 'package:flutter_learn/pages/page/gesturedetector/gesturedetector_detail_page.dart';
-import 'package:flutter_learn/pages/page/gesturedetector/gesturedetector_main.dart';
+import 'package:flutter_learn/pages/page/event/gesturedetector_main.dart';
 import 'package:flutter_learn/pages/page/decorate/decorate_main.dart';
-import 'package:flutter_learn/pages/page/gesturedetector/dismissible_detail.dart';
+import 'package:flutter_learn/pages/page/event/dismissible_detail.dart';
 import 'package:flutter_learn/pages/page/decorate/opacity_detail.dart';
 import 'package:flutter_learn/pages/page/decorate/decorate_detail.dart';
 import 'package:flutter_learn/pages/page/canvasandpaint/canvas_and_paint.dart';
@@ -106,7 +105,6 @@ final routes = {
   '/transform_layout': (context) => TransformLayout(),
   '/offstage_layout': (context) => OffstageLayout(),
   '/gesturedetector_main': (context) => GestureDetectorMainPage(),
-  '/gesturedetector_detail_page': (context) => GestureDetectorDetailPage(),
   '/decorate_main': (context) => DecorateMainPage(),
   '/dismissible_detail': (context) => DismissibleDetail(),
   '/opacity_detail': (context) => OpacityDetailPage(),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'gesturedetector_detail_page.dart';
+
 class GestureDetectorMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,8 +20,10 @@ class GestureDetectorMainPage extends StatelessWidget {
                   Expanded(
                       child: RaisedButton(
                     onPressed: () {
-                      Navigator.pushNamed(
-                          context, '/gesturedetector_detail_page');
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return GestureDetectorDetailPage();
+                      }));
                     },
                     child: Text('一类手势GesturnDetector'),
                   ))
