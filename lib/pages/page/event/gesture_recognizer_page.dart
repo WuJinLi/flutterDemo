@@ -56,6 +56,7 @@ class _GestureRecognizerState extends State<GestureRecognizerPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             RichText(
+              textAlign: TextAlign.start,
               text: TextSpan(
                 text: '同意',
                 style: TextStyle(color: Colors.black),
@@ -70,7 +71,9 @@ class _GestureRecognizerState extends State<GestureRecognizerPage> {
                 ],
               ),
             ),
+            SizedBox(height: 10,),
             RichText(
+              textAlign: TextAlign.start,
               text: TextSpan(
                 text: '同意',
                 style: TextStyle(color: Colors.black),

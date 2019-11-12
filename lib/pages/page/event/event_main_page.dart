@@ -4,6 +4,7 @@ import 'package:flutter_learn/pages/page/event/original_event_page.dart';
 
 import 'both_direction_page.dart';
 import 'drag_and_scale_page.dart';
+import 'event_notification_page.dart';
 import 'gesturedetector_main.dart';
 import 'ignore_event.dart';
 
@@ -51,6 +52,8 @@ class EventMainPage extends StatelessWidget {
             _itemButton(context, '事件竞争机制', BothDirectionPage()),
             Divider(),
             _itemButton(context, '手势识别器', GestureRecognizerPage()),
+            Divider(),
+            _itemButton(context, '事件通知', EventNotificationPage()),
           ],
         ),
       ),
