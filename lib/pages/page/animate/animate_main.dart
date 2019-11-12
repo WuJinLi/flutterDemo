@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/pages/page/animate/tween_animation_page.dart';
 
 /**
  * 动画：
@@ -21,23 +22,42 @@ class AnimateMainPage extends StatelessWidget {
             Row(
               children: <Widget>[
                 Expanded(
-                    child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/animated_opacity_page");
-                  },
-                  child: Text('AnimatedOpacity渐变效果动画'),
-                ))
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/animated_opacity_page");
+                    },
+                    child: Text('AnimatedOpacity渐变效果动画'),
+                  ),
+                )
               ],
             ),
             Row(
               children: <Widget>[
                 Expanded(
-                    child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/hero_page');
-                  },
-                  child: Text('Hero实现页面切换'),
-                ))
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/hero_page');
+                    },
+                    child: Text('Hero实现页面切换'),
+                  ),
+                )
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return TweenAnimationPage();
+                        }),
+                      );
+                    },
+                    child: Text('补间动画'),
+                  ),
+                )
               ],
             ),
           ],
