@@ -10,6 +10,12 @@ import 'package:shared_preferences/shared_preferences.dart';
  *  SharedPreferences=> set()增加修改;get()获取查询;remove()移除删除
  *
  *  由于是一个异步，简单的，持久化，key-value形式存储的，所以在使用是使用async/await来完成异步处理
+ *
+ *
+ *  在使用SharedPreferences三方依赖包运行在ios模拟器会出现项目不能运行安装的问题，面对这个问题看到是ios中pod无法加载三方包的问题
+ *  在android 设备上不会涉及到该问题，
+ *
+ *
  */
 class SharedPreferencesPage extends StatefulWidget {
   @override
