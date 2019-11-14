@@ -41,7 +41,7 @@ dependencies:
   #实现轮播图
   flutter_swiper : 1.1.6
   #持久化shared_preferences
-#  shared_preferences: 0.5.4+5
+  shared_preferences: 0.5.4+5
 
 #开发环境依赖的工具包（而不是flutter应用本身依赖的包）。
 dev_dependencies:

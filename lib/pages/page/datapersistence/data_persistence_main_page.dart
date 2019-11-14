@@ -27,12 +27,12 @@ class _DataPersistenceMainState extends State<DataPersistenceMainPage> {
                       onPressed: () {
                         //针对ios模拟器运行是出现pod问题，在ios模拟器上运行项目是将此代码注释掉，android上可以放开
                         //具体解决方案
-//                        Navigator.push(
-//                          context,
-//                          MaterialPageRoute(builder: (context) {
-//                            return SharedPreferencesPage();
-//                          }),
-//                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return SharedPreferencesPage();
+                          }),
+                        );
                       },
                       child: Text('sharedPreferences持久化'),
                     ),
