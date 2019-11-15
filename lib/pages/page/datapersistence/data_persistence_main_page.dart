@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/pages/page/datapersistence/shared_preferences_page.dart';
+import 'package:flutter_learn/pages/page/datapersistence/sqflite_main_page.dart';
 
 /**
  * 持久化主页面
@@ -44,8 +45,15 @@ class _DataPersistenceMainState extends State<DataPersistenceMainPage> {
                 children: <Widget>[
                   Expanded(
                     child: FlatButton(
-                      onPressed: () {},
-                      child: Text('数据库'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return SqfliteMainPage();
+                          }),
+                        );
+                      },
+                      child: Text('数据库sqflite'),
                     ),
                   ),
                 ],
