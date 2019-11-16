@@ -10,7 +10,7 @@ class CheckInResult extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("已打卡人员")),
       body: FutureBuilder<List<User>>(
-        future: new DBProvider().getAllUser(),
+        future:  DBHelper.instance.getAllUser(),
         builder: (BuildContext context, AsyncSnapshot<List<User>> snapshot) {
           if (snapshot.connectionState == ConnectionState.none) {
             return Center(

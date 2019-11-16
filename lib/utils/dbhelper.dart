@@ -34,8 +34,21 @@ class User {
   }
 }
 
-class DBProvider {
-  DBProvider();
+class DBHelper {
+  DBHelper._();
+
+  factory DBHelper() => _getInstance();
+
+  static DBHelper _instance;
+
+  static DBHelper _getInstance() {
+    if (_instance == null) {
+      _instance = DBHelper._();
+    }
+    return _instance;
+  }
+
+  static DBHelper get instance => _getInstance();
 
   Database _database;
 
@@ -60,7 +73,10 @@ class DBProvider {
 
   Future insert(User user) async {
     final db = await database;
-    int id = await db.insert(tableName, user.toMap());
+//    int id = await db.insert(tableName, user.toMap());
+    int id = await db.rawInsert(
+        "insert into $tableName($columnName,$columnId) values(?,?)",
+        [user.name, user.id]);
     print('id: $id');
   }
 

@@ -51,10 +51,23 @@ class _SqfliteMainState extends State<SqfliteMainPage> {
           child: FlatButton(onPressed: () {}, child: Text('修改')),
         ),
         Expanded(
-          child: FlatButton(onPressed: () {}, child: Text('删除')),
+          child: FlatButton(
+              onPressed: () {
+                DBHelper.instance.removeAll();
+              },
+              child: Text('删除')),
         ),
         Expanded(
-          child: FlatButton(onPressed: () {}, child: Text('查询')),
+          child: FlatButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return CheckInResult();
+                  }),
+                );
+              },
+              child: Text('查询')),
         )
       ],
     );
@@ -68,10 +81,14 @@ class _SqfliteMainState extends State<SqfliteMainPage> {
   }
 
   _save() {
+    if (controller_name.text.isEmpty) {
+      print('name is empty');
+      return;
+    }
     User user = User();
     user.name = controller_name.text;
 
-    new DBProvider().insert(user);
+    DBHelper.instance.insert(user);
 
     Navigator.push(
       context,
