@@ -52,6 +52,7 @@ import 'package:flutter_learn/pages/page/canvasandpaint/canvas_and_paint.dart';
 import 'package:flutter_learn/pages/page/animate/animate_main.dart';
 import 'package:flutter_learn/pages/page/animate/animated_opacity_page.dart';
 import 'package:flutter_learn/pages/page/animate/hero_page.dart';
+import 'package:flutter_learn/pages/page/datapersistence/check_result_page.dart';
 
 /**
  * 配置路由
@@ -113,6 +114,7 @@ final routes = {
   '/animate_main': (context) => AnimateMainPage(),
   '/animated_opacity_page': (context) => AnimatedOpacityPage(),
   '/hero_page': (context) => HeroPage(),
+  '/check_result_page': (context) => CheckInResult(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

@@ -10,10 +10,12 @@ class SqfliteMainPage extends StatefulWidget {
 
 class _SqfliteMainState extends State<SqfliteMainPage> {
   TextEditingController controller_name = new TextEditingController();
+  TextEditingController controller_id = new TextEditingController();
 
   Widget _inputArea() {
     return Column(
       children: <Widget>[
+        _inputItem('输入人员id', "人员id", controller_id),
         _inputItem('输入人员name', "人员name", controller_name),
       ],
     );
@@ -47,22 +49,23 @@ class _SqfliteMainState extends State<SqfliteMainPage> {
               },
               child: Text('添加')),
         ),
-        Expanded(
-          child: FlatButton(onPressed: () {}, child: Text('修改')),
-        ),
-        Expanded(
-          child: FlatButton(
-              onPressed: () {
-                DBHelper.instance.removeAll();
-              },
-              child: Text('删除')),
-        ),
+//        Expanded(
+//          child: FlatButton(onPressed: () {}, child: Text('修改')),
+//        ),
+//        Expanded(
+//          child: FlatButton(
+//              onPressed: () {
+//                DBHelper.instance.removeAll();
+//              },
+//              child: Text('删除')),
+//        ),
         Expanded(
           child: FlatButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) {
+                    _clearInputContent();
                     return CheckInResult();
                   }),
                 );
@@ -87,15 +90,24 @@ class _SqfliteMainState extends State<SqfliteMainPage> {
     }
     User user = User();
     user.name = controller_name.text;
+    user.id = int.parse(controller_id.text);
 
     DBHelper.instance.insert(user);
 
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) {
+        _clearInputContent();
         return CheckInResult();
       }),
     );
+  }
+
+  _clearInputContent() {
+    if (controller_name.text.isNotEmpty || controller_id.text.isNotEmpty) {
+      controller_id.text = '';
+      controller_name.text = '';
+    }
   }
 
   @override

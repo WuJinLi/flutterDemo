@@ -106,7 +106,10 @@ class DBHelper {
 
   Future<int> delete(int id) async {
     final db = await database;
-    return await db.delete(tableName, where: '$columnId = ?', whereArgs: [id]);
+    int re_id =
+        await db.delete(tableName, where: '$columnId = ?', whereArgs: [id]);
+    print('delete whereClause id : $re_id');
+    return re_id;
   }
 
   Future<int> update(User user) async {
