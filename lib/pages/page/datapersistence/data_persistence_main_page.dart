@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/pages/page/datapersistence/shared_preferences_page.dart';
 import 'package:flutter_learn/pages/page/datapersistence/sqflite_main_page.dart';
 
+import 'file_style_save_page.dart';
+
 /**
  * 持久化主页面
  */
@@ -54,6 +56,24 @@ class _DataPersistenceMainState extends State<DataPersistenceMainPage> {
                         );
                       },
                       child: Text('数据库sqflite'),
+                    ),
+                  ),
+                ],
+              ),
+              Divider(),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: FlatButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return FileStyleSavePage();
+                          }),
+                        );
+                      },
+                      child: Text('文件存储'),
                     ),
                   ),
                 ],

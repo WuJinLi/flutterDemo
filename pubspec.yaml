@@ -39,12 +39,13 @@ dependencies:
   #网络请求三方库
   dio: 3.0.3 #latest version
   #实现轮播图
-  flutter_swiper : 1.1.6
+  flutter_swiper: 1.1.6
   #持久化shared_preferences
   shared_preferences: 0.5.4+5
   #sqflite数据库
-  sqflite : ^1.1.7+2
-  path_provider: ^0.5.0+1
+  sqflite: ^1.1.7+2
+  #操作文件存储
+  path_provider: ^1.4.2
 
 
 #开发环境依赖的工具包（而不是flutter应用本身依赖的包）。

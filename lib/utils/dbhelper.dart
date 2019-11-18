@@ -34,6 +34,9 @@ class User {
   }
 }
 
+/**
+ * 实现操作数据库工具类
+ */
 class DBHelper {
   DBHelper._();
 

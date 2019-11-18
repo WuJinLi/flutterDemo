@@ -49,16 +49,6 @@ class _SqfliteMainState extends State<SqfliteMainPage> {
               },
               child: Text('添加')),
         ),
-//        Expanded(
-//          child: FlatButton(onPressed: () {}, child: Text('修改')),
-//        ),
-//        Expanded(
-//          child: FlatButton(
-//              onPressed: () {
-//                DBHelper.instance.removeAll();
-//              },
-//              child: Text('删除')),
-//        ),
         Expanded(
           child: FlatButton(
               onPressed: () {
@@ -76,13 +66,9 @@ class _SqfliteMainState extends State<SqfliteMainPage> {
     );
   }
 
-  Widget _createListView(BuildContext context, AsyncSnapshot snapshot) {
-    print(snapshot);
-    return Center(
-      child: Text(''),
-    );
-  }
-
+  /**
+   * 保存
+   */
   _save() {
     if (controller_name.text.isEmpty) {
       print('name is empty');
