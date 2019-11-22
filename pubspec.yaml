@@ -47,6 +47,7 @@ dependencies:
   #操作文件存储
   path_provider: ^1.4.2
 
+  provider: ^3.1.0+1
 
 #开发环境依赖的工具包（而不是flutter应用本身依赖的包）。
 dev_dependencies:
