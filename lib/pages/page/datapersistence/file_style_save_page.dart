@@ -49,51 +49,56 @@ class _FileStyleSaveState extends State<FileStyleSavePage> {
       ),
       body: Padding(
         padding: EdgeInsets.all(10.0),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              controller: controller_info,
-              autofocus: true,
-              decoration: InputDecoration(
-                hintText: '请输入内容',
-                labelText: '内容',
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              TextField(
+                controller: controller_info,
+                autofocus: true,
+                decoration: InputDecoration(
+                  hintText: '请输入内容',
+                  labelText: '内容',
+                ),
               ),
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: RaisedButton(
-                    onPressed: () {
-                      _saveInfo();
-                    },
-                    child: Text('保存'),
-                  ),
-                )
-              ],
-            ),
-            Container(
-              width: double.infinity,
-              height: 120.0,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(
-                    color: Colors.blue, width: 5, style: BorderStyle.solid),
-                borderRadius: BorderRadius.all(Radius.circular(4)),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RaisedButton(
+                      onPressed: () {
+                        _saveInfo();
+                      },
+                      child: Text('保存'),
+                    ),
+                  )
+                ],
               ),
-              child: Text(this._info ?? ""),
-            ),
-            Container(
-              width: double.infinity,
-              child: Text('''
+              Container(
+                width: double.infinity,
+                height: 120.0,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Colors.blue, width: 5, style: BorderStyle.solid),
+                  borderRadius: BorderRadius.all(Radius.circular(4)),
+                ),
+                child: Text(this._info ?? ""),
+              ),
+              Container(
+                width: double.infinity,
+                child: Text(
+                  '''
                获取临时目录路径:
                 getTemporaryDirectory().path
                获取本地应用文档目录:
                 getApplicationDocumentsDirectory().path
                获取外部存储路径:
                 getExternalStorageDirectory().path
-              ''',textAlign: TextAlign.start,),
-            )
-          ],
+              ''',
+                  textAlign: TextAlign.start,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
