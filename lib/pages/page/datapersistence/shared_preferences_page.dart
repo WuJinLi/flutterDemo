@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/utils/sp_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /**
@@ -25,6 +26,7 @@ class SharedPreferencesPage extends StatefulWidget {
 class _SharedPreferencesState extends State<SharedPreferencesPage> {
   int count = 0;
 
+  /*********************传统方法实现*************************/
   /**
    * 获取当前数据方法
    */
@@ -58,7 +60,8 @@ class _SharedPreferencesState extends State<SharedPreferencesPage> {
   void initState() {
     super.initState();
     //界面初始化，获取数据
-    _getCount();
+//    _getCount();
+    _getCounts();
   }
 
   /**
@@ -70,6 +73,25 @@ class _SharedPreferencesState extends State<SharedPreferencesPage> {
     //清空数据且更新到界面
     setState(() {
       this.count = preferences.getInt('count') ?? 0;
+    });
+  }
+
+  /*************************工具类SPUtil实现**************************/
+  _getCounts() {
+    this.count = SPUtil.getInt('count', defValue: 0);
+    setState(() {});
+  }
+
+  _incrementAction() {
+    this.count = SPUtil.getInt('count', defValue: 0) + 1;
+    setState(() {});
+    SPUtil.putInt('count', this.count);
+  }
+
+  _clearsp() {
+    SPUtil.remove('count');
+    setState(() {
+      this.count = SPUtil.getInt('count', defValue: 0);
     });
   }
 
@@ -87,7 +109,8 @@ class _SharedPreferencesState extends State<SharedPreferencesPage> {
           IconButton(
               icon: Icon(Icons.clear),
               onPressed: () {
-                _clearSharedPreferencesDate();
+//                _clearSharedPreferencesDate();
+                _clearsp();
               })
         ],
       ),
@@ -96,7 +119,8 @@ class _SharedPreferencesState extends State<SharedPreferencesPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _increment();
+//          _increment();
+          _incrementAction();
         },
         child: Icon(Icons.add),
         tooltip: 'increment',

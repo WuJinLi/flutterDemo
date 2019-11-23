@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/pages/bottom_tabs.dart';
 import 'package:flutter_learn/pages/contact/themestate.dart';
+import 'package:flutter_learn/pages/res/colors.dart';
 import 'package:flutter_learn/routes/routes_config.dart';
 import 'package:flutter_learn/utils/sp_util.dart';
 import 'package:provider/provider.dart';
@@ -15,10 +16,14 @@ import 'package:flutter_localizations/flutter_localizations.dart';
  * initialRoute：默认路由配置；
  *
  */
-void main() => runApp(new Wrapper(new MyApp()));
+void main() async {
+  await SPUtil.getInstance();
+  runApp(new Wrapper(new MyApp()));
+}
 
 /**
  * 状态管理库的套路基本一致,将需要管理的部分包裹起来，这里直接上多个provider的包裹器。为了好看点，这里新建一个Wrapper组件来包裹。
+ *
  */
 
 class Wrapper extends StatefulWidget {
@@ -35,7 +40,8 @@ class WrapperState extends State<Wrapper> {
 
   WrapperState(this.child);
 
-  final initThemeData = ThemeData(
+  //定义初始主题
+  var initThemeData = ThemeData(
     //初始主题
     primaryColor: Colors.blue,
   );
@@ -43,11 +49,15 @@ class WrapperState extends State<Wrapper> {
   @override
   void initState() {
     super.initState();
-    String key = SPUtil.getString('theme', defValue: '');
+    //获取sp存储用户的主题选择配色
+    initThemeData = ThemeData(
+        primaryColor:
+            themeColorMap[SPUtil.getString('theme', defValue: 'blue')]);
   }
 
   @override
   Widget build(BuildContext context) {
+    //来监听状态变化MultiProvider，可以监听多个状态提供，分别对其作出处理，处理方式使用：Consumer
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(builder: (_) => ThemeState(initThemeData)),

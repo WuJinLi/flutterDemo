@@ -47,7 +47,17 @@ class _BottomBarState extends State<BottomBar> {
     );
   }
 
-  Widget drawerLayout() {
+  List<BottomNavigationBarItem> _bottomNav = [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      title: Text("首页"),
+    ),
+    BottomNavigationBarItem(icon: Icon(Icons.category), title: Text("分类")),
+    BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text("设置")),
+    BottomNavigationBarItem(icon: Icon(Icons.people), title: Text("我的"))
+  ];
+
+  Widget _drawerLayout() {
     return ListView(
       children: <Widget>[
 //              DrawerHeader(child: Text("这是头像")),
@@ -108,9 +118,11 @@ class _BottomBarState extends State<BottomBar> {
             new Wrap(
               children: themeColorMap.keys.map((String key) {
                 Color value = themeColorMap[key];
+                //触发事件，且同志更新状态
                 return Consumer<ThemeState>(
                   builder: (_, state, __) => new InkWell(
                     onTap: () {
+                      SPUtil.putString('theme', key);
                       ThemeData themeDate = new ThemeData(primaryColor: value);
                       state.changeThemeData(themeDate);
                     },
@@ -134,36 +146,27 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-        child: Center(child: drawerLayout()),
+        child: Center(child: _drawerLayout()),
       ),
-      endDrawer: Drawer(
-        child: Center(
-            child: ListTile(
-          title: Text("右侧边栏"),
-          leading: Icon(Icons.account_balance),
-          onTap: () {
-            Navigator.pop(context); //关闭抽屉
-            Navigator.of(context).pushNamed("/drawer_detail_page",
-                arguments: {"content": "右侧边栏"});
-          },
-        )),
-      ),
+//      endDrawer: Drawer(
+//        child: Center(
+//          child: ListTile(
+//            title: Text("右侧边栏"),
+//            leading: Icon(Icons.account_balance),
+//            onTap: () {
+//              Navigator.pop(context); //关闭抽屉
+//              Navigator.of(context).pushNamed("/drawer_detail_page",
+//                  arguments: {"content": "右侧边栏"});
+//            },
+//          ),
+//        ),
+//      ),
       //右侧边栏
       appBar: AppBar(
         title: Text("Flutter Demo"),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text("首页"),
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.category), title: Text("分类")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), title: Text("设置")),
-          BottomNavigationBarItem(icon: Icon(Icons.people), title: Text("我的"))
-        ],
+        items: _bottomNav,
         onTap: (int index) {
           setState(() {
             this.currentIndex = index;

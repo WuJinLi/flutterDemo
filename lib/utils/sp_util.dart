@@ -5,6 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:synchronized/synchronized.dart';
 
 /// SharedPreferences Util.
+/// 使用规则：
+/// 1.在程序启动入口初始化SPUtil，你用SPUtil.getInstance来完成；
+/// 2.在调用存储，读取，清除等方法
 class SPUtil {
   static SPUtil _singleton;
   static SharedPreferences _prefs;
