@@ -3,6 +3,7 @@ import 'package:flutter_learn/pages/bottom_tabs.dart';
 import 'package:flutter_learn/pages/contact/themestate.dart';
 import 'package:flutter_learn/pages/res/colors.dart';
 import 'package:flutter_learn/routes/routes_config.dart';
+import 'package:flutter_learn/utils/net/dio_manager.dart';
 import 'package:flutter_learn/utils/sp_util.dart';
 import 'package:provider/provider.dart';
 import 'routes/routes_config.dart';
@@ -21,6 +22,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //初始化SPUtil
   await SPUtil.getInstance();
+  await DioManager.init();
   runApp(new Wrapper(new MyApp()));
 }
 

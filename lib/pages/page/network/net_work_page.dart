@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/api/apis.dart';
+import 'package:flutter_learn/api/apis_service.dart';
+import 'package:flutter_learn/model/rule_modle.dart';
 import 'dart:convert';
 import 'dart:io';
 
@@ -83,6 +86,14 @@ class _NetWorkState extends State<NetWorkPage> {
     }
   }
 
+  void dioGet() {
+    apiService.getNormalWeather((RuleModle ruleModle) {
+      setState(() {
+        content= ruleModle.HeWeather6[0].basic.cnty;
+      });
+    });
+  }
+
   //清除数数据
   void clearData() {
     if (stateCode != 0) {
@@ -132,6 +143,18 @@ class _NetWorkState extends State<NetWorkPage> {
                         httpClientWay();
                       },
                       child: new Text('HttpClient方式请求网络'),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RaisedButton(
+                      onPressed: () {
+                        dioGet();
+                      },
+                      child: new Text('dio方式请求网络'),
                     ),
                   ),
                 ],
