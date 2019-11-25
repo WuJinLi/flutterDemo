@@ -17,6 +17,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
  *
  */
 void main() async {
+  //flutter 1.9以后旧项目会出现错误
+  WidgetsFlutterBinding.ensureInitialized();
+  //初始化SPUtil
   await SPUtil.getInstance();
   runApp(new Wrapper(new MyApp()));
 }
