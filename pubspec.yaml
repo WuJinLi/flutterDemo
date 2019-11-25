@@ -48,6 +48,8 @@ dependencies:
   path_provider: ^1.4.2
 
   provider: ^3.1.0+1
+  # 图片缓存 https://github.com/renefloor/flutter_cached_network_image
+  cached_network_image: ^1.1.1
 
 #开发环境依赖的工具包（而不是flutter应用本身依赖的包）。
 dev_dependencies:
