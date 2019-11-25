@@ -78,7 +78,8 @@ flutter:
     - images/3.0x/ic_recycle.png
     - images/a.jpg
     - images/ic_recycle.png
-
+    - images/ic_error.png
+    - images/ic_empty.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 
