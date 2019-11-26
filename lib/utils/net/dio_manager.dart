@@ -6,13 +6,14 @@ import 'package:flutter_learn/api/apis.dart';
 import 'package:flutter_learn/utils/net/interceptors/log_interceptor.dart';
 import 'package:path_provider/path_provider.dart';
 
-
-
 Dio _dio = Dio();
-
 Dio get dio => _dio;
 
+/**
+ * 网络请求管理
+ */
 class DioManager {
+  //配置网络请求基本属性，请求超时时间，证书校验，拦截器等等
   static Future init() async {
     dio.options.baseUrl = Apis.BASE_HOST;
     dio.options.connectTimeout = 30 * 1000;
@@ -28,12 +29,16 @@ class DioManager {
 
     // TODO 网络环境监听
     dio.interceptors.add(LogInterceptors());
+//    dio.interceptors.add(ErrorInterceptor());
 
     Directory tempDir = await getTemporaryDirectory();
     String tempPath = tempDir.path + "/dioCookie";
     print('DioUtil : http cookie path = $tempPath');
   }
 
+  /**
+   * 处理过错误信息
+   */
   static String handleError(error, {String defaultErrorStr = '未知错误~'}) {
     String errStr;
     if (error is DioError) {

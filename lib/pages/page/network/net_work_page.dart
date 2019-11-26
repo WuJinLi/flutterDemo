@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/api/apis.dart';
 import 'package:flutter_learn/api/apis_service.dart';
 import 'package:flutter_learn/model/rule_modle.dart';
+import 'package:flutter_learn/pages/page/network/net_request_test.dart';
 import 'dart:convert';
 import 'dart:io';
 
@@ -89,7 +90,7 @@ class _NetWorkState extends State<NetWorkPage> {
   void dioGet() {
     apiService.getNormalWeather((RuleModle ruleModle) {
       setState(() {
-        content= ruleModle.HeWeather6[0].basic.cnty;
+        content = ruleModle.HeWeather6[0].basic.cnty;
       });
     });
   }
@@ -172,6 +173,21 @@ class _NetWorkState extends State<NetWorkPage> {
                   ),
                 ],
               ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RaisedButton(
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return NetWorkRequestPage();
+                        }));
+                      },
+                      child: new Text('测试页面'),
+                    ),
+                  ),
+                ],
+              ),
               spacer,
               Container(
                 width: double.infinity,
@@ -183,7 +199,7 @@ class _NetWorkState extends State<NetWorkPage> {
                     Text('请求内容结果:${content}'),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ));

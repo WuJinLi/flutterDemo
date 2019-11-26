@@ -10,7 +10,9 @@ class Apis {
   static const String WEATHER_TYPE_LIFESTYLE = 'lifestyle'; //	生活指数
   static const String WEATHER_TYPE_HOURLY = 'hourly'; //	逐小时预报
 
-  static const String BASE_HOST = "https://free-api.heweather.net";
+//  static const String BASE_HOST = "https://free-api.heweather.net";
+
+  static const String BASE_HOST='http://app.wisdomrui.com';
 
 //  https://free-api.heweather.net/s6/weather/now?location=beijing&key=52dc04b1b08a43dc9f51325a5b5cb87b
 
