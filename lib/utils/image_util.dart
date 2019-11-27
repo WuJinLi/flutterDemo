@@ -15,9 +15,9 @@ Widget loadAssetImage(String name, {double width, double height, BoxFit fit}) {
 /// 加载网络图片
 Widget loadNetworkImage(String imageUrl,
     {String placeholder: "none",
-      double width,
-      double height,
-      BoxFit fit: BoxFit.cover}) {
+    double width,
+    double height,
+    BoxFit fit: BoxFit.cover}) {
   return CachedNetworkImage(
     imageUrl: imageUrl == null ? "" : imageUrl,
     placeholder: (context, url) =>

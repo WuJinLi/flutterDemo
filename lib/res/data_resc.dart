@@ -1,3 +1,8 @@
+import 'package:flutter_learn/pages/page/datapersistence/data_persistence_main_page.dart';
+import 'package:flutter_learn/pages/page/event/event_main_page.dart';
+import 'package:flutter_learn/pages/page/listview_page.dart';
+import 'package:flutter_learn/pages/page/pageview/page_view_main.dart';
+
 List listData = [
   {
     "title": "西游记",
@@ -82,3 +87,29 @@ var bookData = {
   "publishDate": "2018-10-10",
   "publisher": "xxx company"
 };
+
+var pages = [
+  {"title": "路由跳转", "routeName": "/route_page", "target": null},
+  {"title": "ListView", "routeName": "", "target": ListViewPage()},
+  {"title": "命名路由，有状态页面", "routeName": "/name_route_page", "target": null},
+  {"title": "按钮种类详情页面", "routeName": "/buttom_page", "target": null},
+  {"title": "文本输入框", "routeName": "/text_field", "target": null},
+  {"title": "勾选框", "routeName": "/check_box", "target": null},
+  {"title": "网络请求", "routeName": "/net_work_page", "target": null},
+  {"title": "radio", "routeName": "/radio_page", "target": null},
+  {"title": "学生信息录取页面", "routeName": "/student_info_page", "target": null},
+  {"title": "日期选择组件", "routeName": "/date_pick_page", "target": null},
+  {"title": "Json数据解析", "routeName": "/json_page", "target": null},
+  {"title": "可滚动组件", "routeName": "/scrollview", "target": null},
+  {"title": "流式布局", "routeName": "/flowlayout", "target": null},
+  {"title": "自定义主题", "routeName": "/custom_theme", "target": null},
+  {"title": "弹出菜单组件", "routeName": "/popup_menu", "target": null},
+  {"title": "对话框组件", "routeName": "/dialog_page", "target": null},
+  {"title": "Cupertion风格组件", "routeName": "/cupertino_page", "target": null},
+  {"title": "布局", "routeName": "/layout_main", "target": null},
+  {"title": "装饰，视觉效果", "routeName": "/decorate_main", "target": null},
+  {"title": "动画", "routeName": "/animate_main", "target": null},
+  {"title": "ListView", "routeName": "", "target": PageViewMainPage()},
+  {"title": "ListView", "routeName": "", "target": EventMainPage()},
+  {"title": "ListView", "routeName": "", "target": DataPersistenceMainPage()},
+];

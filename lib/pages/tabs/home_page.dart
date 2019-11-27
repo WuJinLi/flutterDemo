@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/pages/page/datapersistence/data_persistence_main_page.dart';
 import 'package:flutter_learn/pages/page/event/event_main_page.dart';
@@ -11,6 +10,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomeState extends State<HomePage> {
+  Widget _itemGrid(String name,
+      {double width = 90.0,
+      double height = 90.0,
+      Widget target,
+      String routeName}) {
+    return Container(
+      width: width,
+      height: height,
+      child: RaisedButton(
+        onPressed: () {
+          if (target != null) {
+            //普通路由跳转和传值
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => target));
+          } else if (routeName.isNotEmpty) {
+            Navigator.pushNamed(context, routeName);
+          }
+        },
+        child: Text(name),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,216 +46,29 @@ class _HomeState extends State<HomePage> {
             crossAxisSpacing: 10.0,
             mainAxisSpacing: 10,
             children: <Widget>[
-              Container(
-                width: 90,
-                height: 90,
-                child: RaisedButton(
-                  onPressed: () {
-                    //普通路由跳转和传值
-                    Navigator.pushNamed(context, "/route_page");
-                  },
-                  child: Text("路由跳转"),
-                ),
-              ),
-              Container(
-                width: 90,
-                height: 90,
-                child: RaisedButton(
-                  onPressed: () {
-                    //普通路由跳转和传值
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ListViewPage()));
-                  },
-                  child: Text("ListView"),
-                ),
-              ),
-              Container(
-                width: 90,
-                height: 90,
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/name_route_page");
-                  },
-                  child: Text("命名路由，有状态页面"),
-                ),
-              ),
-              Container(
-                width: 90,
-                height: 90,
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/buttom_page");
-                  },
-                  child: Text("按钮种类详情页面"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/text_field");
-                  },
-                  child: Text("文本输入框"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/check_box");
-                  },
-                  child: Text("勾选框"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/net_work_page");
-                  },
-                  child: Text("网络请求"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/radio_page");
-                  },
-                  child: Text("radio"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/student_info_page");
-                  },
-                  child: Text("学生信息录取页面"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/date_pick_page");
-                  },
-                  child: Text("日期选择组件"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/json_page");
-                  },
-                  child: Text("Json数据解析"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/scrollview");
-                  },
-                  child: Text("可滚动组件"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/flowlayout");
-                  },
-                  child: Text("流式布局"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/custom_theme");
-                  },
-                  child: Text("自定义主题"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/popup_menu");
-                  },
-                  child: Text("弹出菜单组件"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/dialog_page");
-                  },
-                  child: Text("对话框组件"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/cupertino_page");
-                  },
-                  child: Text("Cupertion风格组件"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/layout_main");
-                  },
-                  child: Text("布局"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/decorate_main");
-                  },
-                  child: Text("装饰，视觉效果"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/animate_main");
-                  },
-                  child: Text("动画"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return PageViewMainPage();
-                      }),
-                    );
-                  },
-                  child: Text("轮播图"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return EventMainPage();
-                      }),
-                    );
-                  },
-                  child: Text("事件通知"),
-                ),
-              ),
-              Container(
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return DataPersistenceMainPage();
-                      }),
-                    );
-                  },
-                  child: Text("持久化"),
-                ),
-              ),
+              _itemGrid("路由跳转", routeName: "/route_page"),
+              _itemGrid("ListView", target: ListViewPage()),
+              _itemGrid("命名路由，有状态页面", routeName: "/name_route_page"),
+              _itemGrid("按钮种类详情页面", routeName: "/buttom_page"),
+              _itemGrid("文本输入框", routeName: "/text_field"),
+              _itemGrid("勾选框", routeName: "/check_box"),
+              _itemGrid("网络请求", routeName: "/net_work_page"),
+              _itemGrid("radio", routeName: "/radio_page"),
+              _itemGrid("学生信息录取页面", routeName: "/student_info_page"),
+              _itemGrid("日期选择组件", routeName: "/date_pick_page"),
+              _itemGrid("Json数据解析", routeName: "/json_page"),
+              _itemGrid("可滚动组件", routeName: "/scrollview"),
+              _itemGrid("流式布局", routeName: "/flowlayout"),
+              _itemGrid("自定义主题", routeName: "/custom_theme"),
+              _itemGrid("弹出菜单组件", routeName: "/popup_menu"),
+              _itemGrid("对话框组件", routeName: "/dialog_page"),
+              _itemGrid("Cupertion风格组件", routeName: "/cupertino_page"),
+              _itemGrid("布局", routeName: "/layout_main"),
+              _itemGrid("装饰，视觉效果", routeName: "/decorate_main"),
+              _itemGrid("动画", routeName: "/animate_main"),
+              _itemGrid("轮播图", target: PageViewMainPage()),
+              _itemGrid("事件通知", target: EventMainPage()),
+              _itemGrid("持久化", target: DataPersistenceMainPage()),
             ],
           )),
     );

@@ -46,10 +46,16 @@ dependencies:
   sqflite: ^1.1.7+2
   #操作文件存储
   path_provider: ^1.4.2
-
+  #状态管理
   provider: ^3.1.0+1
   # 图片缓存 https://github.com/renefloor/flutter_cached_network_image
   cached_network_image: ^1.1.1
+  #获取设备信息
+  device_info: ^0.4.1+2
+  #查询应用程序信息
+  package_info: ^0.4.0+11
+  #刷新加载
+  pull_to_refresh: ^1.5.7
 
 #开发环境依赖的工具包（而不是flutter应用本身依赖的包）。
 dev_dependencies:
