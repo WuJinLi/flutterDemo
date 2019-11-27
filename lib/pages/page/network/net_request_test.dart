@@ -41,7 +41,6 @@ class _NetWorkRequestState extends BaseWidgetState<NetWorkRequestPage> {
           Expanded(
             child: TextFormField(
               controller: controller,
-              textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
 //                  labelText: labelText,
                   hintText: hintText,

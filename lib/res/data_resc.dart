@@ -109,7 +109,23 @@ var pages = [
   {"title": "布局", "routeName": "/layout_main", "target": null},
   {"title": "装饰，视觉效果", "routeName": "/decorate_main", "target": null},
   {"title": "动画", "routeName": "/animate_main", "target": null},
-  {"title": "ListView", "routeName": "", "target": PageViewMainPage()},
-  {"title": "ListView", "routeName": "", "target": EventMainPage()},
-  {"title": "ListView", "routeName": "", "target": DataPersistenceMainPage()},
+  {"title": "轮播图", "routeName": "", "target": PageViewMainPage()},
+  {"title": "事件通知", "routeName": "", "target": EventMainPage()},
+  {"title": "持久化", "routeName": "", "target": DataPersistenceMainPage()},
+];
+
+var layoutMainDatas=[
+  {"title": "Stack/Align", "routeName": "/stack_align_layout", "target": null},
+  {"title": "Stack/Alignment", "routeName": "/stack_aligment_layout", "target": null},
+  {"title": "Stack/Positioned", "routeName": "/stack_positioned_layout", "target": null},
+  {"title": "IndexStack", "routeName": "/index_stack_layout", "target": null},
+  {"title": "OverflowBox", "routeName": "/overflowbox_layout", "target": null},
+  {"title": "ConstrainedBox", "routeName": "/constrainedbox_layout", "target": null},
+  {"title": "LimitedBox", "routeName": "/limitedbox_layout", "target": null},
+  {"title": "AspectRatio调整宽高比", "routeName": "/aspectratio_layout", "target": null},
+  {"title": "FractionallySizedBox百分比", "routeName": "/fractionallysizebox_layout", "target": null},
+  {"title": "表格布局", "routeName": "/table_layout", "target": null},
+  {"title": "综合demo", "routeName": "/synthesize_demo", "target": null},
+  {"title": "transform矩阵转换", "routeName": "/transform_layout", "target": null},
+  {"title": "offstage组件的显示隐藏", "routeName": "/offstage_layout", "target": null},
 ];

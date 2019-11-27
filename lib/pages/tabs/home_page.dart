@@ -3,6 +3,7 @@ import 'package:flutter_learn/pages/page/datapersistence/data_persistence_main_p
 import 'package:flutter_learn/pages/page/event/event_main_page.dart';
 import 'package:flutter_learn/pages/page/listview_page.dart';
 import 'package:flutter_learn/pages/page/pageview/page_view_main.dart';
+import 'package:flutter_learn/res/data_resc.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -33,6 +34,19 @@ class _HomeState extends State<HomePage> {
     );
   }
 
+  Widget _homeContent() {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
+      itemBuilder: (context, index) {
+        return _itemGrid(pages[index]['title'],
+            target: pages[index]['target'],
+            routeName: pages[index]['routeName']);
+      },
+      itemCount: pages.length,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,37 +54,9 @@ class _HomeState extends State<HomePage> {
 //        title: Text("主页"),
 //      ),
       body: Container(
-          padding: EdgeInsets.all(10.0),
-          child: GridView.count(
-            crossAxisCount: 3,
-            crossAxisSpacing: 10.0,
-            mainAxisSpacing: 10,
-            children: <Widget>[
-              _itemGrid("路由跳转", routeName: "/route_page"),
-              _itemGrid("ListView", target: ListViewPage()),
-              _itemGrid("命名路由，有状态页面", routeName: "/name_route_page"),
-              _itemGrid("按钮种类详情页面", routeName: "/buttom_page"),
-              _itemGrid("文本输入框", routeName: "/text_field"),
-              _itemGrid("勾选框", routeName: "/check_box"),
-              _itemGrid("网络请求", routeName: "/net_work_page"),
-              _itemGrid("radio", routeName: "/radio_page"),
-              _itemGrid("学生信息录取页面", routeName: "/student_info_page"),
-              _itemGrid("日期选择组件", routeName: "/date_pick_page"),
-              _itemGrid("Json数据解析", routeName: "/json_page"),
-              _itemGrid("可滚动组件", routeName: "/scrollview"),
-              _itemGrid("流式布局", routeName: "/flowlayout"),
-              _itemGrid("自定义主题", routeName: "/custom_theme"),
-              _itemGrid("弹出菜单组件", routeName: "/popup_menu"),
-              _itemGrid("对话框组件", routeName: "/dialog_page"),
-              _itemGrid("Cupertion风格组件", routeName: "/cupertino_page"),
-              _itemGrid("布局", routeName: "/layout_main"),
-              _itemGrid("装饰，视觉效果", routeName: "/decorate_main"),
-              _itemGrid("动画", routeName: "/animate_main"),
-              _itemGrid("轮播图", target: PageViewMainPage()),
-              _itemGrid("事件通知", target: EventMainPage()),
-              _itemGrid("持久化", target: DataPersistenceMainPage()),
-            ],
-          )),
+        padding: EdgeInsets.all(10.0),
+        child: _homeContent(),
+      ),
     );
   }
 }
