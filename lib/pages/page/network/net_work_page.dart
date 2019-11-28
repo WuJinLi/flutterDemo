@@ -88,7 +88,7 @@ class _NetWorkState extends State<NetWorkPage> {
   }
 
   void dioGet() {
-    apiService.getNormalWeather((RuleModle ruleModle) {
+    apiService.getNormalWeather(context,(RuleModle ruleModle) {
       setState(() {
         content = ruleModle.HeWeather6[0].basic.cnty;
       });
