@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/pages/bottom_tabs.dart';
 import 'package:flutter_learn/pages/contact/themestate.dart';
-import 'package:flutter_learn/pages/colors.dart';
+import 'package:flutter_learn/res/data_resc.dart';
 import 'package:flutter_learn/routes/routes_config.dart';
 import 'package:flutter_learn/utils/net/dio_manager.dart';
 import 'package:flutter_learn/utils/sp_util.dart';
