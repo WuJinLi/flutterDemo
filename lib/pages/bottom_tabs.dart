@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/pages/contact/themestate.dart';
-import 'package:flutter_learn/res/colors.dart';
 import 'package:flutter_learn/pages/tabs/home_page.dart';
 import 'package:flutter_learn/pages/tabs/setting_spage.dart';
 import 'package:flutter_learn/pages/tabs/categroy_page.dart';
 import 'package:flutter_learn/pages/tabs/mine_page.dart';
+import 'package:flutter_learn/res/data_resc.dart';
 import 'package:flutter_learn/utils/sp_util.dart';
-import 'package:flutter_learn/utils/theme_util.dart';
 import 'package:provider/provider.dart';
 
 /**
