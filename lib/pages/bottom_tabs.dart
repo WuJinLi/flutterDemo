@@ -51,7 +51,7 @@ class _BottomBarState extends State<BottomBar> {
       icon: Icon(Icons.home),
       title: Text("首页"),
     ),
-    BottomNavigationBarItem(icon: Icon(Icons.category), title: Text("分类")),
+    BottomNavigationBarItem(icon: Icon(Icons.category), title: Text("商品")),
     BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text("设置")),
     BottomNavigationBarItem(icon: Icon(Icons.people), title: Text("我的"))
   ];

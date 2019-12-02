@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/pages/page/scrollview/listwheelscrollview_page.dart';
+import 'package:flutter_learn/widget/item_page.dart';
 
 class ScrollViewPage extends StatefulWidget {
   @override
@@ -17,39 +19,21 @@ class _ScrollViewState extends State<ScrollViewPage> {
         padding: EdgeInsets.all(10.0),
         child: Column(
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                    child: RaisedButton(
-                  onPressed: () {
-                      Navigator.pushNamed(context, "/list_page",arguments: {'type':"1"});
-                  },
-                  child: Text("Listview"),
-                ))
-              ],
+            ItemPage(
+              "Listview",
+              routeName: "/list_page",
+              arguments: {'type': "1"},
             ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                    child: RaisedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, "/list_page",arguments: {'type':"2"});
-                      },
-                      child: Text("Gridview"),
-                    ))
-              ],
+            ItemPage(
+              "Gridview",
+              routeName: "/list_page",
+              arguments: {'type': "2"},
             ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                    child: RaisedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, "/customscrollview_page");
-                      },
-                      child: Text("CustomScrollView"),
-                    ))
-              ],
-            )
+            ItemPage("CustomScrollView", routeName: "/customscrollview_page"),
+            ItemPage(
+              "ListWheelScrollView",
+              target: ListWheelScrollViewPage(),
+            ),
           ],
         ),
       ),

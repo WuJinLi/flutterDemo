@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/pages/page/datapersistence/data_persistence_main_page.dart';
-import 'package:flutter_learn/pages/page/event/event_main_page.dart';
-import 'package:flutter_learn/pages/page/listview_page.dart';
-import 'package:flutter_learn/pages/page/pageview/page_view_main.dart';
 import 'package:flutter_learn/res/data_resc.dart';
 
 class HomePage extends StatefulWidget {
@@ -34,6 +30,7 @@ class _HomeState extends State<HomePage> {
     );
   }
 
+  //页面主题内容
   Widget _homeContent() {
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

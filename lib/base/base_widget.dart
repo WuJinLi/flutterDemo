@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 /// 封装一个通用的Widget
 abstract class BaseWidget extends StatefulWidget {
@@ -31,6 +32,7 @@ abstract class BaseWidgetState<T extends BaseWidget> extends State<T>
   String _emptyImgPath = "images/ic_empty.png";
 
   bool _isShowContent = false;
+  bool _isFloatShow = false; //显示floatactionbutton的标记
 
   /// 错误页面和空页面的字体粗度
   FontWeight _fontWidget = FontWeight.w600;
@@ -59,8 +61,17 @@ abstract class BaseWidgetState<T extends BaseWidget> extends State<T>
 
   /// 悬浮按钮
   Widget fabWidget() {
-    return null;
+    return __attachBaseFloatingActionButton();
   }
+
+  Widget __attachBaseFloatingActionButton() {
+    return Offstage(
+      offstage: !_isFloatShow,
+      child: attachFloatingActionButtonWidget(),
+    );
+  }
+
+  Widget attachFloatingActionButtonWidget();
 
   /// 导航栏  AppBar
   AppBar attachAppBar();
@@ -238,6 +249,13 @@ abstract class BaseWidgetState<T extends BaseWidget> extends State<T>
   Future setAppBarVisible(bool visible) async {
     setState(() {
       _isAppBarShow = visible;
+    });
+  }
+
+  /// 设置悬浮显示或者隐藏
+  Future setFloatActionButtonVisible(bool visible) async {
+    setState(() {
+      _isFloatShow = visible;
     });
   }
 

@@ -115,4 +115,10 @@ class _NetWorkRequestState extends BaseWidgetState<NetWorkRequestPage> {
   void onClickErrorWidget() {
     showContent();
   }
+
+  @override
+  Widget attachFloatingActionButtonWidget() {
+    // TODO: implement attachFloatingActionButtonWidget
+    return null;
+  }
 }

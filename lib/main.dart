@@ -65,7 +65,7 @@ class WrapperState extends State<Wrapper> {
     //来监听状态变化MultiProvider，可以监听多个状态提供，分别对其作出处理，处理方式使用：Consumer
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(builder: (_) => ThemeState(initThemeData)),
+        ChangeNotifierProvider(create: (_) => ThemeState(initThemeData)),
       ],
       child: this.child,
     );

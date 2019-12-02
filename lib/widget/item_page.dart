@@ -4,8 +4,9 @@ class ItemPage extends StatelessWidget {
   String title; //名称
   Widget target; //目标widget
   String routeName; //路由名称
+  var arguments;
 
-  ItemPage(this.title, {this.target, this.routeName});
+  ItemPage(this.title, {this.target, this.routeName,this.arguments});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class ItemPage extends StatelessWidget {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) => target));
                 } else if (routeName.isNotEmpty) {
-                  Navigator.pushNamed(context, routeName);
+                  Navigator.pushNamed(context, routeName,arguments: arguments);
                 }
               }),
         )
@@ -27,3 +28,4 @@ class ItemPage extends StatelessWidget {
     );
   }
 }
+
