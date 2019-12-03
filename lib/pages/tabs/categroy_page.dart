@@ -39,7 +39,6 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
             showContent();
           }
         });
-        print(queryGoodsModel.toJson());
       }, (error) {
         //异常处理，针对网络的 非网络的
         if (error is DioError) {
