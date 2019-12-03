@@ -31,7 +31,7 @@ class _GoodDetailState extends BaseWidgetState<GoodDetailPage> {
   @override
   Widget attachContentWidget(BuildContext context) {
     // TODO: implement attachContentWidget
-    return Padding(padding: EdgeInsets.all(10.0),child: ,);
+    return Padding(padding: EdgeInsets.all(10.0),child: SingleChildScrollView(child: Column(),),);
   }
 
   @override
