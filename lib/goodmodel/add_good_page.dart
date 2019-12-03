@@ -33,6 +33,7 @@ class _AddGoodState extends BaseWidgetState<AddGoodPage> {
     );
   }
 
+  ///组件输入框
   Widget _inputItem(String title, TextEditingController controller) {
     return Container(
       width: double.infinity,
@@ -64,10 +65,11 @@ class _AddGoodState extends BaseWidgetState<AddGoodPage> {
     );
   }
 
+  ///添加商品
   saveGoods() {
     if (checkInput()) {
+      ///拼接请求参数
       GoodsModel goodsModel = GoodsModel();
-
       goodsModel.name = controller_name.text;
       goodsModel.intro =
           controller_intro.text.isEmpty ? "" : controller_intro.text.toString();
@@ -78,17 +80,15 @@ class _AddGoodState extends BaseWidgetState<AddGoodPage> {
       goodsModel.num =
           controller_num.text.isEmpty ? 0 : int.parse(controller_num.text);
 
+      //网络请求，添加商品
       showLoading().then((value) {
         apiService.saveGoods(context, goodsModel, (response) {
-          if(response.data['code']==0){
+          if (response.data['code'] == 0) {
             toast(context, "添加成功");
-           setState(() {
-             Navigator.pop(context,{'result':'0'});
-           });
-          }else{
+            Navigator.pop(context, {'result': '0'});
+          } else {
             toast(context, "添加失败，请重新再试......");
           }
-
         }, (e) {
           if (e is DioError) {
             dealError(e, context);
@@ -101,6 +101,7 @@ class _AddGoodState extends BaseWidgetState<AddGoodPage> {
     }
   }
 
+  ///校验输入信息
   checkInput() {
     if (controller_name.text.isEmpty) {
       toast(context, "商品名称不能为空");
@@ -111,10 +112,10 @@ class _AddGoodState extends BaseWidgetState<AddGoodPage> {
       toast(context, "商品编号不能为空");
       return false;
     }
-
     return true;
   }
 
+  ///主体页面展示信息
   @override
   Widget attachContentWidget(BuildContext context) {
     // TODO: implement attachContentWidget

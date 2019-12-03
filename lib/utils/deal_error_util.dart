@@ -6,7 +6,10 @@ import 'package:toast/toast.dart';
 /**
  * 简单处理错误，具体业务具体详细操作
  */
-void dealError(DioError dioError, BuildContext context) {
+void dealError(
+  DioError dioError,
+  BuildContext context,
+) {
   toast(context, DioManager.handleError(dioError));
 }
 

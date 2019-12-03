@@ -35,7 +35,11 @@ class ApiService {
    */
   void queryGoods(
       BuildContext context, Function callback, Function errorCallback) {
-    dio.post(Apis.LIST_GOODS).then((response) {
+    Map<String, dynamic> data = new Map();
+    data['page'] = "0";
+    data['limit'] = "40";
+    dio.post(Apis.LIST_GOODS,data: data).then((response) {
+
       callback(QueryGoodsModel.fromMap(response.data));
 //      callback(response.data);
     }).catchError((e) {
@@ -50,6 +54,17 @@ class ApiService {
       Function errorCallback) {
     dio.post(Apis.SAVE_GOODS, data: goodsModel.toJson()).then((response) {
       callback(response);
+    }).catchError((e) {
+      errorCallback(e);
+    });
+  }
+
+  void deleteGood(
+      BuildContext context, int id, Function callback, Function errorCallback) {
+    Map<String, dynamic> data = new Map();
+    data['goodsIds'] = id.toString();
+    dio.post(Apis.DELETE_GOODS, data: data).then((response) {
+      callback(response.data);
     }).catchError((e) {
       errorCallback(e);
     });

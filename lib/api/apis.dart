@@ -53,17 +53,17 @@ class Apis {
   }
 
   //删除商品
-  static const String DELETE_GOODS = BASE_HOST + "/app/goods/delete";
+  static const String DELETE_GOODS = BASE_HOST + "app/goods/delete";
 
   //查看商品详情信息
   static const String DETAIL_INFO_GOODS =
-      BASE_HOST + "/app/goods/info/{goodsId}";
+      BASE_HOST + "app/goods/info/{goodsId}";
 
   //查询商品列表
-  static const String LIST_GOODS = BASE_HOST + "/app/goods/list";
+  static const String LIST_GOODS = BASE_HOST + "app/goods/list";
 
   //存储商品信息
-  static const String SAVE_GOODS = BASE_HOST + "/app/goods/save";
+  static const String SAVE_GOODS = BASE_HOST + "app/goods/save";
 }
 
 enum WEATHER_TYPE { NOW, FORECAST, LIFESTYLE, HOURLY }

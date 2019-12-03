@@ -53,16 +53,70 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
   }
 
   //列表item
-  Widget _item_listview(
-      String name, String intro, double price, Function onTap) {
+  Widget _item_listview(String name, String intro, double price, Function onTap,
+      Function onLongPress) {
     return Card(
       child: ListTile(
         title: Text(name),
         subtitle: Text(intro),
         trailing: Text(price.toString() + "元"),
         onTap: onTap,
+        onLongPress: onLongPress,
       ),
     );
+  }
+
+  _deleteGood(ListBean bean) {
+    showLoading().then((value) {
+      apiService.deleteGood(context, bean.goodsId, (result) {
+        _getGoods();
+      }, (error) {
+        //异常处理，针对网络的 非网络的
+        if (error is DioError) {
+          dealError(error, context);
+        } else {
+          print(error); //打印非网络请求异常
+        }
+        showError();
+      });
+    });
+  }
+
+  /**
+   * 删除提示话框
+   */
+  void _showAlertDialogAsync(context, bean) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Container(
+              alignment: Alignment.center,
+              width: double.infinity,
+              child: Text('提示信息'),
+            ),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[Text('是否删除'), Text('一旦删除数据不可恢复！')],
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  _deleteGood(bean);
+                },
+                child: Text('确定'),
+              ),
+              FlatButton(
+                onPressed: () {
+                  Navigator.pop(context, '取消');
+                },
+                child: Text('取消'),
+              ),
+            ],
+          );
+        });
   }
 
   @override
@@ -82,6 +136,8 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
             ListBean bean = list[index];
             return _item_listview(bean.name, bean.intro, bean.price, () {
               toast(context, bean.toJson().toString());
+            }, () {
+              _showAlertDialogAsync(context, bean);
             });
           }),
     );
@@ -101,7 +157,10 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
           return AddGoodPage();
         }));
         result.then((value) {
-          _getGoods();
+          print("value:$value");
+          if (value != null) {
+            _getGoods();
+          }
         });
       },
       child: Icon(Icons.add),
