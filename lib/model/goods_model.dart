@@ -9,7 +9,7 @@ class GoodsModel {
   String intro;
   String name;
   int num;
-  int price;
+  double price;
 
   static GoodsModel fromMap(Map<String, dynamic> map) {
     if (map == null) return null;

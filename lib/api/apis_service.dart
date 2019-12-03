@@ -30,6 +30,9 @@ class ApiService {
     });
   }
 
+  /**
+   * 查询商品信息列表
+   */
   void queryGoods(
       BuildContext context, Function callback, Function errorCallback) {
     dio.post(Apis.LIST_GOODS).then((response) {
@@ -40,6 +43,9 @@ class ApiService {
     });
   }
 
+  /**
+   * 新增商品
+   */
   void saveGoods(BuildContext context, GoodsModel goodsModel, Function callback,
       Function errorCallback) {
     dio.post(Apis.SAVE_GOODS, data: goodsModel.toJson()).then((response) {

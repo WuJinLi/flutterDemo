@@ -1,6 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_learn/api/apis_service.dart';
 import 'package:flutter_learn/base/base_widget.dart';
+import 'package:flutter_learn/model/goods_model.dart';
+import 'package:flutter_learn/utils/deal_error_util.dart';
 
 class AddGoodPage extends BaseWidget {
   @override
@@ -32,26 +36,83 @@ class _AddGoodState extends BaseWidgetState<AddGoodPage> {
   Widget _inputItem(String title, TextEditingController controller) {
     return Container(
       width: double.infinity,
-      height: 40,
-      child: Row(
+      alignment: Alignment.center,
+      child: Column(
         children: <Widget>[
-          Text(title),
-          SizedBox(width: 10,),
-          Expanded(
-              child: TextFormField(
-                textAlignVertical: TextAlignVertical.center,
-            controller: controller,
-            decoration: InputDecoration(
-//              border: InputBorder.none,///取消输入框下的线
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.blue,width: 3),
-              ),
+          Container(
+            width: double.infinity,
+            height: 40.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: TextFormField(
+                    textAlignVertical: TextAlignVertical.center,
+                    controller: controller,
+                    decoration: InputDecoration(
+                      icon: Text(title),
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ))
+          ),
+          Divider(),
         ],
       ),
     );
+  }
+
+  saveGoods() {
+    if (checkInput()) {
+      GoodsModel goodsModel = GoodsModel();
+
+      goodsModel.name = controller_name.text;
+      goodsModel.intro =
+          controller_intro.text.isEmpty ? "" : controller_intro.text.toString();
+      goodsModel.goodsId = int.parse(controller_goodsId.text);
+      goodsModel.price = controller_price.text.isEmpty
+          ? 0.00
+          : double.parse(controller_price.text);
+      goodsModel.num =
+          controller_num.text.isEmpty ? 0 : int.parse(controller_num.text);
+
+      showLoading().then((value) {
+        apiService.saveGoods(context, goodsModel, (response) {
+          if(response.data['code']==0){
+            toast(context, "添加成功");
+           setState(() {
+             Navigator.pop(context,{'result':'0'});
+           });
+          }else{
+            toast(context, "添加失败，请重新再试......");
+          }
+
+        }, (e) {
+          if (e is DioError) {
+            dealError(e, context);
+          } else {
+            print(e); //打印非网络请求异常
+          }
+          showError();
+        });
+      });
+    }
+  }
+
+  checkInput() {
+    if (controller_name.text.isEmpty) {
+      toast(context, "商品名称不能为空");
+      return false;
+    }
+
+    if (controller_goodsId.text.isEmpty) {
+      toast(context, "商品编号不能为空");
+      return false;
+    }
+
+    return true;
   }
 
   @override
@@ -62,7 +123,20 @@ class _AddGoodState extends BaseWidgetState<AddGoodPage> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              _inputItem("商品编号", controller_goodsId),
+              _inputItem("商品编号:", controller_goodsId),
+              _inputItem("商品名称:", controller_name),
+              _inputItem("商品信息:", controller_intro),
+              _inputItem("商品单价:", controller_price),
+              _inputItem("商品数量:", controller_num),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                      child: RaisedButton(
+                    onPressed: saveGoods,
+                    child: Text('添加'),
+                  ))
+                ],
+              )
             ],
           ),
         ));
