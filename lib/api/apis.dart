@@ -64,6 +64,7 @@ class Apis {
 
   //存储商品信息
   static const String SAVE_GOODS = BASE_HOST + "app/goods/save";
+  static const String UPDATE_GOODS = BASE_HOST + "app/goods/update";
 }
 
 enum WEATHER_TYPE { NOW, FORECAST, LIFESTYLE, HOURLY }

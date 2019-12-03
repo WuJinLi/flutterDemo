@@ -69,4 +69,13 @@ class ApiService {
       errorCallback(e);
     });
   }
+
+  void updateGoods(BuildContext context, GoodsModel goodsModel, Function callback,
+      Function errorCallback) {
+    dio.post(Apis.UPDATE_GOODS, data: goodsModel.toJson()).then((response) {
+      callback(response);
+    }).catchError((e) {
+      errorCallback(e);
+    });
+  }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/api/apis_service.dart';
 import 'package:flutter_learn/base/base_widget.dart';
 import 'package:flutter_learn/goodmodel/add_good_page.dart';
+import 'package:flutter_learn/goodmodel/good_detail.dart';
 import 'package:flutter_learn/model/query_goods_model.dart';
 import 'package:flutter_learn/utils/deal_error_util.dart';
 
@@ -134,7 +135,18 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
           itemBuilder: (context, index) {
             ListBean bean = list[index];
             return _item_listview(bean.name, bean.intro, bean.price, () {
-              toast(context, bean.toJson().toString());
+//              toast(context, bean.toJson().toString());
+              var result = Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return GoodDetailPage(bean);
+                }),
+              );
+              result.then((value) {
+                if (value != null) {
+                  _getGoods();
+                }
+              });
             }, () {
               _showAlertDialogAsync(context, bean);
             });

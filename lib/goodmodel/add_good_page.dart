@@ -48,7 +48,7 @@ class _AddGoodState extends BaseWidgetState<AddGoodPage> {
               children: <Widget>[
                 Expanded(
                   child: TextFormField(
-                    textAlignVertical: TextAlignVertical.center,
+//                    textAlignVertical: TextAlignVertical.center,
                     controller: controller,
                     decoration: InputDecoration(
                       icon: Text(title),
@@ -120,27 +120,28 @@ class _AddGoodState extends BaseWidgetState<AddGoodPage> {
   Widget attachContentWidget(BuildContext context) {
     // TODO: implement attachContentWidget
     return Padding(
-        padding: EdgeInsets.all(10.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              _inputItem("商品编号:", controller_goodsId),
-              _inputItem("商品名称:", controller_name),
-              _inputItem("商品信息:", controller_intro),
-              _inputItem("商品单价:", controller_price),
-              _inputItem("商品数量:", controller_num),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                      child: RaisedButton(
-                    onPressed: saveGoods,
-                    child: Text('添加'),
-                  ))
-                ],
-              )
-            ],
-          ),
-        ));
+      padding: EdgeInsets.all(10.0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            _inputItem("商品编号:", controller_goodsId),
+            _inputItem("商品名称:", controller_name),
+            _inputItem("商品信息:", controller_intro),
+            _inputItem("商品单价:", controller_price),
+            _inputItem("商品数量:", controller_num),
+            Row(
+              children: <Widget>[
+                Expanded(
+                    child: RaisedButton(
+                  onPressed: saveGoods,
+                  child: Text('添加'),
+                ))
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   @override
