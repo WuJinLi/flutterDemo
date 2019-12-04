@@ -2,7 +2,7 @@
 
 A new Flutter application.
 
-
+  ### [解决app启动白屏](https://blog.csdn.net/xia236326/article/details/90374447)
 + 2019/9/24:
   ### Stack组件，Stack结合Align组件或者Positioned组件实现子元素的定位
   1.Stack组件通过自身属性alignment来进行子元素的定位
