@@ -38,8 +38,7 @@ class ApiService {
     Map<String, dynamic> data = new Map();
     data['page'] = "0";
     data['limit'] = "40";
-    dio.post(Apis.LIST_GOODS,data: data).then((response) {
-
+    dio.post(Apis.LIST_GOODS, data: data).then((response) {
       callback(QueryGoodsModel.fromMap(response.data));
 //      callback(response.data);
     }).catchError((e) {
@@ -59,10 +58,15 @@ class ApiService {
     });
   }
 
+  ///删除商品
   void deleteGood(
       BuildContext context, int id, Function callback, Function errorCallback) {
+    ///拼接接口访问业务数据
     Map<String, dynamic> data = new Map();
-    data['goodsIds'] = id.toString();
+    List<dynamic> list = new List();
+    list.add(id);
+    data['goodsIds'] = list;
+    ///服务请求
     dio.post(Apis.DELETE_GOODS, data: data).then((response) {
       callback(response.data);
     }).catchError((e) {
@@ -70,8 +74,9 @@ class ApiService {
     });
   }
 
-  void updateGoods(BuildContext context, GoodsModel goodsModel, Function callback,
-      Function errorCallback) {
+  ///更新商品
+  void updateGoods(BuildContext context, GoodsModel goodsModel,
+      Function callback, Function errorCallback) {
     dio.post(Apis.UPDATE_GOODS, data: goodsModel.toJson()).then((response) {
       callback(response);
     }).catchError((e) {
