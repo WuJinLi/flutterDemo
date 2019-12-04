@@ -34,11 +34,11 @@ class ApiService {
    * 查询商品信息列表
    */
   void queryGoods(
-      BuildContext context, Function callback, Function errorCallback) {
+      BuildContext context, int currPage,Function callback, Function errorCallback) {
     Map<String, dynamic> data = new Map();
     data
-      ..['page'] = "0"
-      ..['limit'] = "40";
+      ..['page'] = currPage
+      ..['limit'] = "10";
     dio.post(Apis.LIST_GOODS, data: data).then((response) {
       callback(QueryGoodsModel.fromMap(response.data));
 //      callback(response.data);

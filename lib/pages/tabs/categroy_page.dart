@@ -16,29 +16,150 @@ class CategroyPage extends BaseWidget {
 }
 
 class _CategroyState extends BaseWidgetState<CategroyPage> {
-  List<ListBean> list;
+  List<ListBean> items = List();
+  ScrollController _controller = new ScrollController();
+  int currPage = 1;
+  int totalPage = 1;
+  int pageSize = 10;
+  int totalCount = 0;
+  String bottomText = "....加载更多....";
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    setAppBarVisible(false); //隐藏appBar
-    setFloatActionButtonVisible(true);
+    init();
+  }
+
+  @override
+  AppBar attachAppBar() {
+    return AppBar(
+      title: Text(""),
+    );
+  }
+
+  @override
+  Widget attachContentWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: ListView.builder(
+          controller: _controller,
+          itemCount: items == null ? 0 : items.length + 1,
+          itemBuilder: buildItem),
+    );
+  }
+
+  @override
+  void onClickErrorWidget() {
     _getGoods();
   }
 
+  @override
+  Widget attachFloatingActionButtonWidget() {
+    return FloatingActionButton(
+      onPressed: () {
+        var result =
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return AddGoodPage();
+        }));
+        result.then((value) {
+          print("value:$value");
+          if (value != null) {
+            _getGoods();
+          }
+        });
+      },
+      child: Icon(Icons.add),
+    );
+  }
+
+  @override
+  void dispose() {
+    ///widget销毁时释放_controller
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  ///构建listview中itembuild方法
+  Widget buildItem(BuildContext context, int index) {
+    if (index == items.length) {
+      return loadMoreWidget();
+    } else {
+      ListBean bean = items[index];
+      return _item_listview(bean.name, bean.intro, bean.price, () {
+//              toast(context, bean.toJson().toString());
+        var result = Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) {
+            return GoodDetailPage(bean);
+          }),
+        );
+        result.then((value) {
+          if (value != null) {
+            _getGoods();
+          }
+        });
+      }, () {
+        _showAlertDialogAsync(context, bean);
+      });
+    }
+  }
+
+  ///加载更多布局
+  Widget loadMoreWidget() {
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      alignment: Alignment.center,
+      child: new Text(
+        this.bottomText,
+        style: TextStyle(color: Colors.blue),
+      ),
+    );
+  }
+
+  ///初始化数据
+  init(){
+    setAppBarVisible(false); //隐藏appBar
+    setFloatActionButtonVisible(true);//显示悬浮按钮
+    _getGoods();
+    _controller.addListener(() {
+      if (_controller.position.pixels == _controller.position.maxScrollExtent) {
+        //如果不是最后一页数据，则生成新的数据添加到list里面
+        if (currPage < totalPage) {
+          setState(() {
+            bottomText = '....加载更多....';
+            currPage++;
+          });
+          _getGoods();
+        } else {
+          setState(() {
+            bottomText = '----我是有底线的----';
+          });
+
+        }
+      }
+    });
+  }
+
+  //获取商品列表
   _getGoods() {
     showLoading().then((value) {
-      apiService.queryGoods(context, (QueryGoodsModel queryGoodsModel) {
+      apiService.queryGoods(context, currPage,
+          (QueryGoodsModel queryGoodsModel) {
         List<ListBean> list_res = queryGoodsModel.page.list;
         //刷新页面数据
         setState(() {
           if (list_res.length == 0 || list_res == null) {
             showEmpty();
           } else {
-            this.list = list_res;
+            this.items.addAll(list_res);
             showContent();
           }
+
+          //更新分页数据
+          this.totalPage = queryGoodsModel?.page.totalPage;
+          this.pageSize = queryGoodsModel?.page.pageSize;
+          this.currPage = queryGoodsModel?.page.currPage;
         });
       }, (error) {
         //异常处理，针对网络的 非网络的
@@ -66,6 +187,7 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
     );
   }
 
+  ///删除商品信息
   _deleteGood(ListBean bean) {
     showLoading().then((value) {
       apiService.deleteGood(context, bean.goodsId, (result) {
@@ -82,9 +204,7 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
     });
   }
 
-  /**
-   * 删除提示话框
-   */
+  ///删除提示话框
   void _showAlertDialogAsync(context, bean) {
     showDialog(
         context: context,
@@ -117,64 +237,5 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
             ],
           );
         });
-  }
-
-  @override
-  AppBar attachAppBar() {
-    return AppBar(
-      title: Text(""),
-    );
-  }
-
-  @override
-  Widget attachContentWidget(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(10.0),
-      child: ListView.builder(
-          itemCount: list == null ? 0 : list.length,
-          itemBuilder: (context, index) {
-            ListBean bean = list[index];
-            return _item_listview(bean.name, bean.intro, bean.price, () {
-//              toast(context, bean.toJson().toString());
-              var result = Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) {
-                  return GoodDetailPage(bean);
-                }),
-              );
-              result.then((value) {
-                if (value != null) {
-                  _getGoods();
-                }
-              });
-            }, () {
-              _showAlertDialogAsync(context, bean);
-            });
-          }),
-    );
-  }
-
-  @override
-  void onClickErrorWidget() {
-    _getGoods();
-  }
-
-  @override
-  Widget attachFloatingActionButtonWidget() {
-    return FloatingActionButton(
-      onPressed: () {
-        var result =
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return AddGoodPage();
-        }));
-        result.then((value) {
-          print("value:$value");
-          if (value != null) {
-            _getGoods();
-          }
-        });
-      },
-      child: Icon(Icons.add),
-    );
   }
 }
