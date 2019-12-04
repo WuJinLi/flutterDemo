@@ -6,6 +6,7 @@ import 'package:flutter_learn/pages/page/event/event_main_page.dart';
 import 'package:flutter_learn/pages/page/expansiontile_page.dart';
 import 'package:flutter_learn/pages/page/listview_page.dart';
 import 'package:flutter_learn/pages/page/pageview/page_view_main.dart';
+import 'package:flutter_learn/widget/loading_dialog.dart';
 
 List listData = [
   {
@@ -120,6 +121,10 @@ var pages = [
     "title": "ExpansionTile",
     "routeName": "",
     "target": ExpansionTilePage()
+  },{
+    "title": "加载中",
+    "routeName": "",
+    "target": LoadingDialog()
   },
 ];
 
