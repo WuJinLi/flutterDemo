@@ -36,8 +36,9 @@ class ApiService {
   void queryGoods(
       BuildContext context, Function callback, Function errorCallback) {
     Map<String, dynamic> data = new Map();
-    data['page'] = "0";
-    data['limit'] = "40";
+    data
+      ..['page'] = "0"
+      ..['limit'] = "40";
     dio.post(Apis.LIST_GOODS, data: data).then((response) {
       callback(QueryGoodsModel.fromMap(response.data));
 //      callback(response.data);
@@ -66,6 +67,7 @@ class ApiService {
     List<dynamic> list = new List();
     list.add(id);
     data['goodsIds'] = list;
+
     ///服务请求
     dio.post(Apis.DELETE_GOODS, data: data).then((response) {
       callback(response.data);

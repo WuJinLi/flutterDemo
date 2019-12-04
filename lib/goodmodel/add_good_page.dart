@@ -70,15 +70,17 @@ class _AddGoodState extends BaseWidgetState<AddGoodPage> {
     if (checkInput()) {
       ///拼接请求参数
       GoodsModel goodsModel = GoodsModel();
-      goodsModel.name = controller_name.text;
-      goodsModel.intro =
-          controller_intro.text.isEmpty ? "" : controller_intro.text.toString();
-      goodsModel.goodsId = int.parse(controller_goodsId.text);
-      goodsModel.price = controller_price.text.isEmpty
-          ? 0.00
-          : double.parse(controller_price.text);
-      goodsModel.num =
-          controller_num.text.isEmpty ? 0 : int.parse(controller_num.text);
+      goodsModel
+        ..name = controller_name?.text
+        ..intro = controller_intro?.text.isEmpty
+            ? ""
+            : controller_intro.text.toString()
+        ..goodsId = int.parse(controller_goodsId?.text)
+        ..price = controller_price.text?.isEmpty
+            ? 0.00
+            : double.parse(controller_price.text)
+        ..num =
+            controller_num?.text.isEmpty ? 0 : int.parse(controller_num.text);
 
       //网络请求，添加商品
       showLoading().then((value) {
@@ -103,12 +105,12 @@ class _AddGoodState extends BaseWidgetState<AddGoodPage> {
 
   ///校验输入信息
   checkInput() {
-    if (controller_name.text.isEmpty) {
+    if (controller_name?.text.isEmpty) {
       toast(context, "商品名称不能为空");
       return false;
     }
 
-    if (controller_goodsId.text.isEmpty) {
+    if (controller_goodsId?.text.isEmpty) {
       toast(context, "商品编号不能为空");
       return false;
     }
