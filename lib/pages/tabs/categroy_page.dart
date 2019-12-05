@@ -42,10 +42,12 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
   Widget attachContentWidget(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(10.0),
-      child: ListView.builder(
-          controller: _controller,
-          itemCount: items == null ? 0 : items.length + 1,
-          itemBuilder: buildItem),
+      child: RefreshIndicator(
+          child: ListView.builder(
+              controller: _controller,
+              itemCount: items == null ? 0 : items.length + 1,
+              itemBuilder: buildItem),
+          onRefresh: _onRefresh),
     );
   }
 
@@ -63,7 +65,7 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
           return AddGoodPage();
         }));
         result.then((value) {
-          print("value:$value");
+//          print("value:$value");
           if (value != null) {
             _getGoods();
           }
@@ -78,6 +80,12 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
     ///widget销毁时释放_controller
     _controller?.dispose();
     super.dispose();
+  }
+
+  Future<void> _onRefresh() async {
+    this.currPage = 1;
+    items.clear();
+    _getGoods();
   }
 
   ///构建listview中itembuild方法
@@ -118,9 +126,9 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
   }
 
   ///初始化数据
-  init(){
+  init() {
     setAppBarVisible(false); //隐藏appBar
-    setFloatActionButtonVisible(true);//显示悬浮按钮
+    setFloatActionButtonVisible(true); //显示悬浮按钮
     _getGoods();
     _controller.addListener(() {
       if (_controller.position.pixels == _controller.position.maxScrollExtent) {
@@ -135,7 +143,6 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
           setState(() {
             bottomText = '----我是有底线的----';
           });
-
         }
       }
     });
