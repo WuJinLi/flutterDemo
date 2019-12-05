@@ -23,6 +23,7 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
   int pageSize = 10;
   int totalCount = 0;
   String bottomText = "....加载更多....";
+  bool isRefresh = false;
 
   @override
   void initState() {
@@ -84,6 +85,7 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
 
   Future<void> _onRefresh() async {
     this.currPage = 1;
+    isRefresh = true;
     items.clear();
     _getGoods();
   }
@@ -150,33 +152,41 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
 
   //获取商品列表
   _getGoods() {
-    showLoading().then((value) {
-      apiService.queryGoods(context, currPage,
-          (QueryGoodsModel queryGoodsModel) {
-        List<ListBean> list_res = queryGoodsModel.page.list;
-        //刷新页面数据
-        setState(() {
-          if (list_res.length == 0 || list_res == null) {
-            showEmpty();
-          } else {
-            this.items.addAll(list_res);
-            showContent();
-          }
-
-          //更新分页数据
-          this.totalPage = queryGoodsModel?.page.totalPage;
-          this.pageSize = queryGoodsModel?.page.pageSize;
-          this.currPage = queryGoodsModel?.page.currPage;
-        });
-      }, (error) {
-        //异常处理，针对网络的 非网络的
-        if (error is DioError) {
-          dealError(error, context);
-        } else {
-          print(error); //打印非网络请求异常
-        }
-        showError();
+    if (isRefresh) {
+      isRefresh = false;
+      _requestNet();
+    } else {
+      showLoading().then((value) {
+        _requestNet();
       });
+    }
+  }
+
+  _requestNet() {
+    apiService.queryGoods(context, currPage, (QueryGoodsModel queryGoodsModel) {
+      List<ListBean> list_res = queryGoodsModel.page.list;
+      //刷新页面数据
+      setState(() {
+        if (list_res.length == 0 || list_res == null) {
+          showEmpty();
+        } else {
+          this.items.addAll(list_res);
+          showContent();
+        }
+
+        //更新分页数据
+        this.totalPage = queryGoodsModel?.page.totalPage;
+        this.pageSize = queryGoodsModel?.page.pageSize;
+        this.currPage = queryGoodsModel?.page.currPage;
+      });
+    }, (error) {
+      //异常处理，针对网络的 非网络的
+      if (error is DioError) {
+        dealError(error, context);
+      } else {
+        print(error); //打印非网络请求异常
+      }
+      showError();
     });
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_learn/widget/loading_dialog.dart';
 
 /// 封装一个通用的Widget
 abstract class BaseWidget extends StatefulWidget {
@@ -162,9 +163,10 @@ abstract class BaseWidgetState<T extends BaseWidget> extends State<T>
   /// 暴露的正在加载页面方法，可以自己重写定制
   Widget attachLoadingWidget() {
     return Center(
-      child: CircularProgressIndicator(
-        strokeWidth: 2.0,
-      ),
+      child: LoadingDialog(),
+//      CircularProgressIndicator(
+//        strokeWidth: 2.0,
+//      ),
     );
   }
 
