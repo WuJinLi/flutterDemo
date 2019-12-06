@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/dbmovie/movie_main.dart';
 import 'package:flutter_learn/pages/page/datapersistence/data_persistence_main_page.dart';
 import 'package:flutter_learn/pages/page/event/event_main_page.dart';
 import 'package:flutter_learn/pages/page/expansiontile_page.dart';
@@ -117,15 +118,9 @@ var pages = [
   {"title": "轮播图", "routeName": "", "target": PageViewMainPage()},
   {"title": "事件通知", "routeName": "", "target": EventMainPage()},
   {"title": "持久化", "routeName": "", "target": DataPersistenceMainPage()},
-  {
-    "title": "ExpansionTile",
-    "routeName": "",
-    "target": ExpansionTilePage()
-  },{
-    "title": "加载中",
-    "routeName": "",
-    "target": LoadingDialog()
-  },
+  {"title": "ExpansionTile", "routeName": "", "target": ExpansionTilePage()},
+  {"title": "加载中", "routeName": "", "target": LoadingDialog()},
+  {"title": "电影", "routeName": "", "target": MovieMainPage()},
 ];
 
 var layoutMainDatas = [

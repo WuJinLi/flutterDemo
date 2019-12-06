@@ -1,63 +1,92 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_learn/base/base_widget.dart';
+import 'package:flutter_learn/api/apis.dart';
 
-class MovieMainPage extends BaseWidget {
+class MovieMainPage extends StatefulWidget {
   @override
-  BaseWidgetState<BaseWidget> attachState() => _MovieMainState();
+  createState() => _MovieMainState();
 }
 
-class _MovieMainState extends BaseWidgetState
-    with SingleTickerProviderStateMixin {
-  var tabs_title = ['正在热映', '即将上映', '新片榜', '口碑榜', 'Top250', '北美票房榜'];
-  TabController _tabController;
-  var contentWidget=[];
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _tabController = TabController(length: tabs_title.length, vsync: this);
+class _MovieMainState extends State<MovieMainPage> {
+  Filmtype filmtype = Filmtype.IN_THEATERS;
+  String title = '正在热映';
 
-    _tabController.addListener(() {});
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(this.title),
+      ),
+      drawer: Drawer(
+        child: _drawer(),
+      ),
+      body: _bodyContent(),
+    );
   }
 
-  @override
-  AppBar attachAppBar() {
-    // TODO: implement attachAppBar
-    return AppBar(
-      title: TabBar(
-        tabs: _initTabsWidgets(),
-        controller: this._tabController,
-        isScrollable: true,
-        indicatorSize: TabBarIndicatorSize.label,
+  Widget _bodyContent() {
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Center(
+        child: Text(this.title),
       ),
     );
   }
 
-  @override
-  Widget attachContentWidget(BuildContext context) {
-    // TODO: implement attachContentWidget
-    return TabBarView(controller: this._tabController,children: <Widget>[],);
+  _drawer() {
+    return ListView(
+      children: <Widget>[
+        drawerItem("正在热映", Icon(Icons.hot_tub), Filmtype.IN_THEATERS),
+        Divider(),
+        drawerItem("即将上映", Icon(Icons.hot_tub), Filmtype.COMING_SOON),
+        Divider(),
+        drawerItem("新片榜", Icon(Icons.hot_tub), Filmtype.NEW_MOVIES),
+        Divider(),
+        drawerItem("口碑榜", Icon(Icons.hot_tub), Filmtype.WEEKLY),
+        Divider(),
+        drawerItem("Top250", Icon(Icons.hot_tub), Filmtype.TOP250),
+        Divider(),
+        drawerItem("北美票房榜", Icon(Icons.hot_tub), Filmtype.US_BOX),
+      ],
+    );
   }
 
-  @override
-  Widget attachFloatingActionButtonWidget() {
-    // TODO: implement attachFloatingActionButtonWidget
-    return null;
+  Widget drawerItem(String title, Icon icon, Filmtype filmtype) {
+    return ListTile(
+      title: Text(title),
+      leading: CircleAvatar(
+        child: icon,
+      ),
+      onTap: () {
+        this.filmtype = filmtype;
+        _switchTitle();
+        setState(() {});
+        Navigator.pop(context); //关闭抽屉
+      },
+    );
   }
 
-  @override
-  void onClickErrorWidget() {
-    // TODO: implement onClickErrorWidget
-  }
-
-  _initTabsWidgets() {
-    List<Tab> tabs = List();
-    tabs_title?.forEach((value) {
-      tabs?.add(Tab(
-        text: value,
-      ));
-    });
-    return tabs;
+  _switchTitle() {
+    switch (filmtype) {
+      case Filmtype.IN_THEATERS:
+        title = "正在热映";
+        break;
+      case Filmtype.COMING_SOON:
+        title = "即将上映";
+        break;
+      case Filmtype.NEW_MOVIES:
+        title = "新片榜";
+        break;
+      case Filmtype.WEEKLY:
+        title = "口碑榜";
+        break;
+      case Filmtype.TOP250:
+        title = "Top250";
+        break;
+      case Filmtype.US_BOX:
+        title = "北美票房榜";
+        break;
+    }
   }
 }

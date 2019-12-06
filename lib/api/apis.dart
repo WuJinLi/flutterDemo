@@ -56,16 +56,13 @@ class Apis {
       "0b2bdeda43b5688921839c8ecb20399b"; //豆瓣apikey
   static const String BASE_HOST_DOUBAN = "https://api.douban.com";
 
-  //正在热映
-  /**
-   * apikey：apikey
-      city：所在城市，例如北京、上海等
-      count：返回数量(该值不变)
-      start：从第多少个开始
-      client：客户端信息。可为空
-      udid：用户 id。可为空
-   */
-//  https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=北京&start=0&count=20
+  static const String IN_THEATERS = BASE_HOST_DOUBAN + "/v2/movie/in_theaters";
+  static const String COMING_SOON = BASE_HOST_DOUBAN + "/v2/movie/coming_soon";
+  static const String NEW_MOVIES = BASE_HOST_DOUBAN + "/v2/movie/new_movies";
+  static const String WEEKLY = BASE_HOST_DOUBAN + "/v2/movie/weekly";
+  static const String TOP250 = BASE_HOST_DOUBAN + "/v2/movie/top250";
+  static const String US_BOX = BASE_HOST_DOUBAN + "/v2/movie/us_box";
+
   /****************************wisdomrui*******************************/
   static const String BASE_HOST = 'http://app.wisdomrui.com/'; //
   //删除商品
@@ -84,3 +81,6 @@ class Apis {
 }
 
 enum WEATHER_TYPE { NOW, FORECAST, LIFESTYLE, HOURLY }
+
+///['正在热映', '即将上映', '新片榜', '口碑榜', 'Top250', '北美票房榜']
+enum Filmtype { IN_THEATERS, COMING_SOON, NEW_MOVIES, WEEKLY, TOP250, US_BOX }
