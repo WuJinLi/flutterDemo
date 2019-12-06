@@ -1,6 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_learn/api/apis.dart';
+import 'package:flutter_learn/api/apis_service.dart';
+import 'package:flutter_learn/model/movie.dart';
+import 'package:flutter_learn/ui/state_view/empty.dart';
+import 'package:flutter_learn/ui/state_view/error.dart';
+import 'package:flutter_learn/utils/loading_util.dart';
 
 class MovieMainPage extends StatefulWidget {
   @override
@@ -10,6 +16,14 @@ class MovieMainPage extends StatefulWidget {
 class _MovieMainState extends State<MovieMainPage> {
   Filmtype filmtype = Filmtype.IN_THEATERS;
   String title = '正在热映';
+  var result;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    result = showFilm();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +35,50 @@ class _MovieMainState extends State<MovieMainPage> {
       drawer: Drawer(
         child: _drawer(),
       ),
-      body: _bodyContent(),
+      body: FutureBuilder(
+        builder: (_, AsyncSnapshot<List<Movie>> snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              return EmptyPage();
+            case ConnectionState.waiting:
+              return getLoadingWidget();
+            case ConnectionState.done:
+              print('done');
+              if (snapshot.hasError) {
+                print(snapshot.error.toString());
+                return ErrorPage(text: '网络请求错误');
+              } else {
+                print('${snapshot.data.length}');
+                if (snapshot.data.length > 0) {
+                  return _bodyContent(snapshot.data);
+                } else {
+                  return EmptyPage(
+                      text: '暂无数据', imageAsset: 'images/empty.jpeg');
+                }
+              }
+              break;
+            default:
+              return null;
+              break;
+          }
+        },
+        future: this.result,
+      ),
     );
   }
 
-  Widget _bodyContent() {
+  Widget _bodyContent(List<Movie> movies) {
     return Padding(
       padding: EdgeInsets.all(10.0),
-      child: Center(
-        child: Text(this.title),
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          Movie movie = movies[index];
+          return ListTile(
+            title: Text(movie.title),
+            subtitle: Text(movie.alt),
+          );
+        },
+        itemCount: movies.length,
       ),
     );
   }
@@ -70,23 +119,29 @@ class _MovieMainState extends State<MovieMainPage> {
   _switchTitle() {
     switch (filmtype) {
       case Filmtype.IN_THEATERS:
-        title = "正在热映";
+        this.title = "正在热映";
+        this.result=showFilm();
         break;
       case Filmtype.COMING_SOON:
-        title = "即将上映";
+        this.title = "即将上映";
+        this.result=showFilm(type: Filmtype.COMING_SOON);
         break;
       case Filmtype.NEW_MOVIES:
-        title = "新片榜";
+        this.title = "新片榜";
         break;
       case Filmtype.WEEKLY:
-        title = "口碑榜";
+        this.title = "口碑榜";
         break;
       case Filmtype.TOP250:
-        title = "Top250";
+        this.title = "Top250";
         break;
       case Filmtype.US_BOX:
-        title = "北美票房榜";
+        this.title = "北美票房榜";
         break;
     }
+  }
+
+  Future<List<Movie>> showFilm({type: Filmtype.IN_THEATERS}) async {
+    return await apiService.showFilms(filmType: type);
   }
 }

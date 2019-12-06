@@ -1,7 +1,12 @@
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/api/apis.dart';
 import 'package:flutter_learn/model/goods_model.dart';
 import 'package:flutter_learn/model/login_model.dart';
+import 'package:flutter_learn/model/movie.dart';
 import 'package:flutter_learn/model/query_goods_model.dart';
 import 'package:flutter_learn/model/rule_modle.dart';
 import 'package:flutter_learn/utils/net/dio_manager.dart';
@@ -30,11 +35,9 @@ class ApiService {
     });
   }
 
-  /**
-   * 查询商品信息列表
-   */
-  void queryGoods(
-      BuildContext context, int currPage,Function callback, Function errorCallback) {
+  /// 查询商品信息列表
+  void queryGoods(BuildContext context, int currPage, Function callback,
+      Function errorCallback) {
     Map<String, dynamic> data = new Map();
     data
       ..['page'] = currPage
@@ -47,9 +50,7 @@ class ApiService {
     });
   }
 
-  /**
-   * 新增商品
-   */
+  /// 新增商品
   void saveGoods(BuildContext context, GoodsModel goodsModel, Function callback,
       Function errorCallback) {
     dio.post(Apis.SAVE_GOODS, data: goodsModel.toJson()).then((response) {
@@ -84,5 +85,34 @@ class ApiService {
     }).catchError((e) {
       errorCallback(e);
     });
+  }
+
+  Future<List<Movie>> showFilms({filmType:Filmtype.IN_THEATERS}) async {
+    Map<String, dynamic> data = new Map();
+    data
+      ..['apikey'] = Apis.DOU_BAN_API_KEY
+      ..['city'] = "北京"
+      ..['start'] = 0
+      ..['count'] = 20;
+
+    Response response;
+    switch (filmType) {
+      case Filmtype.IN_THEATERS:
+        response = await dio.get(Apis.IN_THEATERS, queryParameters: data);
+        break;
+      case Filmtype.COMING_SOON:
+        response = await dio.get(Apis.COMING_SOON, queryParameters: data);
+        break;
+      default:
+        break;
+    }
+
+    if (response.statusCode != 200) {
+      return [];
+    }
+
+    Hot hot = Hot.fromMap(response.data);
+
+    return hot.subjects;
   }
 }

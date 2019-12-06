@@ -52,7 +52,7 @@ class Apis {
   }
 
   /****************************douban*******************************/
-  static const String DOU_BAN_API_KET =
+  static const String DOU_BAN_API_KEY =
       "0b2bdeda43b5688921839c8ecb20399b"; //豆瓣apikey
   static const String BASE_HOST_DOUBAN = "https://api.douban.com";
 
