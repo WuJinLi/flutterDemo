@@ -16,7 +16,9 @@ ApiService _apiService = new ApiService();
 ApiService get apiService => _apiService;
 
 class ApiService {
-  //获取预报天气
+
+  ///书写格式使用Future结合then来完成网络请求
+  ///获取预报天气
   void getNormalWeather(BuildContext context, Function callback,
       {weatherType, location}) {
     dio.get(Apis.weatherTypeNow(weatherType: weatherType)).then((response) {
@@ -26,7 +28,7 @@ class ApiService {
     });
   }
 
-  //登陆
+  ///登陆
   void login(Function callback, Function errorCallback, Map data) {
     dio.post("/app/login", data: data).then((response) {
       callback(LoginModel.fromMap(response.data));
@@ -87,6 +89,9 @@ class ApiService {
     });
   }
 
+
+
+  ///书写格式使用Future 结合 async await进行网络请求，在ui界面和使用FutureBuilder进行数据的提取和渲染
   Future<List<Movie>> showFilms({filmType:Filmtype.IN_THEATERS}) async {
     Map<String, dynamic> data = new Map();
     data
