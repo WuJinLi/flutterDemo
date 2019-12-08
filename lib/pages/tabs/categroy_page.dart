@@ -5,6 +5,7 @@ import 'package:flutter_learn/base/base_widget.dart';
 import 'package:flutter_learn/goodmodel/add_good_page.dart';
 import 'package:flutter_learn/goodmodel/good_detail.dart';
 import 'package:flutter_learn/model/query_goods_model.dart';
+import 'package:flutter_learn/ui/loadmore_view.dart';
 import 'package:flutter_learn/utils/deal_error_util.dart';
 
 class CategroyPage extends BaseWidget {
@@ -93,7 +94,7 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
   ///构建listview中itembuild方法
   Widget buildItem(BuildContext context, int index) {
     if (index == items.length) {
-      return loadMoreWidget();
+      return LoadMoreView(this.bottomText);
     } else {
       ListBean bean = items[index];
       return _item_listview(bean.name, bean.intro, bean.price, () {
@@ -113,18 +114,6 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
         _showAlertDialogAsync(context, bean);
       });
     }
-  }
-
-  ///加载更多布局
-  Widget loadMoreWidget() {
-    return Container(
-      padding: EdgeInsets.all(16.0),
-      alignment: Alignment.center,
-      child: new Text(
-        this.bottomText,
-        style: TextStyle(color: Colors.blue),
-      ),
-    );
   }
 
   ///初始化数据

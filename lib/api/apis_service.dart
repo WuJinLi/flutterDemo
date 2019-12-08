@@ -16,7 +16,6 @@ ApiService _apiService = new ApiService();
 ApiService get apiService => _apiService;
 
 class ApiService {
-
   ///书写格式使用Future结合then来完成网络请求
   ///获取预报天气
   void getNormalWeather(BuildContext context, Function callback,
@@ -89,16 +88,15 @@ class ApiService {
     });
   }
 
-
-
   ///书写格式使用Future 结合 async await进行网络请求，在ui界面和使用FutureBuilder进行数据的提取和渲染
-  Future<List<Movie>> showFilms({filmType:Filmtype.IN_THEATERS}) async {
+  Future<Hot> showFilms(
+      {filmType = Filmtype.IN_THEATERS, start = 0, count = 20}) async {
     Map<String, dynamic> data = new Map();
     data
       ..['apikey'] = Apis.DOU_BAN_API_KEY
       ..['city'] = "北京"
-      ..['start'] = 0
-      ..['count'] = 20;
+      ..['start'] = start
+      ..['count'] = count;
 
     Response response;
     switch (filmType) {
@@ -113,11 +111,11 @@ class ApiService {
     }
 
     if (response.statusCode != 200) {
-      return [];
+      return null;
     }
 
     Hot hot = Hot.fromMap(response.data);
 
-    return hot.subjects;
+    return hot;
   }
 }
