@@ -121,4 +121,10 @@ class _NetWorkRequestState extends BaseWidgetState<NetWorkRequestPage> {
     // TODO: implement attachFloatingActionButtonWidget
     return null;
   }
+
+  @override
+  Drawer attachBaseDrawer() {
+    // TODO: implement attachBaseDrawer
+    return null;
+  }
 }

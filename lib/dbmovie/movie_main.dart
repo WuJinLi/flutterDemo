@@ -1,24 +1,20 @@
-import 'dart:async';
-
-import 'package:date_format/date_format.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/api/apis.dart';
 import 'package:flutter_learn/api/apis_service.dart';
+import 'package:flutter_learn/base/base_widget.dart';
 import 'package:flutter_learn/model/movie.dart';
 import 'package:flutter_learn/ui/item_list.dart';
 import 'package:flutter_learn/ui/loadmore_view.dart';
 import 'package:flutter_learn/ui/movie_grid_view.dart';
-import 'package:flutter_learn/ui/state_view/empty.dart';
-import 'package:flutter_learn/ui/state_view/error.dart';
 import 'package:flutter_learn/utils/deal_error_util.dart';
-import 'package:flutter_learn/utils/loading_util.dart';
 
-class MovieMainPage extends StatefulWidget {
+class MovieMainPage extends BaseWidget {
   @override
-  createState() => _MovieMainState();
+  attachState() => _MovieMainState();
 }
 
-class _MovieMainState extends State<MovieMainPage> {
+class _MovieMainState extends BaseWidgetState<MovieMainPage> {
   Filmtype filmtype = Filmtype.IN_THEATERS;
   String title = '正在热映';
   String bottomText = "....加载更多....";
@@ -26,85 +22,32 @@ class _MovieMainState extends State<MovieMainPage> {
   List<Movie> movies = List();
   bool isList = true;
   ScrollController _controller = ScrollController();
-  int currPage = 0;
   int currCount = 0;
   int totalCount = 0;
   int count = 20;
-  bool loadMore = true;
+  TextStyle textStyle=TextStyle(color: Colors.blue);
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    result = showFilm();
+    setAppBarVisible(true);
     _controller.addListener(() {
       if (_controller.position.pixels == _controller.position.maxScrollExtent) {
         //如果不是最后一页数据，则生成新的数据添加到list里面
         if (currCount < totalCount) {
           bottomText = '....加载更多....';
-          currCount+=20;
+          textStyle=TextStyle(color: Colors.blue);
+          currCount += 20;
           setState(() {});
-          result = showFilm(start: currCount, type: filmtype);
+          showFilm();
         } else {
           bottomText = '----我是有底线的----';
+          textStyle=TextStyle(color: Colors.grey);
           setState(() {});
         }
       }
     });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(this.title),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.keyboard_backspace),
-              onPressed: () => Navigator.pop(context)),
-          IconButton(
-              icon: isList ? Icon(Icons.menu) : Icon(Icons.apps),
-              onPressed: () {
-                isList = !isList;
-                setState(() {});
-              })
-        ],
-      ),
-      drawer: Drawer(
-        child: _drawer(),
-      ),
-      body: FutureBuilder(
-        builder: (_, AsyncSnapshot<Hot> snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-              return EmptyPage();
-            case ConnectionState.waiting:
-              return getLoadingWidget();
-            case ConnectionState.done:
-              print('done');
-              if (snapshot.hasError) {
-                print(snapshot.error.toString());
-                return ErrorPage(text: '网络请求错误');
-              } else {
-                if (snapshot.data != null) {
-                  this.totalCount = (snapshot.data).total;
-                  movies.addAll(snapshot.data.subjects);
-                  return _bodyContent();
-                } else {
-                  return EmptyPage(
-                      text: '暂无数据', imageAsset: 'images/empty.jpeg');
-                }
-              }
-              break;
-            default:
-              return null;
-              break;
-          }
-        },
-        future: this.result,
-      ),
-    );
+    showFilm();
   }
 
   Widget _bodyContent() {
@@ -112,7 +55,7 @@ class _MovieMainState extends State<MovieMainPage> {
         ? ListView.builder(
             itemBuilder: (context, index) {
               if (index == movies.length) {
-                return LoadMoreView(this.bottomText);
+                return LoadMoreView(this.bottomText,textStyle: this.textStyle,);
               } else {
                 Movie movie = movies[index];
                 return ItemList(
@@ -167,6 +110,7 @@ class _MovieMainState extends State<MovieMainPage> {
         this.filmtype = filmtype;
         _switchTitle();
         setState(() {});
+        showFilm();
         Navigator.pop(context); //关闭抽屉
       },
     );
@@ -176,11 +120,9 @@ class _MovieMainState extends State<MovieMainPage> {
     switch (filmtype) {
       case Filmtype.IN_THEATERS:
         this.title = "正在热映";
-        this.result = showFilm();
         break;
       case Filmtype.COMING_SOON:
         this.title = "即将上映";
-        this.result = showFilm(type: Filmtype.COMING_SOON);
         break;
       case Filmtype.NEW_MOVIES:
         this.title = "新片榜";
@@ -197,7 +139,57 @@ class _MovieMainState extends State<MovieMainPage> {
     }
   }
 
-  Future<Hot> showFilm({start = 0, type: Filmtype.IN_THEATERS}) async {
-    return await apiService.showFilms(filmType: type, start: start);
+  void showFilm() {
+    showLoading().then((result) {
+      apiService.showFilms((Hot hot) {
+        this.totalCount = hot.total;
+        movies.addAll(hot.subjects);
+        showContent();
+      }, (error) {
+        //异常处理，针对网络的 非网络的
+        if (error is DioError) {
+          dealError(error, context);
+        } else {
+          print(error); //打印非网络请求异常
+        }
+        showError();
+      }, start: currCount, count: 20);
+    });
   }
+
+  @override
+  attachAppBar() => AppBar(
+        title: Text(this.title),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.keyboard_backspace),
+              onPressed: () => Navigator.pop(context)),
+          IconButton(
+              icon: isList ? Icon(Icons.menu) : Icon(Icons.apps),
+              onPressed: () {
+                isList = !isList;
+                setState(() {});
+              })
+        ],
+      );
+
+  @override
+  Widget attachContentWidget(BuildContext context) {
+    // TODO: implement attachContentWidget
+    return _bodyContent();
+  }
+
+  @override
+  Widget attachFloatingActionButtonWidget() {
+    // TODO: implement attachFloatingActionButtonWidget
+    return null;
+  }
+
+  @override
+  void onClickErrorWidget() {
+    // TODO: implement onClickErrorWidget
+  }
+
+  @override
+  attachBaseDrawer() => Drawer(child: _drawer());
 }

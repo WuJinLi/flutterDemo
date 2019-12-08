@@ -156,4 +156,10 @@ class _AddGoodState extends BaseWidgetState<AddGoodPage> {
   void onClickErrorWidget() {
     // TODO: implement onClickErrorWidget
   }
+
+  @override
+  Drawer attachBaseDrawer() {
+    // TODO: implement attachBaseDrawer
+    return null;
+  }
 }

@@ -244,4 +244,10 @@ class _CategroyState extends BaseWidgetState<CategroyPage> {
           );
         });
   }
+
+  @override
+  Drawer attachBaseDrawer() {
+    // TODO: implement attachBaseDrawer
+    return null;
+  }
 }

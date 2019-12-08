@@ -1,7 +1,4 @@
-import 'dart:async';
-import 'dart:convert';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/api/apis.dart';
 import 'package:flutter_learn/model/goods_model.dart';
@@ -89,7 +86,7 @@ class ApiService {
   }
 
   ///书写格式使用Future 结合 async await进行网络请求，在ui界面和使用FutureBuilder进行数据的提取和渲染
-  Future<Hot> showFilms(
+  void showFilms(Function callback, Function errorCallback,
       {filmType = Filmtype.IN_THEATERS, start = 0, count = 20}) async {
     Map<String, dynamic> data = new Map();
     data
@@ -98,24 +95,22 @@ class ApiService {
       ..['start'] = start
       ..['count'] = count;
 
-    Response response;
+    String path;
     switch (filmType) {
       case Filmtype.IN_THEATERS:
-        response = await dio.get(Apis.IN_THEATERS, queryParameters: data);
+        path = Apis.IN_THEATERS;
         break;
       case Filmtype.COMING_SOON:
-        response = await dio.get(Apis.COMING_SOON, queryParameters: data);
+        path = Apis.COMING_SOON;
         break;
       default:
         break;
     }
 
-    if (response.statusCode != 200) {
-      return null;
-    }
-
-    Hot hot = Hot.fromMap(response.data);
-
-    return hot;
+    dio.get(path, queryParameters: data).then((response) {
+      callback(Hot.fromMap(response.data));
+    }).catchError((e) {
+      errorCallback(e);
+    });
   }
 }

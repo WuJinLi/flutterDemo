@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class LoadMoreView extends StatelessWidget{
   String title;
-  LoadMoreView(@required this.title);
+  TextStyle textStyle=TextStyle(color: Colors.blue);
+  LoadMoreView(@required this.title,{this.textStyle});
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -11,7 +12,7 @@ class LoadMoreView extends StatelessWidget{
       alignment: Alignment.center,
       child: new Text(
         this.title,
-        style: TextStyle(color: Colors.blue),
+        style: textStyle,
       ),
     );
   }

@@ -46,6 +46,7 @@ abstract class BaseWidgetState<T extends BaseWidget> extends State<T>
     super.build(context);
     return Scaffold(
       appBar: _attachBaseAppBar(),
+      drawer: attachBaseDrawer(),
       body: Container(
         child: Stack(
           children: <Widget>[
@@ -76,6 +77,8 @@ abstract class BaseWidgetState<T extends BaseWidget> extends State<T>
 
   /// 导航栏  AppBar
   AppBar attachAppBar();
+
+  Drawer attachBaseDrawer();
 
   /// 暴露内容视图
   Widget attachContentWidget(BuildContext context);
