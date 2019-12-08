@@ -25,7 +25,7 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
   int currCount = 0;
   int totalCount = 0;
   int count = 20;
-  TextStyle textStyle=TextStyle(color: Colors.blue);
+  TextStyle textStyle = TextStyle(color: Colors.blue);
 
   @override
   void initState() {
@@ -36,13 +36,13 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
         //如果不是最后一页数据，则生成新的数据添加到list里面
         if (currCount < totalCount) {
           bottomText = '....加载更多....';
-          textStyle=TextStyle(color: Colors.blue);
+          textStyle = TextStyle(color: Colors.blue);
           currCount += 20;
           setState(() {});
           showFilm();
         } else {
           bottomText = '----我是有底线的----';
-          textStyle=TextStyle(color: Colors.grey);
+          textStyle = TextStyle(color: Colors.grey);
           setState(() {});
         }
       }
@@ -50,12 +50,51 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
     showFilm();
   }
 
+  @override
+  attachAppBar() => AppBar(
+        title: Text(this.title),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.keyboard_backspace),
+              onPressed: () => Navigator.pop(context)),
+          IconButton(
+              icon: isList ? Icon(Icons.menu) : Icon(Icons.apps),
+              onPressed: () {
+                isList = !isList;
+                setState(() {});
+              })
+        ],
+      );
+
+  @override
+  Widget attachContentWidget(BuildContext context) {
+    // TODO: implement attachContentWidget
+    return _bodyContent();
+  }
+
+  @override
+  Widget attachFloatingActionButtonWidget() {
+    // TODO: implement attachFloatingActionButtonWidget
+    return null;
+  }
+
+  @override
+  void onClickErrorWidget() {
+    // TODO: implement onClickErrorWidget
+  }
+
+  @override
+  attachBaseDrawer() => Drawer(child: _drawer());
+
   Widget _bodyContent() {
     return this.isList
         ? ListView.builder(
             itemBuilder: (context, index) {
               if (index == movies.length) {
-                return LoadMoreView(this.bottomText,textStyle: this.textStyle,);
+                return LoadMoreView(
+                  this.bottomText,
+                  textStyle: this.textStyle,
+                );
               } else {
                 Movie movie = movies[index];
                 return ItemList(
@@ -153,43 +192,7 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
           print(error); //打印非网络请求异常
         }
         showError();
-      }, start: currCount, count: 20);
+      }, start: this.currCount, count: 20, filmType: this.filmtype);
     });
   }
-
-  @override
-  attachAppBar() => AppBar(
-        title: Text(this.title),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.keyboard_backspace),
-              onPressed: () => Navigator.pop(context)),
-          IconButton(
-              icon: isList ? Icon(Icons.menu) : Icon(Icons.apps),
-              onPressed: () {
-                isList = !isList;
-                setState(() {});
-              })
-        ],
-      );
-
-  @override
-  Widget attachContentWidget(BuildContext context) {
-    // TODO: implement attachContentWidget
-    return _bodyContent();
-  }
-
-  @override
-  Widget attachFloatingActionButtonWidget() {
-    // TODO: implement attachFloatingActionButtonWidget
-    return null;
-  }
-
-  @override
-  void onClickErrorWidget() {
-    // TODO: implement onClickErrorWidget
-  }
-
-  @override
-  attachBaseDrawer() => Drawer(child: _drawer());
 }

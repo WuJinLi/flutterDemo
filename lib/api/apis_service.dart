@@ -87,7 +87,7 @@ class ApiService {
 
   ///书写格式使用Future 结合 async await进行网络请求，在ui界面和使用FutureBuilder进行数据的提取和渲染
   void showFilms(Function callback, Function errorCallback,
-      {filmType = Filmtype.IN_THEATERS, start = 0, count = 20}) async {
+      {filmType, start = 0, count = 20}) async {
     Map<String, dynamic> data = new Map();
     data
       ..['apikey'] = Apis.DOU_BAN_API_KEY
