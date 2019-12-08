@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/api/apis.dart';
 import 'package:flutter_learn/api/apis_service.dart';
 import 'package:flutter_learn/model/movie.dart';
+import 'package:flutter_learn/ui/item_list.dart';
+import 'package:flutter_learn/ui/movie_grid_view.dart';
 import 'package:flutter_learn/ui/state_view/empty.dart';
 import 'package:flutter_learn/ui/state_view/error.dart';
+import 'package:flutter_learn/utils/deal_error_util.dart';
 import 'package:flutter_learn/utils/loading_util.dart';
 
 class MovieMainPage extends StatefulWidget {
@@ -17,6 +20,7 @@ class _MovieMainState extends State<MovieMainPage> {
   Filmtype filmtype = Filmtype.IN_THEATERS;
   String title = '正在热映';
   var result;
+  bool isList = false;
 
   @override
   void initState() {
@@ -31,6 +35,17 @@ class _MovieMainState extends State<MovieMainPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(this.title),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.keyboard_backspace),
+              onPressed: () => Navigator.pop(context)),
+          IconButton(
+              icon: isList ? Icon(Icons.list) : Icon(Icons.grid_on),
+              onPressed: () {
+                isList = !isList;
+                setState(() {});
+              })
+        ],
       ),
       drawer: Drawer(
         child: _drawer(),
@@ -68,19 +83,29 @@ class _MovieMainState extends State<MovieMainPage> {
   }
 
   Widget _bodyContent(List<Movie> movies) {
-    return Padding(
-      padding: EdgeInsets.all(10.0),
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          Movie movie = movies[index];
-          return ListTile(
-            title: Text(movie.title),
-            subtitle: Text(movie.alt),
+    return this.isList
+        ? ListView.builder(
+            itemBuilder: (context, index) {
+              Movie movie = movies[index];
+              return ItemList(
+                movie: movie,
+                onTap: () {
+                  toast(context, movie.title);
+                },
+              );
+            },
+            itemCount: movies.length,
+          )
+        : SingleChildScrollView(
+            ///此处网格展示数据可使用gridview或者瀑布流自适应布局（前提是自布局宽高需要根据屏幕动态计算）
+            padding: EdgeInsets.all(6.0),
+            physics: const BouncingScrollPhysics(),
+            child: Wrap(
+              spacing: 5,
+              runSpacing: 5,
+              children: movies.map((movie) => MovieGridView(movie)).toList(),
+            ),
           );
-        },
-        itemCount: movies.length,
-      ),
-    );
   }
 
   _drawer() {
@@ -120,11 +145,11 @@ class _MovieMainState extends State<MovieMainPage> {
     switch (filmtype) {
       case Filmtype.IN_THEATERS:
         this.title = "正在热映";
-        this.result=showFilm();
+        this.result = showFilm();
         break;
       case Filmtype.COMING_SOON:
         this.title = "即将上映";
-        this.result=showFilm(type: Filmtype.COMING_SOON);
+        this.result = showFilm(type: Filmtype.COMING_SOON);
         break;
       case Filmtype.NEW_MOVIES:
         this.title = "新片榜";
