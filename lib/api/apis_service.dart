@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_learn/api/apis.dart';
 import 'package:flutter_learn/model/goods_model.dart';
 import 'package:flutter_learn/model/login_model.dart';
@@ -103,12 +103,47 @@ class ApiService {
       case Filmtype.COMING_SOON:
         path = Apis.COMING_SOON;
         break;
+      case Filmtype.TOP250:
+        path = Apis.TOP250;
+        break;
       default:
+        path = Apis.IN_THEATERS;
         break;
     }
 
     dio.get(path, queryParameters: data).then((response) {
       callback(Hot.fromMap(response.data));
+    }).catchError((e) {
+      errorCallback(e);
+    });
+  }
+
+  ///新片榜
+  void orderFilm(
+    Function callback,
+    Function errorCallback,
+    Filmtype filmType,
+  ) {
+    Map<String, dynamic> data = Map();
+    data['apikey'] = Apis.DOU_BAN_API_KEY;
+
+    String path;
+    switch (filmType) {
+      case Filmtype.NEW_MOVIES:
+        path = Apis.NEW_MOVIES;
+        break;
+      case Filmtype.WEEKLY:
+        path = Apis.WEEKLY;
+        break;
+      case Filmtype.US_BOX:
+        path = Apis.US_BOX;
+        break;
+      default:
+        path = Apis.WEEKLY;
+        break;
+    }
+    dio.get(path, queryParameters: data).then((response) {
+      callback(OrderFilm.fromJson(response.data));
     }).catchError((e) {
       errorCallback(e);
     });

@@ -26,6 +26,7 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
   int totalCount = 0;
   int count = 20;
   TextStyle textStyle = TextStyle(color: Colors.blue);
+  bool isLoadMore = true;
 
   @override
   void initState() {
@@ -33,7 +34,16 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
     setAppBarVisible(true);
     _controller.addListener(() {
       if (_controller.position.pixels == _controller.position.maxScrollExtent) {
-        //如果不是最后一页数据，则生成新的数据添加到list里面
+        ///不支持加载更多则直接展示没有更多数据布局
+        if (!isLoadMore) {
+          bottomText = '----我是有底线的----';
+          textStyle = TextStyle(color: Colors.grey);
+          setState(() {});
+          return;
+        }
+
+        ///支持下拉加载更多
+        ///如果不是最后一页数据，则生成新的数据添加到list里面
         if (currCount < totalCount) {
           bottomText = '....加载更多....';
           textStyle = TextStyle(color: Colors.blue);
@@ -47,12 +57,17 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
         }
       }
     });
+
+    ///初始化页面加载默认数据
     showFilm();
   }
 
   @override
   attachAppBar() => AppBar(
-        title: Text(this.title),
+        title: Text(
+          this.title,
+          style: TextStyle(fontSize: 17),
+        ),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.keyboard_backspace),
@@ -68,20 +83,16 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
 
   @override
   Widget attachContentWidget(BuildContext context) {
-    // TODO: implement attachContentWidget
     return _bodyContent();
   }
 
   @override
   Widget attachFloatingActionButtonWidget() {
-    // TODO: implement attachFloatingActionButtonWidget
     return null;
   }
 
   @override
-  void onClickErrorWidget() {
-    // TODO: implement onClickErrorWidget
-  }
+  void onClickErrorWidget() {}
 
   @override
   attachBaseDrawer() => Drawer(child: _drawer());
@@ -146,15 +157,18 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
         child: icon,
       ),
       onTap: () {
+        //更新操作类型
         this.filmtype = filmtype;
         _switchTitle();
+        _switchRequest();
+        this.movies.clear();
         setState(() {});
-        showFilm();
         Navigator.pop(context); //关闭抽屉
       },
     );
   }
 
+  ///侧滑栏点击点击对应的类型
   _switchTitle() {
     switch (filmtype) {
       case Filmtype.IN_THEATERS:
@@ -178,11 +192,31 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
     }
   }
 
+  //更具功能属性不同请求不同的数据接口
+  _switchRequest() {
+    switch (filmtype) {
+      case Filmtype.IN_THEATERS:
+      case Filmtype.COMING_SOON:
+      case Filmtype.TOP250:
+        this.isLoadMore = true;
+        showFilm();
+        break;
+      case Filmtype.NEW_MOVIES:
+      case Filmtype.WEEKLY:
+      case Filmtype.US_BOX:
+        this.isLoadMore = false;
+        orderFilm();
+        break;
+    }
+  }
+
+  ///热映/即将上映//top250
   void showFilm() {
     showLoading().then((result) {
       apiService.showFilms((Hot hot) {
         this.totalCount = hot.total;
         movies.addAll(hot.subjects);
+        this.title = hot.title;
         showContent();
       }, (error) {
         //异常处理，针对网络的 非网络的
@@ -193,6 +227,25 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
         }
         showError();
       }, start: this.currCount, count: 20, filmType: this.filmtype);
+    });
+  }
+
+  ///新片榜/口碑榜/北美票房榜
+  void orderFilm() {
+    showLoading().then((value) {
+      apiService.orderFilm((OrderFilm orderFilm) {
+        movies.addAll(orderFilm.subjects);
+        this.title = orderFilm.title;
+        showContent();
+      }, (error) {
+        //异常处理，针对网络的 非网络的
+        if (error is DioError) {
+          dealError(error, context);
+        } else {
+          print(error); //打印非网络请求异常
+        }
+        showError();
+      }, filmtype);
     });
   }
 }
