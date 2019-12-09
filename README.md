@@ -286,33 +286,14 @@ A new Flutter application.
 name: flutter_learn
 #应用或包的描述、简介。
 description: A new Flutter application.
-
 #应用或包的版本号。
 version: 1.0.0+1
-
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
-
 #应用或包依赖的其它包或插件。
 dependencies:
   flutter:
     sdk: flutter
-
-  #设置国际化
-  flutter_localizations:
-    sdk: flutter
-  cupertino_icons: ^0.1.2
-  #导入toast的依赖库
-  toast: ^0.1.3
-  #日期格式化依赖库
-  date_format: ^1.0.6
-  #三方日期选择器
-  flutter_datetime_picker: ^1.2.6
-
-  json_annotation: ^3.0.0
-
-#  网络请求三方库
-  dio: 3.0.3 #latest version
 
 #开发环境依赖的工具包（而不是flutter应用本身依赖的包）。
 dev_dependencies:
