@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_learn/api/apis.dart';
 import 'package:flutter_learn/api/apis_service.dart';
 import 'package:flutter_learn/base/base_widget.dart';
@@ -9,6 +8,8 @@ import 'package:flutter_learn/ui/item_list.dart';
 import 'package:flutter_learn/ui/loadmore_view.dart';
 import 'package:flutter_learn/ui/movie_grid_view.dart';
 import 'package:flutter_learn/utils/deal_error_util.dart';
+
+import 'movie_search.dart';
 
 class MovieMainPage extends BaseWidget {
   @override
@@ -74,7 +75,13 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
           IconButton(
               icon: Icon(Icons.keyboard_backspace),
               onPressed: () => Navigator.pop(context)),
-          IconButton(icon: Icon(Icons.search), onPressed: () {})
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) {
+                  return MovieSearchPage();
+                }));
+              })
         ],
       );
 
@@ -162,9 +169,11 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
       onTap: () {
         //更新操作类型
         this.filmtype = filmtype;
+        this.movies.clear();
+        this.currCount = 0;
+        this.totalCount = 0;
         _switchTitle();
         _switchRequest();
-        this.movies.clear();
         setState(() {});
         Navigator.pop(context); //关闭抽屉
       },
