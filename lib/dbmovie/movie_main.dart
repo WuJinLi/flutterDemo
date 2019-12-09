@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_learn/api/apis.dart';
 import 'package:flutter_learn/api/apis_service.dart';
 import 'package:flutter_learn/base/base_widget.dart';
@@ -32,6 +33,7 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
   void initState() {
     super.initState();
     setAppBarVisible(true);
+    setFloatActionButtonVisible(true);
     _controller.addListener(() {
       if (_controller.position.pixels == _controller.position.maxScrollExtent) {
         ///不支持加载更多则直接展示没有更多数据布局
@@ -72,12 +74,7 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
           IconButton(
               icon: Icon(Icons.keyboard_backspace),
               onPressed: () => Navigator.pop(context)),
-          IconButton(
-              icon: isList ? Icon(Icons.menu) : Icon(Icons.apps),
-              onPressed: () {
-                isList = !isList;
-                setState(() {});
-              })
+          IconButton(icon: Icon(Icons.search), onPressed: () {})
         ],
       );
 
@@ -88,7 +85,13 @@ class _MovieMainState extends BaseWidgetState<MovieMainPage> {
 
   @override
   Widget attachFloatingActionButtonWidget() {
-    return null;
+    return FloatingActionButton(
+      onPressed: () {
+        isList = !isList;
+        setState(() {});
+      },
+      child: isList ? Icon(Icons.menu) : Icon(Icons.apps),
+    );
   }
 
   @override
