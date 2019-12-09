@@ -1,10 +1,8 @@
 # flutter_learn
 
-A new Flutter application.
-
    ### [解决app启动白屏](https://blog.csdn.net/xia236326/article/details/90374447)
    ### [上拉加载更多，下拉刷新](https://www.cnblogs.com/upwgh/p/11435721.html)
-   ### [JSON to Dart](https://javiercbk.github.io/json_to_dart/)
+   ### [JSON to Dart 根据json生成对应dart文件](https://javiercbk.github.io/json_to_dart/)
    ### [Flutter社区和资源传送门](https://www.cnblogs.com/yangyxd/p/9232308.html)
    ### [语雀-闲鱼技术](https://www.yuque.com/xytech/flutter/)
 + 2019/9/24:
