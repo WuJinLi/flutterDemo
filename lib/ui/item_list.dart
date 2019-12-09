@@ -13,7 +13,7 @@ class ItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     /// 影片图片
     var movieImage = ImageLoadView(movie.images.medium,
-        borderRadius: BorderRadius.circular(4.0), height: 150.0, width: 100.0);
+        borderRadius: BorderRadius.circular(4.0), height: 140.0, width: 100.0);
     var casts = '';
     movie.casts.map((cast) {
       casts += cast.name + '/';
@@ -26,7 +26,7 @@ class ItemList extends StatelessWidget {
 
     var movieMsg = Container(
       //高度
-      height: 120.0,
+      height: 140.0,
       margin: EdgeInsets.only(left: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
